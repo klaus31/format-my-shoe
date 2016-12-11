@@ -5,7 +5,7 @@ var platforms;
 var cursors;
 
 function preload() {
-  game.load.image('ground', 'assets/platform.png');
+  game.load.image('ground', 'assets/platform2.png');
   game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
   cursors = game.input.keyboard.createCursorKeys();
 }
