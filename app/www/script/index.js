@@ -2,16 +2,17 @@
 
 let game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 let platforms;
+
 const hero = new Hero();
+const rank = new Rank();
 
 function preload() {
   game.load.image('ground', 'assets/ground.png');
   game.load.image('ledge', 'assets/ledge.png');
-  game.load.image('rank1', 'assets/rank1.png');
-  game.load.image('rank2', 'assets/rank2.png');
-  game.load.image('rank3', 'assets/rank3.png');
   cursors = game.input.keyboard.createCursorKeys();
+
   hero.load(game);
+  rank.load(game);
 }
 
 function create() {
@@ -27,16 +28,8 @@ function create() {
     platforms.enableBody = true;
 
     // Add some fance plants
-    let rank = platforms.create(game.world.width - 64, game.world.height - 256, 'rank1');
-    rank.body.immovable = true;
-    rank = platforms.create(game.world.width - 64,  game.world.height - 160, 'rank2');
-    rank.body.immovable = true;
-    rank = platforms.create(0,  game.world.height - 160, 'rank3');
-    rank.body.immovable = true;
-    rank = platforms.create(0, game.world.height - 256, 'rank2');
-    rank.body.immovable = true;
-    rank = platforms.create(0, game.world.height - 352, 'rank1');
-    rank.body.immovable = true;
+    rank.addToGroup(platforms, game.world.width - 64,  game.world.height - 160, 2);
+    rank.addToGroup(platforms, 0,  game.world.height - 160, 3);
 
     // Here we create the ground.
     let ground = platforms.create(0, game.world.height - 64, 'ground');
