@@ -2,6 +2,8 @@
 
 A game that formats ya shoes
 
+http://phaser.io/tutorials/making-your-first-phaser-game
+
 # Start game
 
 1. Clone repository
