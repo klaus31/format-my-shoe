@@ -5,7 +5,8 @@ let platforms;
 let hero;
 
 function preload() {
-  game.load.image('ground', 'assets/platform2.png');
+  game.load.image('ground', 'assets/ground.png');
+  game.load.image('ledge', 'assets/ledge.png');
   cursors = game.input.keyboard.createCursorKeys();
   hero = new Hero(game, cursors);
   hero.load();
@@ -33,11 +34,11 @@ function create() {
     ground.body.immovable = true;
 
     //  Now let's create two ledges
-    let ledge = platforms.create(400, 400, 'ground');
+    let ledge = platforms.create(400, 400, 'ledge');
 
     ledge.body.immovable = true;
 
-    ledge = platforms.create(-150, 250, 'ground');
+    ledge = platforms.create(-150, 250, 'ledge');
 
     ledge.body.immovable = true;
 
