@@ -6,6 +6,7 @@ const hero = new Hero();
 
 function preload() {
   game.load.image('ground', 'assets/platform2.png');
+  game.load.image('gold', 'assets/gold.png');
   cursors = game.input.keyboard.createCursorKeys();
   hero.load(game);
 }
@@ -14,7 +15,7 @@ function create() {
 
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    game.stage.backgroundColor = "#90B0FF";
+    game.stage.backgroundColor = "#B0D0FF";
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = game.add.group();
@@ -30,6 +31,8 @@ function create() {
 
     //  This stops it from falling away when you jump on it
     ground.body.immovable = true;
+
+    let gold = platforms.create(game.world.width - 450, game.world.height - 64 - 32, 'gold');
 
     //  Now let's create two ledges
     let ledge = platforms.create(400, 400, 'ground');
