@@ -4,6 +4,7 @@ let Game = function() {
   const rank = new Rank();
   const ground = new Ground();
   const ledge = new Ledge();
+  const beer = new Beer();
 
   let collisionGroup;
   let cursors;
@@ -15,11 +16,12 @@ let Game = function() {
     rank.load(game);
     ground.load(game);
     ledge.load(game);
+    beer.load(game);
   }
 
   this.create = function() {
       game.physics.startSystem(Phaser.Physics.ARCADE);
-      game.stage.backgroundColor = "#90B0FF";
+      game.stage.backgroundColor = "#B0D0FF";
 
       collisionGroup = game.add.group();
       collisionGroup.enableBody = true;
@@ -33,6 +35,8 @@ let Game = function() {
       ledge.addToGroup(collisionGroup, 400, 340);
       ledge.addToGroup(collisionGroup, 500, 100);
       ledge.addToGroup(collisionGroup, -150, 200);
+
+      beer.addToGroup(collisionGroup, game.world.width - 450, game.world.height - 64 - 32);
 
       hero.addToGame(game, game.world.width / 2, game.world.height - 150);
   }
