@@ -6,6 +6,7 @@ const hero = new Hero();
 
 function preload() {
   game.load.image('ground', 'assets/platform2.png');
+  game.load.image('gold', 'assets/gold.png');
   cursors = game.input.keyboard.createCursorKeys();
   hero.load(game);
 }
@@ -30,6 +31,8 @@ function create() {
 
     //  This stops it from falling away when you jump on it
     ground.body.immovable = true;
+
+    let gold = platforms.create(game.world.width / 2 - 12, 400 - 32, 'gold');
 
     //  Now let's create two ledges
     let ledge = platforms.create(400, 400, 'ground');
