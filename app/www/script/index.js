@@ -15,7 +15,7 @@ function create() {
 
     //  We're going to be using physics, so enable the Arcade Physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
-    game.stage.backgroundColor = "#90B0FF";
+    game.stage.backgroundColor = "#B0D0FF";
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     platforms = game.add.group();
