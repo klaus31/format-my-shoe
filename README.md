@@ -2,7 +2,7 @@
 
 A game that formats ya shoes
 
-# Start game
+## Start game
 
 1. Clone repository
 2. Navigate to `app` directory
@@ -13,5 +13,9 @@ A game that formats ya shoes
 
 ## platforms
 
-cordova platform add android
-cordova platform add browser
+* `cordova platform add android`
+* `cordova platform add browser`
+
+## Beautify Code
+
+`npm run beautify`

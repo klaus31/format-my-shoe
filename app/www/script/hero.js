@@ -11,21 +11,21 @@ let Hero = function() {
   const frameHeight = 48;
   const updateAnimation = function(cursors) {
     if (cursors.left.isDown) {
-        player.body.velocity.x = -150;
-        player.animations.play('left');
+      player.body.velocity.x = -150;
+      player.animations.play('left');
     } else if (cursors.right.isDown) {
-        player.body.velocity.x = 150;
-        player.animations.play('right');
+      player.body.velocity.x = 150;
+      player.animations.play('right');
     } else {
-        player.animations.stop();
-        player.frame = 4;
+      player.animations.stop();
+      player.frame = 4;
     }
   }
 
   const handleCollision = function(game, collidingGroup, cursors) {
     const hit = game.physics.arcade.collide(player, collidingGroup);
     if (cursors.up.isDown && player.body.touching.down && hit) {
-        player.body.velocity.y = -350;
+      player.body.velocity.y = -350;
     }
   }
 
@@ -48,14 +48,14 @@ let Hero = function() {
   }
 
 
-    this.load = function(game) {
-      game.load.spritesheet(key, url, frameWidth, frameHeight);
-    }
+  this.load = function(game) {
+    game.load.spritesheet(key, url, frameWidth, frameHeight);
+  }
 
-    this.addToGame = function(game, x, y) {
-      player = game.add.sprite(x, y, key);
-      addPhysics(game);
-      addAnimations();
-    }
+  this.addToGame = function(game, x, y) {
+    player = game.add.sprite(x, y, key);
+    addPhysics(game);
+    addAnimations();
+  }
 
 }
