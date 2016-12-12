@@ -1,4 +1,6 @@
-let Hero = function(game, cursors) {
+let Hero = function() {
+
+  let player;
 
   const createRandomString = function() {
     return Math.random().toString(36).substring(7);
@@ -7,19 +9,6 @@ let Hero = function(game, cursors) {
   const url = 'assets/dude.png';
   const frameWidth = 32;
   const frameHeight = 48;
-
-  let player;
-
-  this.load = function() {
-    game.load.spritesheet(key, url, frameWidth, frameHeight);
-  }
-
-  this.addToGame = function(x, y) {
-    player = game.add.sprite(x, y, key);
-    addPhysics();
-    addAnimations();
-  }
-
   const updateAnimation = function(cursors) {
     if (cursors.left.isDown) {
         player.body.velocity.x = -150;
@@ -33,20 +22,14 @@ let Hero = function(game, cursors) {
     }
   }
 
-  const handleCollision = function(collidingGroup, cursors) {
-    var hit = game.physics.arcade.collide(player, collidingGroup);
+  const handleCollision = function(game, collidingGroup, cursors) {
+    const hit = game.physics.arcade.collide(player, collidingGroup);
     if (cursors.up.isDown && player.body.touching.down && hit) {
         player.body.velocity.y = -350;
     }
   }
 
-  this.update = function(collidingGroup, cursors) {
-    player.body.velocity.x = 0;
-    updateAnimation(cursors);
-    handleCollision(collidingGroup, cursors);
-  }
-
-  const addPhysics = function() {
+  const addPhysics = function(game) {
     game.physics.arcade.enable(player);
     player.body.bounce.y = 0.2;
     player.body.gravity.y = 300;
@@ -57,5 +40,22 @@ let Hero = function(game, cursors) {
     player.animations.add('left', [0, 1, 2, 3], 10, true);
     player.animations.add('right', [5, 6, 7, 8], 10, true);
   }
+
+  this.update = function(game, collidingGroup, cursors) {
+    player.body.velocity.x = 0;
+    updateAnimation(cursors);
+    handleCollision(game, collidingGroup, cursors);
+  }
+
+
+    this.load = function(game) {
+      game.load.spritesheet(key, url, frameWidth, frameHeight);
+    }
+
+    this.addToGame = function(game, x, y) {
+      player = game.add.sprite(x, y, key);
+      addPhysics(game);
+      addAnimations();
+    }
 
 }

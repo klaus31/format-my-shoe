@@ -2,13 +2,12 @@
 
 let game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 let platforms;
-let hero;
+const hero = new Hero();
 
 function preload() {
   game.load.image('ground', 'assets/platform2.png');
   cursors = game.input.keyboard.createCursorKeys();
-  hero = new Hero(game, cursors);
-  hero.load();
+  hero.load(game);
 }
 
 function create() {
@@ -41,9 +40,9 @@ function create() {
 
     ledge.body.immovable = true;
 
-    hero.addToGame(32, game.world.height - 150);
+    hero.addToGame(game, 32, game.world.height - 150);
 }
 
 function update() {
-  hero.update(platforms, cursors);
+  hero.update(game, platforms, cursors);
 }
