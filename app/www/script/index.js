@@ -7,6 +7,9 @@ let hero;
 function preload() {
   game.load.image('ground', 'assets/ground.png');
   game.load.image('ledge', 'assets/ledge.png');
+  game.load.image('rank1', 'assets/rank1.png');
+  game.load.image('rank2', 'assets/rank2.png');
+  game.load.image('rank3', 'assets/rank3.png');
   cursors = game.input.keyboard.createCursorKeys();
   hero = new Hero(game, cursors);
   hero.load();
@@ -24,21 +27,39 @@ function create() {
     //  We will enable physics for any object that is created in this group
     platforms.enableBody = true;
 
+    // Add some fance plants
+    let rank = platforms.create(game.world.width - 64, game.world.height - 256, 'rank1');
+    rank.body.immovable = true;
+    rank = platforms.create(game.world.width - 64,  game.world.height - 160, 'rank2');
+    rank.body.immovable = true;
+    rank = platforms.create(0,  game.world.height - 160, 'rank3');
+    rank.body.immovable = true;
+    rank = platforms.create(0, game.world.height - 256, 'rank2');
+    rank.body.immovable = true;
+    rank = platforms.create(0, game.world.height - 352, 'rank1');
+    rank.body.immovable = true;
+
     // Here we create the ground.
     let ground = platforms.create(0, game.world.height - 64, 'ground');
-
-    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-    ground.scale.setTo(2, 2);
 
     //  This stops it from falling away when you jump on it
     ground.body.immovable = true;
 
+    // Create a secound ground safe dude from falling down
+    ground = platforms.create(425, game.world.height - 64, 'ground');
+
+    ground.body.immovable = true;
+
     //  Now let's create two ledges
-    let ledge = platforms.create(400, 400, 'ledge');
+    let ledge = platforms.create(400, 340, 'ledge');
 
     ledge.body.immovable = true;
 
-    ledge = platforms.create(-150, 250, 'ledge');
+    ledge = platforms.create(500, 100, 'ledge');
+
+    ledge.body.immovable = true;
+
+    ledge = platforms.create(-150, 200, 'ledge');
 
     ledge.body.immovable = true;
 
