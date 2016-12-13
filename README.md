@@ -19,3 +19,8 @@ A game that formats ya shoes
 ## Beautify Code
 
 `npm run beautify`
+
+## Based on
+
+http://phaser.io/tutorials/making-your-first-phaser-game
+
