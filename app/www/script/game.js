@@ -1,4 +1,4 @@
-let Game = function() {
+let Game = function(gridLayout) {
 
   const hero = new Hero();
   const rank = new Rank();
@@ -26,8 +26,8 @@ let Game = function() {
     collisionGroup = game.add.group();
     collisionGroup.enableBody = true;
 
-    rank.addToGroup(collisionGroup, game.world.width - 64, game.world.height - 160, 2);
-    rank.addToGroup(collisionGroup, 0, game.world.height - 160, 3);
+    rank.addToGroup(collisionGroup, gridLayout.getGrid(-2, -5), 2);
+    rank.addToGroup(collisionGroup, gridLayout.getGrid(0, -5), 3);
 
     ground.addToGroup(collisionGroup, 0, game.world.height - 64);
     ground.addToGroup(collisionGroup, 425, game.world.height - 64);
