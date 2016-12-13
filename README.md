@@ -2,9 +2,7 @@
 
 A game that formats ya shoes
 
-http://phaser.io/tutorials/making-your-first-phaser-game
-
-# Start game
+## Start game
 
 1. Clone repository
 2. Navigate to `app` directory
@@ -15,5 +13,14 @@ http://phaser.io/tutorials/making-your-first-phaser-game
 
 ## platforms
 
-cordova platform add android
-cordova platform add browser
+* `cordova platform add android`
+* `cordova platform add browser`
+
+## Beautify Code
+
+`npm run beautify`
+
+## Based on
+
+http://phaser.io/tutorials/making-your-first-phaser-game
+
