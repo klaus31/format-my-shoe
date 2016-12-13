@@ -12,8 +12,8 @@ let Rank = function() {
   }
 
   this.addToGroup = function(group, x, y, unitsHeight) {
-    while(unitsHeight--) {
-      var rank = group.create(x, y, [keyPart1, keyPart2, keyPart3][unitsHeight%3]);
+    while (unitsHeight--) {
+      var rank = group.create(x, y, [keyPart1, keyPart2, keyPart3][unitsHeight % 3]);
       rank.body.immovable = true;
       y -= partHeight;
     }
