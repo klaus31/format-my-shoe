@@ -26,7 +26,7 @@ let Game = function() {
 
   this.update = function() {
     const eatApple = game.physics.arcade.collide(apple.getSprite(), hero.getSprite());
-    if(eatApple) {
+    if (eatApple) {
       apple.recreate();
     }
     game.physics.arcade.collide(hero.getSprite(), labyrinth.getLayer());
