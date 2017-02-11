@@ -1,6 +1,5 @@
 let Game = function() {
 
-  const ID_WALL = 2;
   const labyrinth = new Labyrinth();
 
   let map;
@@ -14,12 +13,9 @@ let Game = function() {
 
   this.create = function() {
     labyrinth.create();
-    labyrinth.onWallHit(function() {
-      window.alert('kaputt');
-    });
   }
 
   this.update = function() {
-    // labyrinth.update();
+    labyrinth.update(cursors);
   }
 }

@@ -2,13 +2,13 @@ var Labyrinth = function(hole) {
 
   const ID_WALL = 1;
 
-  var map;
-  var layer;
+  let map;
+  let layer;
+  let speedSteps = 10;
 
   this.preload = function() {
-    var basicDir = 'levels/';
-    game.load.tilemap('map', basicDir + 'level-01.json', null, Phaser.Tilemap.TILED_JSON);
-    game.load.image('wall', basicDir + 'wall.png');
+    game.load.tilemap('map', 'levels/level-01.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.image('wall', 'levels/wall.png');
   }
 
   this.create = function() {
@@ -19,7 +19,16 @@ var Labyrinth = function(hole) {
     map.addTilesetImage('wall');
   };
 
-  this.onWallHit = function(func) {
-    map.setTileIndexCallback(ID_WALL, func, this);
+
+  this.update = function(cursors) {
+    if (cursors.left.isDown) {
+      layer.cameraOffset.x -= speedSteps;
+    } else if (cursors.right.isDown) {
+      layer.cameraOffset.x += speedSteps;
+    } else if (cursors.up.isDown) {
+      layer.cameraOffset.y -= speedSteps;
+    } else if (cursors.down.isDown) {
+      layer.cameraOffset.y += speedSteps;
+    }
   }
 }
