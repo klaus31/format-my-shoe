@@ -15,10 +15,14 @@ let Game = function() {
 
   this.create = function() {
     labyrinth.create();
+    labyrinth.onWallHit(function() {
+      hero.kill();
+    });
     hero.create();
   }
 
   this.update = function() {
+    game.physics.arcade.collide(hero.getSprite(), labyrinth.getLayer());
     hero.update(cursors);
   }
 }

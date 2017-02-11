@@ -18,8 +18,15 @@ let Labyrinth = function(hole) {
     map.setCollisionBetween(1, 12);
     game.physics.enable(layer);
     map.addTilesetImage('wall');
-  };
+  }
 
+  this.onWallHit = function(func) {
+    map.setTileIndexCallback(ID_WALL, func, this);
+  }
+
+  this.getLayer = function() {
+    return layer;
+  }
 
   this.update = function(cursors) {
     if (cursors.left.isDown) {
