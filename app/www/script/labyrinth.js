@@ -1,4 +1,4 @@
-var Labyrinth = function(hole) {
+let Labyrinth = function(hole) {
 
   const ID_WALL = 1;
 
@@ -14,6 +14,7 @@ var Labyrinth = function(hole) {
   this.create = function() {
     map = game.add.tilemap('map');
     layer = map.createLayer('level-01');
+    layer.resizeWorld();
     map.setCollisionBetween(1, 12);
     game.physics.enable(layer);
     map.addTilesetImage('wall');

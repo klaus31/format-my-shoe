@@ -1,6 +1,7 @@
 let Game = function() {
 
   const labyrinth = new Labyrinth();
+  const hero = new Hero();
 
   let map;
   let layer;
@@ -9,13 +10,15 @@ let Game = function() {
   this.preload = function() {
     cursors = game.input.keyboard.createCursorKeys();
     labyrinth.preload();
+    hero.preload();
   }
 
   this.create = function() {
     labyrinth.create();
+    hero.create();
   }
 
   this.update = function() {
-    labyrinth.update(cursors);
+    hero.update(cursors);
   }
 }
