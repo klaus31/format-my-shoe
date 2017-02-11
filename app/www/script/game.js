@@ -17,10 +17,8 @@ let Game = function() {
 
   this.create = function() {
     labyrinth.create();
-    labyrinth.onWallHit(function() {
-      hero.kill();
-      apple.reset();
-    });
+    labyrinth.onWallHit(hero.kill);
+    hero.onKill(apple.reset);
     hero.create();
     apple.create();
   }
@@ -29,6 +27,7 @@ let Game = function() {
     const eatApple = game.physics.arcade.collide(apple.getSprite(), hero.getSprite());
     if (eatApple) {
       apple.recreate();
+      hero.fillTime();
     }
     game.physics.arcade.collide(hero.getSprite(), labyrinth.getLayer());
     hero.update(cursors);

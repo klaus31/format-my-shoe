@@ -24,7 +24,7 @@ let Apple = function() {
   }
 
   this.reset = function() {
-    i=0;
+    i = 0;
     increment = true;
     ME.recreate();
   }

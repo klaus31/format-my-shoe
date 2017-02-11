@@ -1,6 +1,12 @@
 let Hero = function() {
 
+  const ME = this;
+
   let hero;
+  let currentFrame = 0;
+  let onKill;
+  let updateCount = 0;
+  let frameEvery = 5;
 
   const STARTING_POSITION = {
     x: GameData.width / 2 - 8,
@@ -9,6 +15,10 @@ let Hero = function() {
 
   this.preload = function() {
     game.load.spritesheet('hero', 'assets/hero.png', 16, 16);
+  }
+
+  this.onKill = function(func) {
+    onKill = func;
   }
 
   this.create = function() {
@@ -22,15 +32,29 @@ let Hero = function() {
     return hero;
   }
 
+  this.fillTime = function() {
+    return currentFrame = 0;
+  }
+
   this.kill = function() {
-    console.info('Hero killed'); // TODO raus
     hero.position.x = STARTING_POSITION.x;
     hero.position.y = STARTING_POSITION.y;
     hero.body.velocity.x = 0;
     hero.body.velocity.y = 0;
+    updateCount = 0;
+    currentFrame = 0;
+    if (onKill) onKill();
   }
 
   this.update = function(cursors) {
+    hero.frame = currentFrame;
+    if (updateCount++ == frameEvery) {
+      updateCount = 0;
+      currentFrame += 1;
+    }
+    if (currentFrame == 128) {
+      ME.kill();
+    }
     if (cursors.left.isDown) {
       hero.body.velocity.x -= 10;
     } else if (cursors.right.isDown) {
