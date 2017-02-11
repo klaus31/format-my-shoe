@@ -2,31 +2,7 @@ let Apple = function() {
 
   let apple;
   const ME = this;
-  const positions = [{
-    x: 100,
-    y: 100
-  }, {
-    x: 100,
-    y: 200
-  }, {
-    x: 100,
-    y: 400
-  }, {
-    x: 200,
-    y: 400
-  }, {
-    x: 300,
-    y: 400
-  }, {
-    x: 400,
-    y: 400
-  }, {
-    x: 400,
-    y: 450
-  }, {
-    x: 450,
-    y: 650
-  }]
+
   let i = 0;
   let increment = true;
 
@@ -45,6 +21,12 @@ let Apple = function() {
   this.recreate = function() {
     apple.kill();
     ME.create();
+  }
+
+  this.reset = function() {
+    i=0;
+    increment = true;
+    ME.recreate();
   }
 
   this.getSprite = function() {

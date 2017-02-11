@@ -19,6 +19,7 @@ let Game = function() {
     labyrinth.create();
     labyrinth.onWallHit(function() {
       hero.kill();
+      apple.reset();
     });
     hero.create();
     apple.create();
