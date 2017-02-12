@@ -9,8 +9,8 @@ let Hero = function() {
   let frameEvery = 5;
 
   const STARTING_POSITION = {
-    x: GameData.width / 2 - 8,
-    y: GameData.height / 2 - 8
+    x: 16 * 5,
+    y: 16 * 5
   }
 
   this.preload = function() {
