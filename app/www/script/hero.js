@@ -5,6 +5,7 @@ let Hero = function() {
   let hero;
   let currentFrame = 0;
   let onKill;
+  let onTimeout;
   let updateCount = 0;
   let frameEvery = 5;
   let firstMoveMade = false;
@@ -20,10 +21,15 @@ let Hero = function() {
     updateCount = 0;
     currentFrame = 0;
     frameEvery = 5;
+    onTimeout = null;
   }
 
   this.onKill = function(func) {
     onKill = func;
+  }
+
+  this.onTimeout = function(func) {
+    onTimeout = func;
   }
 
   this.create = function() {
@@ -59,6 +65,7 @@ let Hero = function() {
     }
     if (currentFrame == 128) {
       ME.kill();
+      onTimeout();
     }
     const SPEED = 150;
     if (cursors.left.isDown) {

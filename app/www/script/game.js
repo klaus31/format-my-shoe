@@ -19,6 +19,7 @@ let Game = function() {
   this.create = function() {
     labyrinth.create();
     labyrinth.onWallHit(endGameFail);
+    hero.onTimeout(endGameFail);
     labyrinth.onGoalHit(endGameWin);
     labyrinth.onAppleHit(hero.fillTime);
     hero.create();

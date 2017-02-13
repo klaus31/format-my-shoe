@@ -2,7 +2,7 @@ const GameProperties = {
   width: 16 * 50,
   height: 16 * 29,
   currentLevel: 1,
-  allLevels: 3,
+  allLevels: 4,
   style: {
     backgroundColor: '#000',
     font: {
