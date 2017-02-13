@@ -6,12 +6,12 @@ let Labyrinth = function(hole) {
   let map;
   let layer;
   let speedSteps = 10;
-  let applesEaten = [];
+  let healthsEaten = [];
 
   this.preload = function() {
     game.load.tilemap('map', 'levels/level-01.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('wall', 'levels/wall.png');
-    game.load.image('apple', 'levels/apple.png');
+    game.load.image('health', 'levels/health.png');
   }
 
   this.create = function() {
@@ -21,7 +21,7 @@ let Labyrinth = function(hole) {
     map.setCollisionBetween(1, 12);
     game.physics.enable(layer);
     map.addTilesetImage('wall');
-    map.addTilesetImage('apple');
+    map.addTilesetImage('health');
   }
 
   this.onWallHit = function(func) {
@@ -31,14 +31,14 @@ let Labyrinth = function(hole) {
   this.onAppleHit = function(func) {
     map.setTileIndexCallback(ID_APPLE, function(sprite, tile){
       if(tile.alpha == 1)func();
-      applesEaten.push(tile);
+      healthsEaten.push(tile);
       tile.alpha = 0.2;
       }, this);
   }
 
   this.resetApples = function() {
-    let i = applesEaten.length;
-    while(i--) applesEaten[i].alpha = 1;
+    let i = healthsEaten.length;
+    while(i--) healthsEaten[i].alpha = 1;
   }
 
   this.getLayer = function() {

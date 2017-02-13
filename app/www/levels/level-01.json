@@ -38,11 +38,11 @@
         }, 
         {
          "firstgid":2,
-         "image":"apple.png",
+         "image":"health.png",
          "imageheight":16,
          "imagewidth":16,
          "margin":0,
-         "name":"apple",
+         "name":"health",
          "properties":
             {
 
