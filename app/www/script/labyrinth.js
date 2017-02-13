@@ -5,13 +5,14 @@ let Labyrinth = function(hole) {
 
   let map;
   let layer;
-  let speedSteps = 10;
   let healthsEaten = [];
 
   this.preload = function() {
+    console.info('PRELOAD labyrinth')
     game.load.tilemap('map', 'levels/level-01.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('wall', 'levels/wall.png');
     game.load.image('health', 'levels/health.png');
+    healthsEaten = [];
   }
 
   this.create = function() {
@@ -29,31 +30,27 @@ let Labyrinth = function(hole) {
   }
 
   this.onAppleHit = function(func) {
-    map.setTileIndexCallback(ID_APPLE, function(sprite, tile){
-      if(tile.alpha == 1)func();
-      healthsEaten.push(tile);
-      tile.alpha = 0.2;
-      }, this);
+    map.setTileIndexCallback(ID_APPLE, function(sprite, tile) {
+      if (tile.alpha == 1) {
+        healthsEaten.push(tile);
+        console.info('Warum geht alpha nicht mehr (vgl. 2-3 commits vorher - da gings');
+        tile.alpha = 0.2;
+        func();
+      }
+    }, this);
   }
 
   this.resetApples = function() {
     let i = healthsEaten.length;
-    while(i--) healthsEaten[i].alpha = 1;
+    while (i--) healthsEaten[i].alpha = 1;
+    healthsEaten = [];
+  }
+
+  this.countHealthsEaten = function() {
+    return healthsEaten.length;
   }
 
   this.getLayer = function() {
     return layer;
-  }
-
-  this.update = function(cursors) {
-    if (cursors.left.isDown) {
-      layer.cameraOffset.x -= speedSteps;
-    } else if (cursors.right.isDown) {
-      layer.cameraOffset.x += speedSteps;
-    } else if (cursors.up.isDown) {
-      layer.cameraOffset.y -= speedSteps;
-    } else if (cursors.down.isDown) {
-      layer.cameraOffset.y += speedSteps;
-    }
   }
 }
