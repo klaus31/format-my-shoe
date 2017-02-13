@@ -2,6 +2,7 @@ let Labyrinth = function(hole) {
 
   const ID_WALL = 1;
   const ID_APPLE = 2;
+  const ID_GOAL = 3;
 
   let map;
   let layer;
@@ -12,6 +13,7 @@ let Labyrinth = function(hole) {
     game.load.tilemap('map', 'levels/level-01.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('wall', 'levels/wall.png');
     game.load.image('health', 'levels/health.png');
+    game.load.image('goal', 'levels/goal.png');
     healthsEaten = [];
   }
 
@@ -23,10 +25,15 @@ let Labyrinth = function(hole) {
     game.physics.enable(layer);
     map.addTilesetImage('wall');
     map.addTilesetImage('health');
+    map.addTilesetImage('goal');
   }
 
   this.onWallHit = function(func) {
     map.setTileIndexCallback(ID_WALL, func, this);
+  }
+
+  this.onGoalHit = function(func) {
+    map.setTileIndexCallback(ID_GOAL, func, this);
   }
 
   this.onAppleHit = function(func) {

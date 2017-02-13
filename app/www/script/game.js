@@ -6,31 +6,41 @@ let Game = function() {
   let map;
   let layer;
   let cursors;
-  let wallHit = false;
+  let endedGame = false;
 
 
   this.preload = function() {
     cursors = game.input.keyboard.createCursorKeys();
     labyrinth.preload();
     hero.preload();
-    wallHit = false;
+    endedGame = false;
   }
 
   this.create = function() {
     labyrinth.create();
-    labyrinth.onWallHit(endGame);
+    labyrinth.onWallHit(endGameFail);
+    labyrinth.onGoalHit(endGameWin);
     labyrinth.onAppleHit(hero.fillTime);
     hero.create();
   }
 
-  let endGame = function() {
-    if (!wallHit) {
+  let endGame = function(won) {
+    if (!endedGame) {
       hero.kill();
       resultscreen.setPointsToShow(labyrinth.countHealthsEaten());
+      resultscreen.setWon(won);
       labyrinth.resetApples();
       game.state.start('Resultscreen');
-      wallHit = true;
+      endedGame = true;
     }
+  }
+
+  let endGameFail = function() {
+    endGame(false);
+  }
+
+  let endGameWin = function() {
+    endGame(true);
   }
 
   this.update = function() {
