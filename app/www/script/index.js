@@ -1,8 +1,8 @@
-// FIXME an dieser Stelle wird hart eine größe gecoded, was scheiße ist.
-// Daran bin ich bei Stinky am Ende gescheitert!
 const GameProperties = {
   width: 16 * 50,
   height: 16 * 29,
+  currentLevel: 1,
+  allLevels: 3,
   style: {
     backgroundColor: '#000',
     font: {
@@ -19,6 +19,8 @@ const GameProperties = {
     }
   }
 };
+// FIXME an dieser Stelle wird hart eine größe gecoded, was scheiße ist.
+// Daran bin ich bei Stinky am Ende gescheitert!
 let game = new Phaser.Game(GameProperties.width, GameProperties.height, Phaser.CANVAS, '');
 game.state.add('Startscreen', new Startscreen());
 game.state.add('Game', new Game());

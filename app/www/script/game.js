@@ -27,9 +27,7 @@ let Game = function() {
   let endGame = function(won) {
     if (!endedGame) {
       hero.kill();
-      resultscreen.setPointsToShow(labyrinth.countHealthsEaten());
       resultscreen.setWon(won);
-      labyrinth.resetApples();
       game.state.start('Resultscreen');
       endedGame = true;
     }
