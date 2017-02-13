@@ -40,8 +40,8 @@ let Labyrinth = function(hole) {
     map.setTileIndexCallback(ID_APPLE, function(sprite, tile) {
       if (tile.alpha == 1) {
         healthsEaten.push(tile);
-        console.info('Warum geht alpha nicht mehr (vgl. 2-3 commits vorher - da gings');
         tile.alpha = 0.2;
+        layer.dirty = true;
         func();
       }
     }, this);
