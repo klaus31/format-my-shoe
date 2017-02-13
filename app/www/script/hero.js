@@ -33,7 +33,7 @@ let Hero = function() {
   }
 
   this.fillTime = function() {
-    return currentFrame = 0;
+    return currentFrame = currentFrame < 50 ? 0 : currentFrame - 50;
   }
 
   this.kill = function() {
@@ -55,14 +55,19 @@ let Hero = function() {
     if (currentFrame == 128) {
       ME.kill();
     }
+    const SPEED = 150;
     if (cursors.left.isDown) {
-      hero.body.velocity.x -= 10;
+      hero.body.velocity.x = SPEED * -1;
+      hero.body.velocity.y = 0;
     } else if (cursors.right.isDown) {
-      hero.body.velocity.x += 10;
+      hero.body.velocity.x = SPEED;
+      hero.body.velocity.y = 0;
     } else if (cursors.down.isDown) {
-      hero.body.velocity.y += 10;
+      hero.body.velocity.y = SPEED;
+      hero.body.velocity.x = 0;
     } else if (cursors.up.isDown) {
-      hero.body.velocity.y -= 10;
+      hero.body.velocity.y = SPEED * -1;
+      hero.body.velocity.x = 0;
     }
   }
 }
