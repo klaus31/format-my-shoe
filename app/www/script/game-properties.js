@@ -1,16 +1,14 @@
-const Levels = [
-  {
-    name: 'intro-very-first'
-  },{
-    name: 'intro-health-heart'
-  },{
-    name: 'small-labyrinth'
-  },{
-    name: 'long-ways-to-go'
-  },{
-    name: 'rain'
-  }
-];
+const Levels = [{
+  name: 'intro-very-first'
+}, {
+  name: 'intro-health-heart'
+}, {
+  name: 'small-labyrinth'
+}, {
+  name: 'long-ways-to-go'
+}, {
+  name: 'rain'
+}];
 const GameProperties = {
   width: 16 * 50,
   height: 16 * 29,

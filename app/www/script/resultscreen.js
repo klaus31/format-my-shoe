@@ -12,11 +12,11 @@ let Resultscreen = function() {
   }
 
   this.create = function() {
-    if(won) {
-      if(GameProperties.currentLevel == Levels.length - 1) {
+    if (won) {
+      if (GameProperties.currentLevel == Levels.length - 1) {
         game.add.text(50, 50, 'You finished this game!', GameProperties.style.font.h1);
       } else {
-        game.add.text(50, 50, 'Finished Level '+(GameProperties.currentLevel+1)+'!', GameProperties.style.font.h1);
+        game.add.text(50, 50, 'Finished Level ' + (GameProperties.currentLevel + 1) + '!', GameProperties.style.font.h1);
         game.add.button(GameProperties.width / 2 - 126 / 2, GameProperties.height / 2 - 40 / 2, 'play-next-button', startNextLevel);
       }
     } else {
