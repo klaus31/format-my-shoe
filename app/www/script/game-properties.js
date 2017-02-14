@@ -7,6 +7,8 @@ const Levels = [
     name: 'small-labyrinth'
   },{
     name: 'long-ways-to-go'
+  },{
+    name: 'rain'
   }
 ];
 const GameProperties = {

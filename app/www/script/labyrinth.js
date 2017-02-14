@@ -6,10 +6,9 @@ let Labyrinth = function(hole) {
 
   let map;
   let layer;
-  let level;
 
   this.preload = function() {
-    level = Levels[GameProperties.currentLevel];
+    let level = Levels[GameProperties.currentLevel];
     game.load.tilemap('map', 'levels/' + level.name + '.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('wall', 'levels/wall.png');
     game.load.image('health', 'levels/health.png');
@@ -18,7 +17,7 @@ let Labyrinth = function(hole) {
 
   this.create = function() {
     map = game.add.tilemap('map');
-    layer = map.createLayer(level.name);
+    layer = map.createLayer('layer');
     layer.resizeWorld();
     map.setCollisionBetween(1, 12);
     game.physics.enable(layer);
