@@ -9,6 +9,10 @@ let Hero = function() {
   let updateCount = 0;
   let frameEvery = 5;
   let firstMoveMade = false;
+  let pauseSteps = 0;
+  let pauseCache;
+  const SPEED_BASE = 150;
+  let speed = SPEED_BASE - 0;
 
   const STARTING_POSITION = {
     x: 16 * 5,
@@ -22,6 +26,8 @@ let Hero = function() {
     currentFrame = 0;
     frameEvery = 5;
     onTimeout = null;
+    pauseSteps = 0;
+    pauseCache = false;
   }
 
   this.onKill = function(func) {
@@ -30,6 +36,14 @@ let Hero = function() {
 
   this.onTimeout = function(func) {
     onTimeout = func;
+  }
+
+  this.pause = function() {
+    pauseSteps = 35;
+  }
+
+  this.speedUp = function() {
+    speed = SPEED_BASE * 10;
   }
 
   this.create = function() {
@@ -67,23 +81,53 @@ let Hero = function() {
       ME.kill();
       onTimeout();
     }
-    const SPEED = 150;
-    if (cursors.left.isDown) {
-      hero.body.velocity.x = SPEED * -1;
+    if (pauseSteps > 0) {
+      if (!pauseCache) pauseCache = {
+        x: hero.body.velocity.x,
+        y: hero.body.velocity.y
+      };
+      if ((cursors.left.isDown || cursors.right.isDown) && pauseCache.y) {
+        pauseCache.x = pauseCache.y;
+        pauseCache.y = 0;
+      } else if ((cursors.up.isDown || cursors.down.isDown) && pauseCache.x) {
+        pauseCache.y = pauseCache.x;
+        pauseCache.x = 0;
+      }
+      pauseSteps--;
+      if (pauseSteps) {
+        hero.body.velocity.x = 0;
+        hero.body.velocity.y = 0;
+        speed = SPEED_BASE - 0;
+      } else {
+        hero.body.velocity.x = pauseCache.x;
+        hero.body.velocity.y = pauseCache.y;
+        pauseCache = false;
+      }
+    } else if (cursors.left.isDown) {
+      hero.body.velocity.x = speed * -1;
       hero.body.velocity.y = 0;
       firstMoveMade = true;
     } else if (cursors.right.isDown) {
-      hero.body.velocity.x = SPEED;
+      hero.body.velocity.x = speed;
       hero.body.velocity.y = 0;
       firstMoveMade = true;
     } else if (cursors.down.isDown) {
-      hero.body.velocity.y = SPEED;
+      hero.body.velocity.y = speed;
       hero.body.velocity.x = 0;
       firstMoveMade = true;
     } else if (cursors.up.isDown) {
-      hero.body.velocity.y = SPEED * -1;
+      hero.body.velocity.y = speed * -1;
       hero.body.velocity.x = 0;
       firstMoveMade = true;
+    } else {
+      if (hero.body.velocity.x > 0) hero.body.velocity.x = speed;
+      if (hero.body.velocity.x < 0) hero.body.velocity.x = speed * -1;
+      if (hero.body.velocity.y > 0) hero.body.velocity.y = speed;
+      if (hero.body.velocity.y < 0) hero.body.velocity.y = speed * -1;
     }
+    if (speed > SPEED_BASE) {
+      speed -= 5;
+    }
+    console.info(speed);
   }
 }

@@ -7,6 +7,10 @@ const Levels = [{
 }, {
   name: 'long-ways-to-go'
 }, {
+  name: 'intro-pause'
+}, {
+  name: 'intro-speed'
+}, {
   name: 'rain'
 }];
 const GameProperties = {

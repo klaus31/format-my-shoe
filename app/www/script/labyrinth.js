@@ -1,8 +1,10 @@
 let Labyrinth = function(hole) {
 
   const ID_WALL = 1;
-  const ID_APPLE = 2;
+  const ID_HEALTH = 2;
   const ID_GOAL = 3;
+  const ID_PAUSE = 4;
+  const ID_SPEED = 5;
 
   let map;
   let layer;
@@ -13,6 +15,8 @@ let Labyrinth = function(hole) {
     game.load.image('wall', 'levels/wall.png');
     game.load.image('health', 'levels/health.png');
     game.load.image('goal', 'levels/goal.png');
+    game.load.image('pause', 'levels/pause.png');
+    game.load.image('speed', 'levels/speed.png');
   }
 
   this.create = function() {
@@ -24,6 +28,8 @@ let Labyrinth = function(hole) {
     map.addTilesetImage('wall');
     map.addTilesetImage('health');
     map.addTilesetImage('goal');
+    map.addTilesetImage('pause');
+    map.addTilesetImage('speed');
   }
 
   this.onWallHit = function(func) {
@@ -34,14 +40,26 @@ let Labyrinth = function(hole) {
     map.setTileIndexCallback(ID_GOAL, func, this);
   }
 
-  this.onAppleHit = function(func) {
-    map.setTileIndexCallback(ID_APPLE, function(sprite, tile) {
+  var oneTimeAction = function(id, func) {
+    map.setTileIndexCallback(id, function(sprite, tile) {
       if (tile.alpha == 1) {
         tile.alpha = 0.2;
         layer.dirty = true;
         func();
       }
     }, this);
+  }
+
+  this.onPauseHit = function(func) {
+    oneTimeAction(ID_PAUSE, func);
+  }
+
+  this.onSpeedHit = function(func) {
+    oneTimeAction(ID_SPEED, func);
+  }
+
+  this.onHealthHit = function(func) {
+    oneTimeAction(ID_HEALTH, func);
   }
 
   this.getLayer = function() {
