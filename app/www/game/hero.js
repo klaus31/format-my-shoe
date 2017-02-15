@@ -11,7 +11,7 @@ let Hero = function() {
   let firstMoveMade = false;
   let pauseSteps = 0;
   let pauseCache;
-  const SPEED_BASE = 150;
+  const SPEED_BASE = 200;
   let speed = SPEED_BASE - 0;
 
   const STARTING_POSITION = {
@@ -28,6 +28,7 @@ let Hero = function() {
     onTimeout = null;
     pauseSteps = 0;
     pauseCache = false;
+    speed = SPEED_BASE - 0;
   }
 
   this.onKill = function(func) {
@@ -43,7 +44,7 @@ let Hero = function() {
   }
 
   this.speedUp = function() {
-    speed = SPEED_BASE * 10;
+    speed = SPEED_BASE * 5;
   }
 
   this.create = function() {
@@ -147,6 +148,5 @@ let Hero = function() {
     if (speed > SPEED_BASE) {
       speed -= 5;
     }
-    console.info(speed);
   }
 }

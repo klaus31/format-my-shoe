@@ -1,14 +1,22 @@
 let Startscreen = function() {
 
   let pointsToShow = 0;
+  const FONT_STYLE = {
+    fontSize: '60px',
+    fill: '#FA5AE2',
+    font: 'Courier'
+  };
 
   this.preload = function() {
-    game.load.image('start-button', 'splash/button_start.png', 92, 40);
+    game.stage.backgroundColor = '#FFF';
   }
 
   this.create = function() {
-    game.add.button(GameProperties.width / 2 - 92 / 2, GameProperties.height / 2 - 40 / 2, 'start-button', startgame);
-  }
+    text = game.add.text(0, 0, "FORMAT MY SHOE", FONT_STYLE);
+    text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+        text.setTextBounds(50, dimensions.getCenterY() - 100, dimensions.getWidth()-100, 50);
+        window.setTimeout(startgame, 3000);
+        }
 
   let startgame = function() {
     game.state.start('Game');

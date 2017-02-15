@@ -17,6 +17,7 @@ let Game = function() {
   }
 
   this.create = function() {
+    game.stage.backgroundColor = '#000';
     labyrinth.create();
     labyrinth.onWallHit(endGameFail);
     hero.onTimeout(endGameFail);

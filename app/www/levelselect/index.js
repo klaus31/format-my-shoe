@@ -1,8 +1,14 @@
 let Resultscreen = function() {
 
   let won = false;
+  const FONT_STYLE = {
+    fontSize: '60px',
+    fill: '#FA5AE2',
+    font: 'Courier'
+  };
 
   this.preload = function() {
+    game.stage.backgroundColor = '#FFF';
     game.load.image('play-again-button', 'levelselect/button_play-again.png', 162, 40);
     game.load.image('play-next-button', 'levelselect/button_play-next.png', 126, 40);
   }
@@ -13,15 +19,15 @@ let Resultscreen = function() {
 
   this.create = function() {
     if (won) {
-      if (GameProperties.currentLevel == Levels.length - 1) {
-        game.add.text(50, 50, 'You finished this game!', GameProperties.style.font.h1);
+      if (dao.isCurrentLevelLastLevel()) {
+        game.add.text(50, 50, 'You finished this game!', FONT_STYLE);
       } else {
-        game.add.text(50, 50, 'Finished Level ' + (GameProperties.currentLevel + 1) + '!', GameProperties.style.font.h1);
-        game.add.button(GameProperties.width / 2 - 126 / 2, GameProperties.height / 2 - 40 / 2, 'play-next-button', startNextLevel);
+        game.add.text(50, 50, 'Finished Level ' + dao.getCurrentLevelInfo().getNumber() + '!', FONT_STYLE);
+        game.add.button(dimensions.getCenterX() - 126 / 2, dimensions.getCenterY() - 40 / 2, 'play-next-button', startNextLevel);
       }
     } else {
-      game.add.text(50, 50, 'LOOSE!', GameProperties.style.font.h1);
-      game.add.button(GameProperties.width / 2 - 162 / 2, GameProperties.height / 2 - 40 / 2, 'play-again-button', startSameLevel);
+      game.add.text(50, 50, 'LOOSE!', FONT_STYLE);
+      game.add.button(dimensions.getCenterX() - 162 / 2, dimensions.getCenterY() - 40 / 2, 'play-again-button', startSameLevel);
     }
   }
 
@@ -30,7 +36,7 @@ let Resultscreen = function() {
   }
 
   let startNextLevel = function() {
-    GameProperties.currentLevel += 1;
+    dao.incrementCurrentLevel();
     game.state.start('Game');
   }
 
