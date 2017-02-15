@@ -3,7 +3,7 @@ let Startscreen = function() {
   let pointsToShow = 0;
 
   this.preload = function() {
-    game.load.image('start-button', 'assets/button_start.png', 92, 40);
+    game.load.image('start-button', 'splash/button_start.png', 92, 40);
   }
 
   this.create = function() {

@@ -11,12 +11,12 @@ let Labyrinth = function(hole) {
 
   this.preload = function() {
     let level = Levels[GameProperties.currentLevel];
-    game.load.tilemap('map', 'levels/' + level.name + '.json', null, Phaser.Tilemap.TILED_JSON);
-    game.load.image('wall', 'levels/wall.png');
-    game.load.image('health', 'levels/health.png');
-    game.load.image('goal', 'levels/goal.png');
-    game.load.image('pause', 'levels/pause.png');
-    game.load.image('speed', 'levels/speed.png');
+    game.load.tilemap('map', 'game/levels/' + level.name + '.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.image('wall', 'game/levels/wall.png');
+    game.load.image('health', 'game/levels/health.png');
+    game.load.image('goal', 'game/levels/goal.png');
+    game.load.image('pause', 'game/levels/pause.png');
+    game.load.image('speed', 'game/levels/speed.png');
   }
 
   this.create = function() {

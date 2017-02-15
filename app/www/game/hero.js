@@ -20,7 +20,7 @@ let Hero = function() {
   }
 
   this.preload = function() {
-    game.load.spritesheet('hero', 'assets/hero.png', 16, 16);
+    game.load.spritesheet('hero', 'game/hero.png', 16, 16);
     firstMoveMade = false;
     updateCount = 0;
     currentFrame = 0;
@@ -73,6 +73,25 @@ let Hero = function() {
 
   this.update = function(cursors) {
     hero.frame = currentFrame;
+
+    /*
+    ---
+    // TODO die Geschichte läuft hier aus dem Ruder.
+    // Du musst verschiedene Eigenschaften kapseln und hier aufrufen:
+    // idee:
+    hero.frame = frameCtrl.next();
+    if(frameCtrl.isLast()) {
+      ME.kill();
+      onTimeout();
+    } else {
+      pauseCtrl.update(cursors);
+      speedCtrl.update(cursors);
+      directionCtrl.switch(); usw.
+    }
+    ---
+    */
+
+
     if (firstMoveMade && updateCount++ == frameEvery) {
       updateCount = 0;
       currentFrame += 1;

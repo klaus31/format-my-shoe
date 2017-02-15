@@ -3,8 +3,8 @@ let Resultscreen = function() {
   let won = false;
 
   this.preload = function() {
-    game.load.image('play-again-button', 'assets/button_play-again.png', 162, 40);
-    game.load.image('play-next-button', 'assets/button_play-next.png', 126, 40);
+    game.load.image('play-again-button', 'levelselect/button_play-again.png', 162, 40);
+    game.load.image('play-next-button', 'levelselect/button_play-next.png', 126, 40);
   }
 
   this.setWon = function(value) {
