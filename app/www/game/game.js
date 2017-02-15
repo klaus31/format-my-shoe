@@ -1,8 +1,7 @@
 let Game = function() {
 
-  const labyrinth = new Labyrinth();
-  const hero = new Hero();
-
+  let labyrinth;
+  let hero;
   let map;
   let layer;
   let cursors;
@@ -11,6 +10,9 @@ let Game = function() {
 
   this.preload = function() {
     cursors = game.input.keyboard.createCursorKeys();
+    const levelInfo = dao.getCurrentLevelInfo();
+    hero =  new Hero(levelInfo);
+    labyrinth = new Labyrinth(levelInfo);
     labyrinth.preload();
     hero.preload();
     endedGame = false;

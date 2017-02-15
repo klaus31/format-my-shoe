@@ -1,4 +1,4 @@
-let Hero = function() {
+let Hero = function(levelInfo) {
 
   const ME = this;
 
@@ -13,12 +13,12 @@ let Hero = function() {
   let firstMoveMade = false;
   let pauseSteps = 0;
   let pauseCache;
-  const SPEED_BASE = 200;
+  const SPEED_BASE = levelInfo.getHeroSpeed();
   let speed = SPEED_BASE - 0;
 
   const STARTING_POSITION = {
-    x: 16 * 5,
-    y: 16 * 5
+    x: 16 * 2,
+    y: 16 * 2
   }
 
   this.preload = function() {

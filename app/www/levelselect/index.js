@@ -20,7 +20,8 @@ let Resultscreen = function() {
   this.create = function() {
     if (won) {
       if (dao.isCurrentLevelLastLevel()) {
-        game.add.text(50, 50, 'You finished this game!', FONT_STYLE);
+        game.add.text(50, 50, 'You finished', FONT_STYLE);
+        game.add.text(50, 80, 'this game!', FONT_STYLE);
       } else {
         game.add.text(50, 50, 'Finished Level ' + dao.getCurrentLevelInfo().getNumber() + '!', FONT_STYLE);
         game.add.button(dimensions.getCenterX() - 126 / 2, dimensions.getCenterY() - 40 / 2, 'play-next-button', startNextLevel);

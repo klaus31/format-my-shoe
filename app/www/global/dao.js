@@ -1,17 +1,29 @@
 const Dao = function() {
   let currentLevel = 0;
   let levels = [{
-    name: 'intro-very-first'
+    name: 'intro-very-first',
+    hasSpeed: false,
+    hasPause: false
   }, {
-    name: 'intro-health-heart'
+    name: 'intro-health-heart',
+    hasSpeed: false,
+    hasPause: false
   }, {
-    name: 'small-labyrinth'
+    name: 'small-labyrinth',
+    hasSpeed: false,
+    hasPause: false
   }, {
-    name: 'long-ways-to-go'
+    name: 'long-ways-to-go',
+    hasSpeed: false,
+    hasPause: false,
+    heroSpeed: 300
   }, {
     name: 'intro-pause'
   }, {
     name: 'intro-speed'
+  }, {
+    name: 'slow-and-accurate',
+    heroSpeed: 5
   }, {
     name: 'rain'
   }  ];
