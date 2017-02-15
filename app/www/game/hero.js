@@ -1,4 +1,4 @@
-let Hero = function(levelInfo) {
+let Hero = function(levelInfo, direction) {
 
   const ME = this;
 
@@ -107,10 +107,10 @@ let Hero = function(levelInfo) {
         x: hero.body.velocity.x,
         y: hero.body.velocity.y
       };
-      if ((cursors.left.isDown || cursors.right.isDown) && pauseCache.y) {
+      if ((direction.goLeft(hero) || direction.goRight(hero)) && pauseCache.y) {
         pauseCache.x = pauseCache.y;
         pauseCache.y = 0;
-      } else if ((cursors.up.isDown || cursors.down.isDown) && pauseCache.x) {
+      } else if ((direction.goUp(hero) || direction.goDown(hero)) && pauseCache.x) {
         pauseCache.y = pauseCache.x;
         pauseCache.x = 0;
       }
@@ -124,19 +124,19 @@ let Hero = function(levelInfo) {
         hero.body.velocity.y = pauseCache.y;
         pauseCache = false;
       }
-    } else if (cursors.left.isDown) {
+    } else if (direction.goLeft(hero)) {
       hero.body.velocity.x = speed * -1;
       hero.body.velocity.y = 0;
       firstMoveMade = true;
-    } else if (cursors.right.isDown) {
+    } else if (direction.goRight(hero)) {
       hero.body.velocity.x = speed;
       hero.body.velocity.y = 0;
       firstMoveMade = true;
-    } else if (cursors.down.isDown) {
+    } else if (direction.goDown(hero)) {
       hero.body.velocity.y = speed;
       hero.body.velocity.x = 0;
       firstMoveMade = true;
-    } else if (cursors.up.isDown) {
+    } else if (direction.goUp(hero)) {
       hero.body.velocity.y = speed * -1;
       hero.body.velocity.x = 0;
       firstMoveMade = true;
