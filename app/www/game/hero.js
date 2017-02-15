@@ -7,7 +7,9 @@ let Hero = function() {
   let onKill;
   let onTimeout;
   let updateCount = 0;
-  let frameEvery = 5;
+  const FRAME_EVERY = 80;
+  const FRAMES = 8;
+  const FRAMES_ON_HEALTH = 3;
   let firstMoveMade = false;
   let pauseSteps = 0;
   let pauseCache;
@@ -24,7 +26,6 @@ let Hero = function() {
     firstMoveMade = false;
     updateCount = 0;
     currentFrame = 0;
-    frameEvery = 5;
     onTimeout = null;
     pauseSteps = 0;
     pauseCache = false;
@@ -59,7 +60,7 @@ let Hero = function() {
   }
 
   this.fillTime = function() {
-    return currentFrame = currentFrame < 50 ? 0 : currentFrame - 50;
+    return currentFrame = currentFrame < FRAMES_ON_HEALTH ? 0 : currentFrame - FRAMES_ON_HEALTH;
   }
 
   this.kill = function() {
@@ -93,11 +94,11 @@ let Hero = function() {
     */
 
 
-    if (firstMoveMade && updateCount++ == frameEvery) {
+    if (firstMoveMade && updateCount++ == FRAME_EVERY) {
       updateCount = 0;
       currentFrame += 1;
     }
-    if (currentFrame == 128) {
+    if (currentFrame == FRAMES) {
       ME.kill();
       onTimeout();
     }
