@@ -2,8 +2,8 @@ let Direction = function(cursors) {
 
   let calcPositions = function(sprite) {
     if(game.input.activePointer.isDown) {
-          let dx = sprite.position.x - game.input.activePointer.x;
-          let dy = sprite.position.y - game.input.activePointer.y;
+          let dx = sprite.world.x - game.input.worldX;
+          let dy = sprite.world.y - game.input.worldY;
           let h = dx < 0 ? 'r' : 'l';
           let v = dy < 0 ? 'd' : 'u';
           return Math.abs(dx) > Math.abs(dy) ? h : v;
