@@ -1,4 +1,4 @@
-let levels = [{
+const LEVEL_CONFIG = [{
   name: 'intro-very-first',
   hasSpeed: false,
   hasPause: false

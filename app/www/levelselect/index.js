@@ -1,6 +1,6 @@
 let Resultscreen = function() {
 
-  let won = false;
+  let won = null;
   const FONT_STYLE = {
     fontSize: '20px',
     fill: '#FA5AE2',
@@ -19,26 +19,45 @@ let Resultscreen = function() {
 
   this.create = function() {
     if (won) {
-      if (dao.isCurrentLevelLastLevel()) {
+      if (levelCtrl.isCurrentLevelLastLevel()) {
         game.add.text(16, 20, 'You finished', FONT_STYLE);
-        game.add.text(16, 100, 'this game!', FONT_STYLE);
+        game.add.text(16, 50, 'this game!', FONT_STYLE);
       } else {
-        game.add.text(16, 16, 'Finished Level ' + dao.getCurrentLevelInfo().getNumber() + '!', FONT_STYLE);
-        game.add.button(16, 100, 'play-next-button', startNextLevel);
+        game.add.text(16, 16, 'Finished Level ' + levelCtrl.getCurrentLevel().getNumber() + '!', FONT_STYLE);
+        addLevels();
       }
+    } else if (won === null) {
+      game.add.text(16, 16, 'Welcome back!', FONT_STYLE);
+      addLevels();
     } else {
       game.add.text(16, 16, 'LOOSE!', FONT_STYLE);
-      game.add.button(16, 100, 'play-again-button', startSameLevel);
+      addLevels();
     }
   }
 
-  let startSameLevel = function() {
-    game.state.start('Game');
+  let addLevels = function() {
+    let i = 0;
+    const currentLevelIndex = levelCtrl.getCurrentLevel().getIndex();
+    const levelCount = levelCtrl.getLevelCount();
+    while (i < levelCount) {
+      const graphics = game.add.graphics(30 + (55 * i), 80);
+      graphics.lineStyle(1, 0x000000, 1);
+      const fillColor = currentLevelIndex == i ? 0xFA5AE2 : 0xAA3333;
+      graphics.beginFill(fillColor);
+      graphics.drawCircle(0, 0, 50);
+      graphics.endFill();
+      const sprite = game.add.sprite(0, 0);
+      sprite.addChild(graphics);
+      sprite.inputEnabled = true;
+      sprite.events.onInputDown.add(startLevel(i), this);
+      i++;
+    }
   }
-
-  let startNextLevel = function() {
-    dao.incrementCurrentLevel();
-    game.state.start('Game');
+  let startLevel = function(index) {
+    return function() {
+      levelCtrl.setCurrentLevelIndex(index);
+      game.state.start('Game');
+    }
   }
 
   this.update = function() {}

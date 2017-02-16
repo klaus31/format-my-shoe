@@ -13,12 +13,12 @@ let Startscreen = function() {
 
   this.create = function() {
     text = game.add.text(0, 0, "FORMAT MY SHOE", FONT_STYLE);
-    text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+    text.setShadow(1, 1, 'rgba(0,0,0,0.5)', 2);
     window.setTimeout(startgame, 3000);
   }
 
   let startgame = function() {
-    game.state.start('Startscreen');
+    game.state.start('Resultscreen');
   }
 
   this.update = function() {}

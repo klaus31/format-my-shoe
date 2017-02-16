@@ -1,6 +1,6 @@
 // FIXME an dieser Stelle wird hart eine größe gecoded, was scheiße ist.
 // Daran bin ich bei Stinky am Ende gescheitert!
-const dao = new Dao();
+const levelCtrl = new LevelCtrl();
 const game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'parent');
 game.state.add('Startscreen', new Startscreen());
 game.state.add('Game', new Game());

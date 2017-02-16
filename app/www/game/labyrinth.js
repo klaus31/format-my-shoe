@@ -10,7 +10,7 @@ let Labyrinth = function(levelInfo) {
   let layer;
 
   this.preload = function() {
-    game.load.tilemap('map', 'game/levels/' + dao.getCurrentLevelInfo().getName() + '.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.tilemap('map', 'game/levels/' + levelCtrl.getCurrentLevel().getName() + '.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('wall', 'game/levels/wall.png');
     game.load.image('health', 'game/levels/health.png');
     game.load.image('goal', 'game/levels/goal.png');

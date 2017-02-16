@@ -10,9 +10,9 @@ let Game = function() {
 
   this.preload = function() {
     cursors = game.input.keyboard.createCursorKeys();
-    const levelInfo = dao.getCurrentLevelInfo();
-    hero = new Hero(levelInfo, new Direction(cursors));
-    labyrinth = new Labyrinth(levelInfo);
+    const level = levelCtrl.getCurrentLevel();
+    hero = new Hero(level, new Direction(cursors));
+    labyrinth = new Labyrinth(level);
     labyrinth.preload();
     hero.preload();
     endedGame = false;
