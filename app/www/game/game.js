@@ -33,7 +33,8 @@ let Game = function() {
   let endGame = function(won) {
     if (!endedGame) {
       hero.kill();
-      resultscreen.setWon(won);
+      levelCtrl.setCurrentLevelPlayed();
+      levelCtrl.setCurrentLevelWon(won);
       game.state.start('Resultscreen');
       endedGame = true;
     }

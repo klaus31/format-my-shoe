@@ -13,8 +13,17 @@ const LevelCtrl = function() {
   this.getCurrentLevel = function() {
     return currentLevel;
   }
+  this.getLevel = function(index) {
+    return levels[index];
+  }
   this.setCurrentLevelIndex = function(index) {
     currentLevel = levels[index];
+  }
+  this.setCurrentLevelPlayed = function() {
+    currentLevel.setPlayed();
+  }
+  this.setCurrentLevelWon = function(won) {
+    currentLevel.setWon(won);
   }
   this.getLevelCount = function() {
     return LEVEL_CONFIG.length;
