@@ -6,6 +6,11 @@ let Resultscreen = function() {
     fill: '#FA5AE2',
     font: 'Courier'
   };
+  const FONT_STYLE_LEVEL_CIRCLE = {
+    fontSize: '16px',
+    fill: '#FFFFFF',
+    font: FONT_STYLE.font
+  }
 
   this.preload = function() {
     game.stage.backgroundColor = '#FFF';
@@ -18,21 +23,21 @@ let Resultscreen = function() {
   }
 
   this.create = function() {
+    let message;
     if (won) {
       if (levelCtrl.isCurrentLevelLastLevel()) {
-        game.add.text(16, 20, 'You finished', FONT_STYLE);
-        game.add.text(16, 50, 'this game!', FONT_STYLE);
+        message = 'FINISHED GAME!';
       } else {
-        game.add.text(16, 16, 'Finished Level ' + levelCtrl.getCurrentLevel().getNumber() + '!', FONT_STYLE);
-        addLevels();
+        message = 'FINISHED LEVEL ' + levelCtrl.getCurrentLevel().getNumber() + '!';
       }
     } else if (won === null) {
-      game.add.text(16, 16, 'Welcome back!', FONT_STYLE);
-      addLevels();
+      message = 'WELCOME BACK!';
     } else {
-      game.add.text(16, 16, 'LOOSE!', FONT_STYLE);
-      addLevels();
+      message = 'LOOSE!';
     }
+    const text = game.add.text(0, 0, message, FONT_STYLE);
+    text.setShadow(1, 1, 'rgba(0,0,0,0.5)', 2);
+    addLevels();
   }
 
   let addLevels = function() {
@@ -48,6 +53,7 @@ let Resultscreen = function() {
       graphics.endFill();
       const sprite = game.add.sprite(0, 0);
       sprite.addChild(graphics);
+      game.add.text(30 + (55 * i), 80, i + 1, FONT_STYLE_LEVEL_CIRCLE);
       sprite.inputEnabled = true;
       sprite.events.onInputDown.add(startLevel(i), this);
       i++;

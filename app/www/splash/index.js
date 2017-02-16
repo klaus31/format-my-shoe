@@ -12,7 +12,7 @@ let Startscreen = function() {
   }
 
   this.create = function() {
-    text = game.add.text(0, 0, "FORMAT MY SHOE", FONT_STYLE);
+    const text = game.add.text(0, 0, "FORMAT MY SHOE", FONT_STYLE);
     text.setShadow(1, 1, 'rgba(0,0,0,0.5)', 2);
     window.setTimeout(startgame, 3000);
   }
