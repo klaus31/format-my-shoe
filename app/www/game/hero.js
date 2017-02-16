@@ -70,12 +70,12 @@ let Hero = function(levelInfo, direction) {
     hero.body.velocity.y = 0;
     updateCount = 0;
     currentFrame = 0;
+    direction.setDirection('s');
     if (onKill) onKill();
   }
 
   this.update = function(cursors) {
     hero.frame = currentFrame;
-
     /*
     ---
     // TODO die Geschichte läuft hier aus dem Ruder.
@@ -94,7 +94,7 @@ let Hero = function(levelInfo, direction) {
     */
 
 
-    if (firstMoveMade && updateCount++ == FRAME_EVERY) {
+    if (!direction.stop() && updateCount++ == FRAME_EVERY) {
       updateCount = 0;
       currentFrame += 1;
     }
@@ -107,10 +107,10 @@ let Hero = function(levelInfo, direction) {
         x: hero.body.velocity.x,
         y: hero.body.velocity.y
       };
-      if ((direction.goLeft(hero) || direction.goRight(hero)) && pauseCache.y) {
+      if ((direction.goLeft() || direction.goRight()) && pauseCache.y) {
         pauseCache.x = pauseCache.y;
         pauseCache.y = 0;
-      } else if ((direction.goUp(hero) || direction.goDown(hero)) && pauseCache.x) {
+      } else if ((direction.goUp() || direction.goDown()) && pauseCache.x) {
         pauseCache.y = pauseCache.x;
         pauseCache.x = 0;
       }
@@ -124,19 +124,19 @@ let Hero = function(levelInfo, direction) {
         hero.body.velocity.y = pauseCache.y;
         pauseCache = false;
       }
-    } else if (direction.goLeft(hero)) {
+    } else if (direction.goLeft()) {
       hero.body.velocity.x = speed * -1;
       hero.body.velocity.y = 0;
       firstMoveMade = true;
-    } else if (direction.goRight(hero)) {
+    } else if (direction.goRight()) {
       hero.body.velocity.x = speed;
       hero.body.velocity.y = 0;
       firstMoveMade = true;
-    } else if (direction.goDown(hero)) {
+    } else if (direction.goDown()) {
       hero.body.velocity.y = speed;
       hero.body.velocity.x = 0;
       firstMoveMade = true;
-    } else if (direction.goUp(hero)) {
+    } else if (direction.goUp()) {
       hero.body.velocity.y = speed * -1;
       hero.body.velocity.x = 0;
       firstMoveMade = true;
