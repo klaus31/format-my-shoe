@@ -2,7 +2,7 @@ let Resultscreen = function() {
 
   let won = false;
   const FONT_STYLE = {
-    fontSize: '60px',
+    fontSize: '20px',
     fill: '#FA5AE2',
     font: 'Courier'
   };

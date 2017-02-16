@@ -2,7 +2,7 @@ let Startscreen = function() {
 
   let pointsToShow = 0;
   const FONT_STYLE = {
-    fontSize: '60px',
+    fontSize: '20px',
     fill: '#FA5AE2',
     font: 'Courier'
   };
@@ -18,7 +18,7 @@ let Startscreen = function() {
   }
 
   let startgame = function() {
-    game.state.start('Game');
+    game.state.start('Startscreen');
   }
 
   this.update = function() {}
