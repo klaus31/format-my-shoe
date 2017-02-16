@@ -9,7 +9,8 @@ let levels = [{
 }, {
   name: 'small-labyrinth',
   hasSpeed: false,
-  hasPause: false
+  hasPause: false,
+  heroSpeed: 150
 }, {
   name: 'long-ways-to-go',
   hasSpeed: false,
