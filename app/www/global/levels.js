@@ -24,4 +24,4 @@ let levels = [{
   heroSpeed: 5
 }, {
   name: 'rain'
-}  ];
+}];

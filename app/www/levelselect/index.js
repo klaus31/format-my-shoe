@@ -28,7 +28,7 @@ let Resultscreen = function() {
       }
     } else {
       game.add.text(16, 16, 'LOOSE!', FONT_STYLE);
-      game.add.button(16,100, 'play-again-button', startSameLevel);
+      game.add.button(16, 100, 'play-again-button', startSameLevel);
     }
   }
 

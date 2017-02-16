@@ -14,8 +14,8 @@ let Labyrinth = function(levelInfo) {
     game.load.image('wall', 'game/levels/wall.png');
     game.load.image('health', 'game/levels/health.png');
     game.load.image('goal', 'game/levels/goal.png');
-    if(levelInfo.hasPause())game.load.image('pause', 'game/levels/pause.png');
-    if(levelInfo.hasSpeed())game.load.image('speed', 'game/levels/speed.png');
+    if (levelInfo.hasPause()) game.load.image('pause', 'game/levels/pause.png');
+    if (levelInfo.hasSpeed()) game.load.image('speed', 'game/levels/speed.png');
   }
 
   this.create = function() {
@@ -27,8 +27,8 @@ let Labyrinth = function(levelInfo) {
     map.addTilesetImage('wall');
     map.addTilesetImage('health');
     map.addTilesetImage('goal');
-    if(levelInfo.hasPause())map.addTilesetImage('pause');
-    if(levelInfo.hasSpeed())map.addTilesetImage('speed');
+    if (levelInfo.hasPause()) map.addTilesetImage('pause');
+    if (levelInfo.hasSpeed()) map.addTilesetImage('speed');
   }
 
   this.onWallHit = function(func) {
