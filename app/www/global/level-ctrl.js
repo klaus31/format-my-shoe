@@ -8,7 +8,11 @@ const LevelCtrl = function() {
     levels[i] = new Level(LEVEL_CONFIG[i], i);
     i++;
   }
-  currentLevel = levels[0];
+  i = 0;
+  while (levels[i].isWonAtAnyTime() && i < LEVEL_CONFIG.length) {
+    i++;
+  }
+  currentLevel = levels[i];
 
   this.getCurrentLevel = function() {
     return currentLevel;

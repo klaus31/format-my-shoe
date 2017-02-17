@@ -51,8 +51,7 @@ let Resultscreen = function() {
       const level = levelCtrl.getLevel(i);
       graphics.lineStyle(1, 0x000000, level.isWonAtAnyTime() ? 1 : 0.5);
       if (level.getIndex() == currentLevel.getIndex() && !currentLevel.isWon() ||
-        level.getIndex() == currentLevel.getIndex() + 1 && currentLevel.isWon() ||
-        !currentLevel.isPlayed() && i == 0) {
+        level.getIndex() == currentLevel.getIndex() + 1 && currentLevel.isWon()) {
         graphics.beginFill(0xFA5AE2);
       } else {
         graphics.beginFill(0xAA3333);

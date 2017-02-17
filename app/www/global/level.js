@@ -1,7 +1,8 @@
 const Level = function(config, index) {
   let played = false;
   let won;
-  let wonAtAnyTime;
+  let data = JSON.parse(localStorage.getItem('level-' + config.name));
+  let wonAtAnyTime = data && data.wonAtAnyTime;
   this.getIndex = function() {
     return index;
   }
@@ -35,5 +36,11 @@ const Level = function(config, index) {
   }
   this.isWonAtAnyTime = function() {
     return wonAtAnyTime;
+  }
+  this.persist = function() {
+      const data = {
+        wonAtAnyTime: wonAtAnyTime
+      };
+      localStorage.setItem('level-' + config.name, JSON.stringify(data));
   }
 };

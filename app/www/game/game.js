@@ -48,6 +48,7 @@ let Game = function() {
       hero.kill();
       levelCtrl.setCurrentLevelPlayed();
       levelCtrl.setCurrentLevelWon(won);
+      levelCtrl.getCurrentLevel().persist();
       game.state.start('Resultscreen');
       endedGame = true;
     }
