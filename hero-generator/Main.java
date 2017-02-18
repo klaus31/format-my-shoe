@@ -1,3 +1,5 @@
+package x;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -32,8 +34,8 @@ public class Main {
         int imageWidth = 16;
         int imageHeight = 16;
         BufferedImage image = new BufferedImage(imageWidth * tiles, imageHeight, TYPE_INT_RGB);
-        int colorBg = getColorBg();
-        int colorFg = getColorFg();
+        Color colorBg = Color.GREEN;
+        Color colorFg = Color.BLACK;
         int offset = 0;
         int x = 0;
         int y = 0;
@@ -44,8 +46,8 @@ public class Main {
             xy[p.x][p.y] = 0;
             while (y < imageHeight) {
                 while (x < imageWidth) {
-                    int color = xy[x][y] == 1 ? colorBg : colorFg;
-                    image.setRGB(16 * offset + x, y, color);
+                    Color color = xy[x][y] == 1 ? colorBg : colorFg;
+                    image.setRGB(16 * offset + x, y, color.getRGB());
                     x++;
                 }
                 x = 0;
@@ -53,6 +55,7 @@ public class Main {
             }
             y = 0;
             x = 0;
+            colorBg = getHueNeighbor(colorBg, -.5F);
             offset++;
             System.out.print(direction + ": " + p);
             String checkpoint = p.x + "/" + p.y;
@@ -92,20 +95,32 @@ public class Main {
         ImageIO.write(image, "PNG", out);
     }
 
-    ;
-
-    private static int getColorBg() {
-        int r = 0;
-        int g = 200;
-        int b = 0;
-        return (r << 16) | (g << 8) | b;
+    public static Color getHueNeighbor(Color color, float nextDoors) {
+        float change = nextDoors / 360.f;
+        change %= 1;
+        float is = getHue(color);
+        float newHue = is + change;
+        // must convert to rgb again
+        int res = Color.HSBtoRGB(newHue, getSaturation(color), getValue(color));
+        return new Color(res);
+    }
+    public static float getHue(Color color) {
+        float[] res = getHSB(color);
+        return res[0];
     }
 
-    private static int getColorFg() {
-        int r = 50;
-        int g = 50;
-        int b = 50;
-        return (r << 16) | (g << 8) | b;
+    public static float getSaturation(Color color) {
+        float[] res = getHSB(color);
+        return res[1];
+    }
+
+    public static float getValue(Color color) {
+        float[] res = getHSB(color);
+        return res[2];
+    }
+
+    public static float[] getHSB(Color color) {
+        return Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), null);
     }
 
     enum Direction {LEFT, RIGHT, UP, DOWN}

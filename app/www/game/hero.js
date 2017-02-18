@@ -1,7 +1,7 @@
 let Hero = function() {
 
   const ME = this;
-  const FRAMES = 8;
+  const FRAMES = 256;
 
   let hero;
   let life;
