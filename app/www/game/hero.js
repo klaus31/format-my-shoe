@@ -8,16 +8,13 @@ let Hero = function() {
   let onTimeout;
   let drive;
 
-  const STARTING_POSITION = {
-    x: 16 * 2,
-    y: 16 * 2
-  }
+  const STARTING_POSITION = levelCtrl.getCurrentLevel().getStartingPosition();
 
   this.preload = function() {
     game.load.spritesheet('hero', 'game/hero.png', 16, 16);
     onTimeout = null;
     life = new Life();
-    drive = new Drive();
+    drive = new Drive(levelCtrl.getCurrentLevel().getHeroSpeed());
   }
 
   this.onTimeout = function(func) {
@@ -26,6 +23,7 @@ let Hero = function() {
 
   this.create = function() {
     hero = game.add.sprite(STARTING_POSITION.x, STARTING_POSITION.y, 'hero');
+    hero.anchor.setTo(0.5, 0.5);
     game.physics.enable(hero, Phaser.Physics.ARCADE);
     game.camera.follow(hero);
     hero.body.collideWorldBounds = true;
@@ -35,8 +33,8 @@ let Hero = function() {
     return hero;
   }
 
-  this.fillTime = function() {
-    return currentFrame = currentFrame < FRAMES_ON_HEALTH ? 0 : currentFrame - FRAMES_ON_HEALTH;
+  this.heal = function() {
+    return life.heal(35);
   }
 
   this.kill = function() {
@@ -45,9 +43,10 @@ let Hero = function() {
     drive.stop();
   }
 
-
-  this.update = function() {
+  let updateLife = function() {
+    hero.frame = FRAMES - life.getExpectation(FRAMES);
     if (drive.firstMoveMade() && !life.lifeStarted()) {
+      console.info('start');
       life.start();
     }
     life.update();
@@ -55,8 +54,15 @@ let Hero = function() {
       ME.kill();
       if (onTimeout) onTimeout();
     }
-    hero.frame = life.getExpectation(FRAMES);
+  }
+  let updateDrive = function() {
+    drive.update(hero);
     hero.body.velocity.x = drive.getX();
     hero.body.velocity.y = drive.getY();
+  }
+
+  this.update = function() {
+    updateLife();
+    updateDrive();
   }
 }

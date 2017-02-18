@@ -1,6 +1,6 @@
 let Life = function() {
   let started = false;
-  let lifeStepsMade = false;
+  let lifeStepsMade = 0;
   const DEAD_AT_STEPS = 640;
   this.start = function() {
     started = true;
@@ -17,6 +17,10 @@ let Life = function() {
   }
   this.isDead = function() {
     return lifeStepsMade >= DEAD_AT_STEPS;
+  }
+  this.heal = function(percent) {
+    lifeStepsMade -= DEAD_AT_STEPS * percent/100;
+    if(lifeStepsMade < 0) lifeStepsMade = 0;
   }
 
 }

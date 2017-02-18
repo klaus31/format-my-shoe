@@ -22,7 +22,7 @@ let Game = function() {
     labyrinth.onWallHit(endGameFail);
     hero.onTimeout(endGameFail);
     labyrinth.onGoalHit(endGameWin);
-    labyrinth.onHealthHit(hero.fillTime);
+    labyrinth.onHealthHit(hero.heal);
     labyrinth.onPauseHit(hero.pause);
     labyrinth.onSpeedHit(hero.speedUp);
     hero.create();

@@ -15,6 +15,13 @@ const Level = function(config, index) {
   this.getHeroSpeed = function() {
     return config.heroSpeed || 200;
   }
+  this.getStartingPosition = function() {
+    // TODO mach konfigurierbar
+    return {
+    x: 16 * 2,
+    y: 16 * 2
+  }
+  }
   this.hasPause = function() {
     return config.hasPause !== false;
   }
