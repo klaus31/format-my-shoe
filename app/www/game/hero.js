@@ -5,20 +5,20 @@ let Hero = function() {
 
   let hero;
   let life;
-  let onTimeout;
+  let onDead;
   let drive;
 
   const STARTING_POSITION = levelCtrl.getCurrentLevel().getStartingPosition();
 
   this.preload = function() {
     game.load.spritesheet('hero', 'game/hero.png', 16, 16);
-    onTimeout = null;
+    onDead = null;
     life = new Life();
     drive = new Drive(levelCtrl.getCurrentLevel().getHeroSpeed());
   }
 
-  this.onTimeout = function(func) {
-    onTimeout = func;
+  this.onDead = function(func) {
+    onDead = func;
   }
 
   this.create = function() {
@@ -41,6 +41,18 @@ let Hero = function() {
     hero.position.x = STARTING_POSITION.x;
     hero.position.y = STARTING_POSITION.y;
     drive.stop();
+    if (onDead) onDead();
+  }
+  // FIXME buggy mit hack scheiße
+  let suppressWallHitHack = 0;
+  this.changeDirectionOnWall = function(hero, wall) {
+    if(suppressWallHitHack) return suppressWallHitHack--;
+    if(wall.faceTop && wall.faceBottom) {
+      hero.angle *= -1;
+    } else if(wall.faceLeft && wall.faceRight) {
+      hero.angle = hero.angle * -1 + 180;
+    }
+    suppressWallHitHack = 3;
   }
 
   let updateLife = function() {
@@ -51,7 +63,6 @@ let Hero = function() {
     life.update();
     if (life.isDead()) {
       ME.kill();
-      if (onTimeout) onTimeout();
     }
   }
   let updateDrive = function() {

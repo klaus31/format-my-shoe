@@ -17,12 +17,12 @@ const LEVEL_CONFIG = [{
   hasPause: false,
   heroSpeed: 300
 }, {
-  name: 'intro-pause'
-}, {
-  name: 'intro-speed'
-}, {
-  name: 'slow-and-accurate',
-  heroSpeed: 5
-}, {
+//   name: 'intro-pause'
+// }, {
+//   name: 'intro-speed'
+// }, {
+//   name: 'slow-and-accurate',
+//   heroSpeed: 5
+// }, {
   name: 'rain'
 }];

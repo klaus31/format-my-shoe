@@ -19,8 +19,8 @@ let Game = function() {
   this.create = function() {
     game.stage.backgroundColor = '#000';
     labyrinth.create();
-    labyrinth.onWallHit(endGameFail);
-    hero.onTimeout(endGameFail);
+    labyrinth.onWallHit(hero.changeDirectionOnWall);
+    hero.onDead(endGameFail);
     labyrinth.onGoalHit(endGameWin);
     labyrinth.onHealthHit(hero.heal);
     labyrinth.onPauseHit(hero.pause);
@@ -30,7 +30,6 @@ let Game = function() {
 
   let endGame = function(won) {
     if (!endedGame) {
-      hero.kill();
       levelCtrl.setCurrentLevelPlayed();
       levelCtrl.setCurrentLevelWon(won);
       levelCtrl.getCurrentLevel().persist();
