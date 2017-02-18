@@ -38,9 +38,9 @@ const Level = function(config, index) {
     return wonAtAnyTime;
   }
   this.persist = function() {
-      const data = {
-        wonAtAnyTime: wonAtAnyTime
-      };
-      localStorage.setItem('level-' + config.name, JSON.stringify(data));
+    const data = {
+      wonAtAnyTime: wonAtAnyTime
+    };
+    localStorage.setItem('level-' + config.name, JSON.stringify(data));
   }
 };

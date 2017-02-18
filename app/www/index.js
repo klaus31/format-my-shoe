@@ -6,4 +6,5 @@ game.state.add('Startscreen', new Startscreen());
 game.state.add('Game', new Game());
 const resultscreen = new Resultscreen();
 game.state.add('Resultscreen', resultscreen);
-game.state.start('Startscreen');
+game.state.start('Resultscreen'); // FIXME raus
+// FIXME rein - in der entwicklung nervt das: game.state.start('Startscreen');

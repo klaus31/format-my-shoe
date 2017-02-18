@@ -1,20 +1,12 @@
-let Hero = function(levelInfo, direction) {
+let Hero = function() {
 
   const ME = this;
+  const FRAMES = 8;
 
   let hero;
-  let currentFrame = 0;
-  let onKill;
+  let life;
   let onTimeout;
-  let updateCount = 0;
-  const FRAME_EVERY = 80;
-  const FRAMES = 8;
-  const FRAMES_ON_HEALTH = 3;
-  let firstMoveMade = false;
-  let pauseSteps = 0;
-  let pauseCache;
-  const SPEED_BASE = levelInfo.getHeroSpeed();
-  let speed = SPEED_BASE - 0;
+  let drive;
 
   const STARTING_POSITION = {
     x: 16 * 2,
@@ -23,29 +15,13 @@ let Hero = function(levelInfo, direction) {
 
   this.preload = function() {
     game.load.spritesheet('hero', 'game/hero.png', 16, 16);
-    firstMoveMade = false;
-    updateCount = 0;
-    currentFrame = 0;
     onTimeout = null;
-    pauseSteps = 0;
-    pauseCache = false;
-    speed = SPEED_BASE - 0;
-  }
-
-  this.onKill = function(func) {
-    onKill = func;
+    life = new Life();
+    drive = new Drive();
   }
 
   this.onTimeout = function(func) {
     onTimeout = func;
-  }
-
-  this.pause = function() {
-    pauseSteps = 35;
-  }
-
-  this.speedUp = function() {
-    speed = SPEED_BASE * 5;
   }
 
   this.create = function() {
@@ -66,88 +42,21 @@ let Hero = function(levelInfo, direction) {
   this.kill = function() {
     hero.position.x = STARTING_POSITION.x;
     hero.position.y = STARTING_POSITION.y;
-    hero.body.velocity.x = 0;
-    hero.body.velocity.y = 0;
-    updateCount = 0;
-    currentFrame = 0;
-    direction.setDirection('s');
-    if (onKill) onKill();
+    drive.stop();
   }
 
-  this.update = function(cursors) {
-    hero.frame = currentFrame;
-    /*
-    ---
-    // TODO die Geschichte läuft hier aus dem Ruder.
-    // Du musst verschiedene Eigenschaften kapseln und hier aufrufen:
-    // idee:
-    hero.frame = frameCtrl.next();
-    if(frameCtrl.isLast()) {
-      ME.kill();
-      onTimeout();
-    } else {
-      pauseCtrl.update(cursors);
-      speedCtrl.update(cursors);
-      directionCtrl.switch(); usw.
-    }
-    ---
-    */
 
-
-    if (!direction.stop() && updateCount++ == FRAME_EVERY) {
-      updateCount = 0;
-      currentFrame += 1;
+  this.update = function() {
+    if (drive.firstMoveMade() && !life.lifeStarted()) {
+      life.start();
     }
-    if (currentFrame == FRAMES) {
+    life.update();
+    if (life.isDead()) {
       ME.kill();
-      onTimeout();
+      if (onTimeout) onTimeout();
     }
-    if (pauseSteps > 0) {
-      if (!pauseCache) pauseCache = {
-        x: hero.body.velocity.x,
-        y: hero.body.velocity.y
-      };
-      if ((direction.goLeft() || direction.goRight()) && pauseCache.y) {
-        pauseCache.x = pauseCache.y;
-        pauseCache.y = 0;
-      } else if ((direction.goUp() || direction.goDown()) && pauseCache.x) {
-        pauseCache.y = pauseCache.x;
-        pauseCache.x = 0;
-      }
-      pauseSteps--;
-      if (pauseSteps) {
-        hero.body.velocity.x = 0;
-        hero.body.velocity.y = 0;
-        speed = SPEED_BASE - 0;
-      } else {
-        hero.body.velocity.x = pauseCache.x;
-        hero.body.velocity.y = pauseCache.y;
-        pauseCache = false;
-      }
-    } else if (direction.goLeft()) {
-      hero.body.velocity.x = speed * -1;
-      hero.body.velocity.y = 0;
-      firstMoveMade = true;
-    } else if (direction.goRight()) {
-      hero.body.velocity.x = speed;
-      hero.body.velocity.y = 0;
-      firstMoveMade = true;
-    } else if (direction.goDown()) {
-      hero.body.velocity.y = speed;
-      hero.body.velocity.x = 0;
-      firstMoveMade = true;
-    } else if (direction.goUp()) {
-      hero.body.velocity.y = speed * -1;
-      hero.body.velocity.x = 0;
-      firstMoveMade = true;
-    } else {
-      if (hero.body.velocity.x > 0) hero.body.velocity.x = speed;
-      if (hero.body.velocity.x < 0) hero.body.velocity.x = speed * -1;
-      if (hero.body.velocity.y > 0) hero.body.velocity.y = speed;
-      if (hero.body.velocity.y < 0) hero.body.velocity.y = speed * -1;
-    }
-    if (speed > SPEED_BASE) {
-      speed -= 5;
-    }
+    hero.frame = life.getExpectation(FRAMES);
+    hero.body.velocity.x = drive.getX();
+    hero.body.velocity.y = drive.getY();
   }
 }

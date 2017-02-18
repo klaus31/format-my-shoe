@@ -4,14 +4,12 @@ let Game = function() {
   let hero;
   let map;
   let layer;
-  let cursors;
   let endedGame = false;
-  let direction = new Direction();
+  let drive = new Drive();
 
   this.preload = function() {
-    cursors = game.input.keyboard.createCursorKeys();
     const level = levelCtrl.getCurrentLevel();
-    hero = new Hero(level, direction);
+    hero = new Hero();
     labyrinth = new Labyrinth(level);
     labyrinth.preload();
     hero.preload();
@@ -20,19 +18,6 @@ let Game = function() {
 
   this.create = function() {
     game.stage.backgroundColor = '#000';
-    const swipeCtrl = new SwipeCtrl();
-    swipeCtrl.onUp(function() {
-        direction.setDirection('u');
-      })
-      .onRight(function() {
-        direction.setDirection('r');
-      })
-      .onDown(function() {
-        direction.setDirection('d');
-      })
-      .onLeft(function() {
-        direction.setDirection('l');
-      }).activate();
     labyrinth.create();
     labyrinth.onWallHit(endGameFail);
     hero.onTimeout(endGameFail);
@@ -64,15 +49,6 @@ let Game = function() {
 
   this.update = function() {
     game.physics.arcade.collide(hero.getSprite(), labyrinth.getLayer());
-    if (cursors.down.isDown) {
-      direction.setDirection('d');
-    } else if (cursors.up.isDown) {
-      direction.setDirection('u');
-    } else if (cursors.right.isDown) {
-      direction.setDirection('r');
-    } else if (cursors.left.isDown) {
-      direction.setDirection('l');
-    }
-    hero.update(cursors);
+    hero.update();
   }
 }
