@@ -1,7 +1,7 @@
 let Life = function() {
   let started = false;
   let lifeStepsMade = 0;
-  const DEAD_AT_STEPS = 640;
+  const DEAD_AT_STEPS = 1500;
   this.start = function() {
     started = true;
     lifeStepsMade = 1;
