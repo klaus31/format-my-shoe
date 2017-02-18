@@ -1,7 +1,7 @@
 let Drive = function(speed) {
 
 const ME = this;
-  let x, y, firstMoveMade = false;
+  let x, y, firstMoveMade = false, wasDown = false;
 
   this.stop = function() {
     x = 0;
@@ -19,12 +19,13 @@ const ME = this;
   }
   this.update = function(sprite) {
     if(game.input.activePointer.isDown) {
+      wasDown = true;
       ME.stop();
       var tmpX = game.input.worldX - sprite.world.x;
       var tmpY = game.input.worldY - sprite.world.y;
       sprite.angle = Math.atan2(tmpY, tmpX) * 180 / Math.PI;
     };
-    if(game.input.activePointer.isUp) {
+    if(wasDown && game.input.activePointer.isUp) {
       firstMoveMade = true;
       x = speed * Math.cos(sprite.angle * Math.PI / 180);
       y = speed * Math.sin(sprite.angle * Math.PI / 180);

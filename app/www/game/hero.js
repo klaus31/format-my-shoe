@@ -46,7 +46,6 @@ let Hero = function() {
   let updateLife = function() {
     hero.frame = FRAMES - life.getExpectation(FRAMES);
     if (drive.firstMoveMade() && !life.lifeStarted()) {
-      console.info('start');
       life.start();
     }
     life.update();
