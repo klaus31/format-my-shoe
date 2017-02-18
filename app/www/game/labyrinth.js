@@ -31,10 +31,6 @@ let Labyrinth = function(levelInfo) {
     if (levelInfo.hasSpeed()) map.addTilesetImage('speed');
   }
 
-  this.onWallHit = function(func) {
-    map.setTileIndexCallback(ID_WALL, func, this);
-  }
-
   this.onGoalHit = function(func) {
     map.setTileIndexCallback(ID_GOAL, func, this);
   }

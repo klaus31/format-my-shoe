@@ -13,7 +13,7 @@ let Life = function() {
     if (started) lifeStepsMade++;
   }
   this.getExpectation = function(fullLifeNumber) {
-    return fullLifeNumber - (lifeStepsMade / DEAD_AT_STEPS * fullLifeNumber);
+    return Math.floor(fullLifeNumber - (lifeStepsMade / DEAD_AT_STEPS * fullLifeNumber))+1;
   }
   this.isDead = function() {
     return lifeStepsMade >= DEAD_AT_STEPS;

@@ -19,7 +19,6 @@ let Game = function() {
   this.create = function() {
     game.stage.backgroundColor = '#000';
     labyrinth.create();
-    labyrinth.onWallHit(hero.changeDirectionOnWall);
     hero.onDead(endGameFail);
     labyrinth.onGoalHit(endGameWin);
     labyrinth.onHealthHit(hero.heal);

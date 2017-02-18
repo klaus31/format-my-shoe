@@ -43,17 +43,6 @@ let Hero = function() {
     drive.stop();
     if (onDead) onDead();
   }
-  // FIXME buggy mit hack scheiße
-  let suppressWallHitHack = 0;
-  this.changeDirectionOnWall = function(hero, wall) {
-    if(suppressWallHitHack) return suppressWallHitHack--;
-    if(wall.faceTop && wall.faceBottom) {
-      hero.angle *= -1;
-    } else if(wall.faceLeft && wall.faceRight) {
-      hero.angle = hero.angle * -1 + 180;
-    }
-    suppressWallHitHack = 3;
-  }
 
   let updateLife = function() {
     hero.frame = FRAMES - life.getExpectation(FRAMES);
