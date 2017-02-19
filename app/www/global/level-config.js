@@ -1,7 +1,7 @@
 const LEVEL_CONFIG = [{
-  name: 'intro-very-first',
-  hasSpeed: false,
-  hasPause: false
+  name: 'intro-goal'
+},{
+  name: 'intro-health'
 }, {
   name: 'intro-health-heart',
   hasSpeed: false,
