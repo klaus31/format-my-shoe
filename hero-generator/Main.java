@@ -39,12 +39,12 @@ public class Main {
         int imageHeight = 16;
         BufferedImage image = new BufferedImage(imageWidth * tiles, imageHeight, TYPE_INT_RGB);
         Color colorMain = Color.GREEN.darker();
-        Color colorArrow = Color.WHITE;
+        Color colorArrow = new Color(170,255,170);
         int offset = 0;
         int x = 0;
         int y = 0;
-        Point p = new Point(0, 8);
-        Direction direction = RIGHT;
+        Point p = new Point(0, 0);
+        Direction eatYourselfUpDirection = DOWN;
         ;
         while (offset < tiles) {
             xy[p.x][p.y] = xy[p.x][p.y] == MAIN ? MAIN_DIED : ARROW_DIED;
@@ -68,26 +68,23 @@ public class Main {
             }
             y = 0;
             x = 0;
-            colorMain = getHueNeighbor(colorMain, -0.52F);
+            colorMain = getHueNeighbor(colorMain, -0.508F);
             colorArrow = getHueNeighbor(colorArrow, -0.5F);
             offset++;
-            String checkpoint = p.x + "/" + p.y;
-            if(Arrays.asList("0/1","9/8", "0/7", "11/10", "0/5","13/12","0/3","15/14").contains(checkpoint)) {
-                direction = UP;
-            } else
-            if(Arrays.asList("9/7", "10/9", "11/5", "12/11","13/3","14/13","15/1","15/0").contains(checkpoint)) {
-                direction = LEFT;
-            } else
-            if(Arrays.asList("0/0", "0/2","0/4","0/6", "0/8", "0/10", "0/12", "0/14", "0/15").contains(checkpoint)) {
-                direction = RIGHT;
-            } else
-            if(Arrays.asList("0/9", "0/11","0/13","0/15", "10/6", "12/4","14/2").contains(checkpoint)) {
-                direction = DOWN;
-            }
-            if(p.x == 0 && p.y == 0) {p = new Point(0,15); continue;}
-            if(p.x == 15 && p.y == 15) {p = new Point(15,0); continue;}
 
-            switch (direction) {
+            // which direction should be self destructed next?
+            String checkpoint = p.x + "/" + p.y;
+            if(p.y == 0 && p.x % 2 == 1) {
+                eatYourselfUpDirection = RIGHT;
+            } else if(p.y == 0 && p.x % 2 == 0) {
+                eatYourselfUpDirection = DOWN;
+            } else if(p.y == 15 && p.x % 2 == 0) {
+                eatYourselfUpDirection = RIGHT;
+            } else if(p.y == 15 && p.x % 2 == 1) {
+                eatYourselfUpDirection = UP;
+            }
+
+            switch (eatYourselfUpDirection) {
                 case DOWN:
                     p = new Point(p.x, p.y + 1);
                     break;
