@@ -27,6 +27,7 @@ let Hero = function() {
     game.physics.enable(hero, Phaser.Physics.ARCADE);
     game.camera.follow(hero);
     hero.body.collideWorldBounds = true;
+    hero.angle = levelCtrl.getCurrentLevel().getStartAngle();
   }
 
   this.getSprite = function() {

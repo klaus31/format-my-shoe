@@ -1,7 +1,10 @@
 let Drive = function(speed) {
 
-const ME = this;
-  let x;let y;let firstMoveMade = false;let wasDown = false;
+  const ME = this;
+  let x;
+  let y;
+  let firstMoveMade = false;
+  let wasDown = false;
   let stateBeforePointerDown;
 
   this.stop = function() {
@@ -19,15 +22,16 @@ const ME = this;
     return y;
   }
   this.update = function(sprite) {
-    if(game.input.activePointer.isDown) {
+    if (game.input.activePointer.isDown) {
       wasDown = true;
       ME.stop();
-      if(!stateBeforePointerDown) stateBeforePointerDown =
-      {angle: sprite.angle,
-      x: game.input.worldX};
+      if (!stateBeforePointerDown) stateBeforePointerDown = {
+        angle: sprite.angle,
+        x: game.input.worldX
+      };
       sprite.angle = stateBeforePointerDown.angle + game.input.worldX - stateBeforePointerDown.x;
     };
-    if(wasDown && game.input.activePointer.isUp) {
+    if (wasDown && game.input.activePointer.isUp) {
       firstMoveMade = true;
       stateBeforePointerDown = false;
       x = speed * Math.cos(sprite.angle * Math.PI / 180);

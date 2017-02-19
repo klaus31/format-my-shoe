@@ -13,14 +13,14 @@ let Life = function() {
     if (started) lifeStepsMade++;
   }
   this.getExpectation = function(fullLifeNumber) {
-    return Math.floor(fullLifeNumber - (lifeStepsMade / DEAD_AT_STEPS * fullLifeNumber))+1;
+    return Math.floor(fullLifeNumber - (lifeStepsMade / DEAD_AT_STEPS * fullLifeNumber)) + 1;
   }
   this.isDead = function() {
     return lifeStepsMade >= DEAD_AT_STEPS;
   }
   this.heal = function(percent) {
-    lifeStepsMade -= DEAD_AT_STEPS * percent/100;
-    if(lifeStepsMade < 0) lifeStepsMade = 0;
+    lifeStepsMade -= DEAD_AT_STEPS * percent / 100;
+    if (lifeStepsMade < 0) lifeStepsMade = 0;
   }
 
 }

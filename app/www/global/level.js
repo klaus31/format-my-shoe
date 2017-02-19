@@ -16,11 +16,14 @@ const Level = function(config, index) {
     return config.heroSpeed || 200;
   }
   this.getStartingPosition = function() {
-    // TODO mach konfigurierbar
+    config.startingPosition = config.startingPosition || {};
     return {
-    x: 16 * 2,
-    y: 16 * 2
+      x: 16 * (config.startingPosition.x || 2),
+      y: 16 * (config.startingPosition.y || 2)
+    }
   }
+  this.getStartAngle = function() {
+    return config.startAngle || 0;
   }
   this.hasPause = function() {
     return config.hasPause !== false;
