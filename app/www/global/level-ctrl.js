@@ -9,10 +9,9 @@ const LevelCtrl = function() {
     i++;
   }
   i = 0;
-  while (i < LEVEL_CONFIG.length && levels[i].isWonAtAnyTime()) {
+  while (i < LEVEL_CONFIG.length - 1 && levels[i].isWonAtAnyTime()) {
     i++;
   }
-  // FIXME das ist dann irgendwie ein bug, wenn alle levels durchgespielt sind :(
   currentLevel = levels[i];
 
   this.getCurrentLevel = function() {
