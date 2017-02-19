@@ -25,6 +25,8 @@ A game that formats ya shoes
 based on:  
 http://phaser.io/tutorials/making-your-first-phaser-game
 
-sounds:  
+sound goal:
 https://freesound.org/people/klankbeeld - https://freesound.org/people/klankbeeld/sounds/381178/ (Creative Commons)
-https://freesound.org/people/copyc4t/ - https://freesound.org/people/copyc4t/sounds/235729/ (Creative Commons)
+
+sound health:
+https://freesound.org/people/ProjectsU012 - https://freesound.org/people/ProjectsU012/sounds/341629/ (Creative Commons)

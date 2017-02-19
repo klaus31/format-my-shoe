@@ -8,7 +8,7 @@ let Labyrinth = function(levelInfo) {
 
   let map;
   let layer;
-
+let sounds = {};
   this.preload = function() {
     game.load.tilemap('map', 'game/levels/' + levelCtrl.getCurrentLevel().getName() + '.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('wall', 'game/levels/wall.png');
@@ -16,6 +16,8 @@ let Labyrinth = function(levelInfo) {
     game.load.image('goal', 'game/levels/goal.png');
     if (levelInfo.hasPause()) game.load.image('pause', 'game/levels/pause.png');
     if (levelInfo.hasSpeed()) game.load.image('speed', 'game/levels/speed.png');
+    game.load.audio('sound-goal', 'game/goal.mp3');
+    game.load.audio('sound-health', 'game/health.mp3');
   }
 
   this.create = function() {
@@ -29,10 +31,16 @@ let Labyrinth = function(levelInfo) {
     map.addTilesetImage('goal');
     if (levelInfo.hasPause()) map.addTilesetImage('pause');
     if (levelInfo.hasSpeed()) map.addTilesetImage('speed');
+    sounds.goal = game.add.audio('sound-goal');
+    sounds.health = game.add.audio('sound-health');
   }
 
   this.onGoalHit = function(func) {
-    map.setTileIndexCallback(ID_GOAL, func, this);
+    let cb = function(a,b) {
+      sounds.goal.play();
+      func(a,b);
+    }
+    map.setTileIndexCallback(ID_GOAL, cb);
   }
 
   var oneTimeAction = function(id, func) {
@@ -54,7 +62,11 @@ let Labyrinth = function(levelInfo) {
   }
 
   this.onHealthHit = function(func) {
-    oneTimeAction(ID_HEALTH, func);
+    let cb = function(a,b) {
+      sounds.health.play();
+      func(a,b);
+    }
+    oneTimeAction(ID_HEALTH, cb);
   }
 
   this.getLayer = function() {
