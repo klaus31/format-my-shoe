@@ -20,7 +20,11 @@ A game that formats ya shoes
 
 `npm run beautify`
 
-## Based on
+## Credits
 
+based on:  
 http://phaser.io/tutorials/making-your-first-phaser-game
 
+sounds:  
+https://freesound.org/people/klankbeeld - https://freesound.org/people/klankbeeld/sounds/381178/ (Creative Commons)
+https://freesound.org/people/copyc4t/ - https://freesound.org/people/copyc4t/sounds/235729/ (Creative Commons)

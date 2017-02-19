@@ -28,7 +28,7 @@ let Resultscreen = function() {
     let currentLevel = levelCtrl.getCurrentLevel();
     if (currentLevel.isWon()) {
       if (levelCtrl.isCurrentLevelLastLevel()) {
-        message = 'FINISHED GAME!';
+        game.state.start('Credits');
       } else {
         message = 'FINISHED LEVEL ' + levelCtrl.getCurrentLevel().getNumber() + '!';
       }
