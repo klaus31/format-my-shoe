@@ -1,5 +1,6 @@
 let Resultscreen = function() {
   const position = {};
+    let swipe = {};
   let worldHeight;
   const FONT_STYLE = {
     fill: '#73FFA4',
@@ -37,7 +38,6 @@ let Resultscreen = function() {
     } else {
       message = 'WELCOME BACK!';
     }
-    // while(!webfontloaded) console.info(webfontloaded);
     fontCtrl.addText(20, 20, message, FONT_STYLE, function(text) {
       text.setShadow(1, 1, 'rgba(0,0,0,0.5)', 2);
     });
@@ -60,6 +60,7 @@ let Resultscreen = function() {
       if (highlightLevel(level, currentLevel)) {
         graphics.beginFill(0x73FFA4);
         graphics.drawCircle(0, 0, circle.width + 10);
+        swipe.startSpriteY = circle.y;
         graphics.endFill();
       }
       graphics.beginFill(0xAA3333);
@@ -100,6 +101,7 @@ let Resultscreen = function() {
   let startLevel = function(index) {
     return function() {
       levelCtrl.setCurrentLevelIndex(index);
+      position.startSpriteSet = false;
       game.state.start('Game');
     }
   }
@@ -109,13 +111,15 @@ let Resultscreen = function() {
       level.getIndex() == currentLevel.getIndex() + 1 && currentLevel.isWon();
   }
 
-  let swipe = {};
-
   this.update = function() {
+    if(!position.startSpriteSet) {
+      position.sprite.body.position.y = Math.max(game.input.y, game.height / 2);
+      position.startSpriteSet = true;
+    }
     if (game.input.activePointer.isDown) {
       if (!swipe.started) {
         swipe.started = true;
-        swipe.startInputY = game.input.y;
+        swipe.startInputY = game.input.y, game.height / 2;
         swipe.startSpriteY = position.sprite.body.position.y;
       }
       let newpos = swipe.startSpriteY + swipe.startInputY - game.input.y;

@@ -9,6 +9,18 @@ const LEVEL_CONFIG = [{
   },
   startAngle: 260
 }, {
+  name: 'labyrinth-12x12-1'
+}, {
+  name: 'labyrinth-12x12-2'
+}, {
+  name: 'labyrinth-12x12-3'
+}, {
+  name: 'labyrinth-12x12-4'
+}, {
+  name: 'labyrinth-12x12-5'
+}, {
+  name: 'labyrinth-12x12-6'
+}, {
   name: 'lotta-4'
 }, {
   name: 'lotta-3'
