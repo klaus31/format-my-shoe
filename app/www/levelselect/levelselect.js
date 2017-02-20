@@ -1,9 +1,9 @@
 let Resultscreen = function() {
-
+  const position = {};
+  let worldHeight;
   const FONT_STYLE = {
     fill: '#73FFA4',
-    cssFont: 'normal 20pt Barrio',
-    fixedToCamera: true
+    cssFont: 'normal 20pt Barrio'
   };
   const FONT_STYLE_LEVEL_CIRCLE = {
     fontSize: '13pt',
@@ -11,14 +11,18 @@ let Resultscreen = function() {
   }
 
   this.preload = function() {
+    position.start = game.world.height / 2;
     game.stage.backgroundColor = '#5B1075';
     game.load.image('star-filled', 'levelselect/star-filled.png', 126, 40);
     game.load.image('star-outline', 'levelselect/star-outline.png', 126, 40);
-    game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+    game.load.script('webfont', 'webfont.js');
     setGlobalScalingRules();
   }
 
   this.create = function() {
+    position.sprite = game.add.sprite(0, position.start);
+    game.physics.enable(position.sprite, Phaser.Physics.ARCADE);
+    game.camera.follow(position.sprite);
     let message;
     let currentLevel = levelCtrl.getCurrentLevel();
     if (currentLevel.isWon()) {
@@ -32,7 +36,7 @@ let Resultscreen = function() {
     } else {
       message = 'WELCOME BACK!';
     }
-    const text = game.add.text(0, 0, message, FONT_STYLE);
+    const text = game.add.text(20, 20, message, FONT_STYLE);
     text.setShadow(1, 1, 'rgba(0,0,0,0.5)', 2);
     text.font = 'Barrio';
     addLevels();
@@ -44,8 +48,8 @@ let Resultscreen = function() {
     const levelCount = levelCtrl.getLevelCount();
     while (i < levelCount) {
       const circle = {
-        x: game.scale.width / 2 - 27 + (i % 2 == 0 ? -20 : 20),
-        y: game.scale.height - 100 - (55 * i),
+        x: 70 + (i % 2 == 0 ? -20 : 20),
+        y: 100 + (55 * i),
         width: 50
       }
       const graphics = game.add.graphics(circle.x, circle.y);
@@ -53,7 +57,7 @@ let Resultscreen = function() {
       graphics.lineStyle(1, 0x000000, level.isWonAtAnyTime() ? 1 : 0.5);
       if (highlightLevel(level, currentLevel)) {
         graphics.beginFill(0x73FFA4);
-        graphics.drawCircle(0, 0, circle.width + 16);
+        graphics.drawCircle(0, 0, circle.width + 10);
         graphics.endFill();
       }
       graphics.beginFill(0xAA3333);
@@ -61,24 +65,26 @@ let Resultscreen = function() {
       graphics.endFill();
       const sprite = game.add.sprite(0, 0);
       sprite.addChild(graphics);
+
       function addNumberToCircle() {
-        let number = i+1;
-        if(number < 100) {
-          if(number < 10) {
+        let number = i + 1;
+        if (number < 100) {
+          if (number < 10) {
             number = '0' + number;
           }
           number = '0' + number;
         }
-        let text = game.add.text(circle.x-13, circle.y+2, number, FONT_STYLE_LEVEL_CIRCLE);
+        let text = game.add.text(circle.x - 13, circle.y + 2, number, FONT_STYLE_LEVEL_CIRCLE);
         text.font = 'Barrio';
       }
+
       function addStarsToCircle() {
-      if (level.isWonAtAnyTime()) {
-        let score = level.getScoreAllTimeBest();
-        game.add.image(circle.x - 21, circle.y - 15, 'star-filled');
-        game.add.image(circle.x - 7, circle.y - 23, score > 1 ? 'star-filled' : 'star-outline');
-        game.add.image(circle.x + 7, circle.y - 15, score > 2 ? 'star-filled' : 'star-outline');
-      }
+        if (level.isWonAtAnyTime()) {
+          let score = level.getScoreAllTimeBest();
+          game.add.image(circle.x - 21, circle.y - 15, 'star-filled');
+          game.add.image(circle.x - 7, circle.y - 23, score > 1 ? 'star-filled' : 'star-outline');
+          game.add.image(circle.x + 7, circle.y - 15, score > 2 ? 'star-filled' : 'star-outline');
+        }
       }
       addNumberToCircle();
       addStarsToCircle();
@@ -86,6 +92,9 @@ let Resultscreen = function() {
       sprite.events.onInputDown.add(startLevel(i), this);
       i++;
     }
+    worldHeight = 200 + (55 * i);
+    game.world.height = worldHeight;
+    game.world.resize();
   }
   let startLevel = function(index) {
     return function() {
@@ -96,8 +105,25 @@ let Resultscreen = function() {
 
   let highlightLevel = function(level, currentLevel) {
     return level.getIndex() == currentLevel.getIndex() && !currentLevel.isWon() ||
-    level.getIndex() == currentLevel.getIndex() + 1 && currentLevel.isWon();
+      level.getIndex() == currentLevel.getIndex() + 1 && currentLevel.isWon();
   }
 
-  this.update = function() {}
+  let swipe = {};
+
+  this.update = function() {
+    if (game.input.activePointer.isDown) {
+      if(!swipe.started) {
+        swipe.started = true;
+        swipe.startInputY = game.input.y;
+        swipe.startSpriteY = position.sprite.body.position.y;
+      }
+      let newpos = swipe.startSpriteY + swipe.startInputY - game.input.y;
+      if(newpos < position.start) newpos = position.start;
+      if(newpos > worldHeight - position.start) newpos = worldHeight - position.start;
+      position.sprite.body.position.y = newpos;
+    };
+    if (game.input.activePointer.isUp) {
+      swipe = {};
+    };
+  }
 }
