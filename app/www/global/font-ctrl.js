@@ -1,3 +1,4 @@
+// TODO aufräumen!!!
 var loadTexts = [];
 var WebFontConfigActive = false;
 var WebFontConfig = {

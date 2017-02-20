@@ -2,6 +2,13 @@ const LEVEL_CONFIG = [{
   name: 'intro-goal',
   startAngle: 90
 }, {
+  name: 'lotta-5',
+  startingPosition: {
+    x: 16,
+    y: 15
+},
+startAngle: 260
+}, {
   name: 'lotta-4'
 }, {
   name: 'lotta-3'
@@ -9,6 +16,8 @@ const LEVEL_CONFIG = [{
   name: 'lotta-1'
 }, {
   name: 'klaus-1'
+}, {
+  name: 'klaus-2'
 }, {
   name: 'lotta-2'
 }, {
