@@ -19,8 +19,9 @@ let Resultscreen = function() {
 
   this.preload = function() {
     game.stage.backgroundColor = '#FFF';
-    game.load.image('play-again-button', 'levelselect/button_play-again.png', 162, 40);
-    game.load.image('play-next-button', 'levelselect/button_play-next.png', 126, 40);
+    game.load.image('star-filled', 'levelselect/star-filled.png', 126, 40);
+    game.load.image('star-outline', 'levelselect/star-outline.png', 126, 40);
+    setGlobalScalingRules();
   }
 
   this.create = function() {
@@ -47,7 +48,12 @@ let Resultscreen = function() {
     const currentLevel = levelCtrl.getCurrentLevel();
     const levelCount = levelCtrl.getLevelCount();
     while (i < levelCount) {
-      const graphics = game.add.graphics(30 + (55 * i), 80);
+      const circle = {
+        x: game.scale.width / 2 - 27 + (i % 2 == 0 ? -20 : 20),
+        y: game.scale.height - 100 - (55 * i),
+        width: 50
+      }
+      const graphics = game.add.graphics(circle.x, circle.y);
       const level = levelCtrl.getLevel(i);
       graphics.lineStyle(1, 0x000000, level.isWonAtAnyTime() ? 1 : 0.5);
       if (level.getIndex() == currentLevel.getIndex() && !currentLevel.isWon() ||
@@ -56,13 +62,16 @@ let Resultscreen = function() {
       } else {
         graphics.beginFill(0xAA3333);
       }
-      graphics.drawCircle(0, 0, 50);
+      graphics.drawCircle(0, 0, circle.width);
       graphics.endFill();
       const sprite = game.add.sprite(0, 0);
       sprite.addChild(graphics);
-      game.add.text(30 + (55 * i), 80, i + 1, FONT_STYLE_LEVEL_CIRCLE);
+      game.add.text(circle.x, circle.y, i + 1, FONT_STYLE_LEVEL_CIRCLE);
       if (level.isWonAtAnyTime()) {
-        game.add.text(15 + (55 * i), 70, '✅', FONT_STYLE_LEVEL_CIRCLE_CHECK);
+        let score = level.getScoreAllTimeBest();
+        game.add.image(circle.x - 21, circle.y - 15, 'star-filled');
+        game.add.image(circle.x - 7, circle.y - 23, score > 1 ? 'star-filled' : 'star-outline');
+        game.add.image(circle.x + 7, circle.y - 15, score > 2 ? 'star-filled' : 'star-outline');
       }
       sprite.inputEnabled = true;
       sprite.events.onInputDown.add(startLevel(i), this);

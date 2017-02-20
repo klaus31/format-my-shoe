@@ -14,6 +14,7 @@ let Game = function() {
     labyrinth.preload();
     hero.preload();
     endedGame = false;
+    setGlobalScalingRules();
   }
 
   this.create = function() {
@@ -31,6 +32,7 @@ let Game = function() {
     if (!endedGame) {
       levelCtrl.setCurrentLevelPlayed();
       levelCtrl.setCurrentLevelWon(won);
+      levelCtrl.getCurrentLevel().end();
       levelCtrl.getCurrentLevel().persist();
       game.state.start('Resultscreen');
       endedGame = true;

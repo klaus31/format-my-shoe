@@ -9,6 +9,7 @@ let Startscreen = function() {
 
   this.preload = function() {
     game.stage.backgroundColor = '#FFF';
+    setGlobalScalingRules();
   }
 
   this.create = function() {

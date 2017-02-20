@@ -42,6 +42,7 @@ let Hero = function() {
     hero.position.x = STARTING_POSITION.x;
     hero.position.y = STARTING_POSITION.y;
     drive.stop();
+    levelCtrl.getCurrentLevel().end();
     if (onDead) onDead();
   }
 
@@ -49,6 +50,7 @@ let Hero = function() {
     hero.frame = FRAMES - life.getExpectation(FRAMES);
     if (drive.firstMoveMade() && !life.lifeStarted()) {
       life.start();
+      levelCtrl.getCurrentLevel().start();
     }
     life.update();
     if (life.isDead()) {

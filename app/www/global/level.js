@@ -1,8 +1,11 @@
 const Level = function(config, index) {
+  const ME = this;
   let played = false;
   let won;
   let data = JSON.parse(localStorage.getItem('level-' + config.name));
   let wonAtAnyTime = data && data.wonAtAnyTime;
+  let startTime;
+  let endTime;
   this.getIndex = function() {
     return index;
   }
@@ -14,6 +17,18 @@ const Level = function(config, index) {
   }
   this.getHeroSpeed = function() {
     return config.heroSpeed || 200;
+  }
+  this.start = function() {
+    startTime = new Date();
+  }
+  this.end = function() {
+    endTime = new Date();
+  }
+  this.createScoreCurrent = function() {
+    return new Score(startTime, endTime);
+  }
+  this.getScoreAllTimeBest = function() {
+    return data.scoreAllTimeBest;
   }
   this.getStartingPosition = function() {
     config.startingPosition = config.startingPosition || {};
@@ -48,9 +63,10 @@ const Level = function(config, index) {
     return wonAtAnyTime;
   }
   this.persist = function() {
-    const data = {
-      wonAtAnyTime: wonAtAnyTime
-    };
+    data = data || {};
+    data.wonAtAnyTime = wonAtAnyTime;
+    let isNewHighscore = !data.scoreAllTimeBest || ME.createScoreCurrent().calculatePoints() > data.scoreAllTimeBest;
+    if (isNewHighscore) data.scoreAllTimeBest = ME.createScoreCurrent().calculatePoints();
     localStorage.setItem('level-' + config.name, JSON.stringify(data));
   }
 };
