@@ -10,13 +10,13 @@ var WebFontConfig = {
     AddTextImpl.functions = [];
   },
   google: {
-    families: ['Barrio']
+    families: ['Amatic SC']
   }
 };
 
 const FontCtrl = function() {
   this.addText = function(x, y, content, style, cb, font) {
-    font = font || 'Barrio';
+    font = font || 'Amatic SC';
     style = style || {};
     let addTextInner = function() {
       let text = game.add.text(x, y, content, style);

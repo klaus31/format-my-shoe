@@ -4,10 +4,10 @@ let Resultscreen = function() {
   let worldHeight;
   const FONT_STYLE = {
     fill: '#73FFA4',
-    cssFont: 'normal 20pt Barrio'
+    fontSize: '24pt'
   };
   const FONT_STYLE_LEVEL_CIRCLE = {
-    fontSize: '13pt',
+    fontSize: '20pt',
     fill: '#FFFFFF'
   }
   const fontCtrl = new FontCtrl();
@@ -39,7 +39,6 @@ let Resultscreen = function() {
       message = 'WELCOME BACK!';
     }
     fontCtrl.addText(130, 20, message, FONT_STYLE, function(text) {
-      text.setShadow(1, 1, 'rgba(0,0,0,0.5)', 2);
       text.fixedToCamera = true;
     });
     addLevels();
@@ -78,7 +77,7 @@ let Resultscreen = function() {
           }
           number = '0' + number;
         }
-        fontCtrl.addText(circle.x - 13, circle.y - 8, number, FONT_STYLE_LEVEL_CIRCLE);
+        fontCtrl.addText(circle.x - 13, circle.y - 15, number, FONT_STYLE_LEVEL_CIRCLE);
       }
 
       function addStarsToCircle() {
