@@ -15,7 +15,11 @@ const LEVEL_CONFIG = [{
 }, {
   name: 'lotta-1'
 }, {
-  name: 'klaus-1'
+  name: 'klaus-1',
+  startingPosition: {
+    x: 1,
+    y: 4
+  }
 }, {
   name: 'klaus-2'
 }, {
