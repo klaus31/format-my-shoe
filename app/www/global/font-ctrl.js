@@ -1,4 +1,4 @@
-var AddTextImpl = {
+let AddTextImpl = {
   functions: [],
   ready: false
 };

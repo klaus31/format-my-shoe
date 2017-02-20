@@ -119,8 +119,8 @@ let Resultscreen = function() {
         swipe.startSpriteY = position.sprite.body.position.y;
       }
       let newpos = swipe.startSpriteY + swipe.startInputY - game.input.y;
-      if (newpos < position.start) newpos = position.start;
-      if (newpos > worldHeight - position.start) newpos = worldHeight - position.start;
+      if (newpos < game.height / 2) newpos = game.height / 2;
+      if (newpos > worldHeight - game.height / 2) newpos = worldHeight - game.height / 2;
       position.sprite.body.position.y = newpos;
     };
     if (game.input.activePointer.isUp) {
