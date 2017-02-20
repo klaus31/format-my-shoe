@@ -9,13 +9,14 @@ let Resultscreen = function() {
     fontSize: '13pt',
     fill: '#FFFFFF'
   }
+  const fontCtrl = new FontCtrl();
 
   this.preload = function() {
     position.start = game.world.height / 2;
     game.stage.backgroundColor = '#5B1075';
     game.load.image('star-filled', 'levelselect/star-filled.png', 126, 40);
     game.load.image('star-outline', 'levelselect/star-outline.png', 126, 40);
-    game.load.script('webfont', 'webfont.js');
+    game.load.script('webfont', 'global/webfont.js');
     setGlobalScalingRules();
   }
 
@@ -36,9 +37,12 @@ let Resultscreen = function() {
     } else {
       message = 'WELCOME BACK!';
     }
-    const text = game.add.text(20, 20, message, FONT_STYLE);
-    text.setShadow(1, 1, 'rgba(0,0,0,0.5)', 2);
-    text.font = 'Barrio';
+    // while(!webfontloaded) console.info(webfontloaded);
+    fontCtrl.loadText(function() {
+      const text = game.add.text(20, 20, message, FONT_STYLE);
+      text.setShadow(1, 1, 'rgba(0,0,0,0.5)', 2);
+      text.font = 'Barrio';
+    });
     addLevels();
   }
 
@@ -74,8 +78,10 @@ let Resultscreen = function() {
           }
           number = '0' + number;
         }
-        let text = game.add.text(circle.x - 13, circle.y + 2, number, FONT_STYLE_LEVEL_CIRCLE);
-        text.font = 'Barrio';
+        fontCtrl.loadText(function() {
+          let text = game.add.text(circle.x - 13, circle.y + 2, number, FONT_STYLE_LEVEL_CIRCLE);
+          text.font = 'Barrio';
+        });
       }
 
       function addStarsToCircle() {
