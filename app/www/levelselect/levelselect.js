@@ -38,8 +38,9 @@ let Resultscreen = function() {
     } else {
       message = 'WELCOME BACK!';
     }
-    fontCtrl.addText(20, 20, message, FONT_STYLE, function(text) {
+    fontCtrl.addText(130, 20, message, FONT_STYLE, function(text) {
       text.setShadow(1, 1, 'rgba(0,0,0,0.5)', 2);
+      text.fixedToCamera = true;
     });
     addLevels();
   }
@@ -51,7 +52,7 @@ let Resultscreen = function() {
     while (i < levelCount) {
       const circle = {
         x: 70 + (i % 2 == 0 ? -20 : 20),
-        y: 100 + (55 * i),
+        y: 70 + (55 * i),
         width: 50
       }
       const graphics = game.add.graphics(circle.x, circle.y);
@@ -77,15 +78,15 @@ let Resultscreen = function() {
           }
           number = '0' + number;
         }
-        fontCtrl.addText(circle.x - 13, circle.y + 2, number, FONT_STYLE_LEVEL_CIRCLE);
+        fontCtrl.addText(circle.x - 13, circle.y - 8, number, FONT_STYLE_LEVEL_CIRCLE);
       }
 
       function addStarsToCircle() {
         if (level.isWonAtAnyTime()) {
           let score = level.getScoreAllTimeBest();
-          game.add.image(circle.x - 21, circle.y - 15, 'star-filled');
-          game.add.image(circle.x - 7, circle.y - 23, score > 1 ? 'star-filled' : 'star-outline');
-          game.add.image(circle.x + 7, circle.y - 15, score > 2 ? 'star-filled' : 'star-outline');
+          game.add.image(circle.x - 21, circle.y - 30, 'star-filled');
+          game.add.image(circle.x - 7, circle.y - 36, score > 1 ? 'star-filled' : 'star-outline');
+          game.add.image(circle.x + 7, circle.y - 30, score > 2 ? 'star-filled' : 'star-outline');
         }
       }
       addNumberToCircle();
