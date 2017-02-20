@@ -1,11 +1,9 @@
-// TODO aufräumen!!!
-var loadTexts = [];
-var WebFontConfigActive = false;
+var Fonts = {functions : [], ready : false};
 var WebFontConfig = {
     active: function() {
-      WebFontConfigActive = true;
-      let i = loadTexts.length;
-      while(i--) loadTexts[i]();
+      Fonts.ready = true;
+      let i = Fonts.functions.length;
+      while(i--) Fonts.functions[i]();
   },
     google: {
       families: ['Barrio']
@@ -13,12 +11,11 @@ var WebFontConfig = {
 };
 
 const FontCtrl = function() {
-  let interval = window.setTimeout(loadTexts, 30);
   this.loadText = function(func) {
-    if(WebFontConfigActive) {
+    if(Fonts.ready) {
       func();
     } else {
-      loadTexts.push(func);
+      Fonts.functions.push(func);
     }
   }
 }
