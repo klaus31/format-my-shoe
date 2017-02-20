@@ -6,8 +6,8 @@ const LEVEL_CONFIG = [{
   startingPosition: {
     x: 16,
     y: 15
-},
-startAngle: 260
+  },
+  startAngle: 260
 }, {
   name: 'lotta-4'
 }, {

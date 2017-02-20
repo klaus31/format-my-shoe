@@ -38,10 +38,8 @@ let Resultscreen = function() {
       message = 'WELCOME BACK!';
     }
     // while(!webfontloaded) console.info(webfontloaded);
-    fontCtrl.loadText(function() {
-      const text = game.add.text(20, 20, message, FONT_STYLE);
+    fontCtrl.addText(20, 20, message, FONT_STYLE, function(text) {
       text.setShadow(1, 1, 'rgba(0,0,0,0.5)', 2);
-      text.font = 'Barrio';
     });
     addLevels();
   }
@@ -78,10 +76,7 @@ let Resultscreen = function() {
           }
           number = '0' + number;
         }
-        fontCtrl.loadText(function() {
-          let text = game.add.text(circle.x - 13, circle.y + 2, number, FONT_STYLE_LEVEL_CIRCLE);
-          text.font = 'Barrio';
-        });
+        fontCtrl.addText(circle.x - 13, circle.y + 2, number, FONT_STYLE_LEVEL_CIRCLE);
       }
 
       function addStarsToCircle() {
@@ -118,14 +113,14 @@ let Resultscreen = function() {
 
   this.update = function() {
     if (game.input.activePointer.isDown) {
-      if(!swipe.started) {
+      if (!swipe.started) {
         swipe.started = true;
         swipe.startInputY = game.input.y;
         swipe.startSpriteY = position.sprite.body.position.y;
       }
       let newpos = swipe.startSpriteY + swipe.startInputY - game.input.y;
-      if(newpos < position.start) newpos = position.start;
-      if(newpos > worldHeight - position.start) newpos = worldHeight - position.start;
+      if (newpos < position.start) newpos = position.start;
+      if (newpos > worldHeight - position.start) newpos = worldHeight - position.start;
       position.sprite.body.position.y = newpos;
     };
     if (game.input.activePointer.isUp) {
