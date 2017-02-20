@@ -7,7 +7,7 @@ var WebFontConfig = {
     AddTextImpl.ready = true;
     let i = AddTextImpl.functions.length;
     while (i--) AddTextImpl.functions[i]();
-    functions = [];
+    AddTextImpl.functions = [];
   },
   google: {
     families: ['Barrio']

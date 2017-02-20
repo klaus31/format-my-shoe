@@ -1,3 +1,10 @@
+// set version for db migration reasons
+if(localStorage.getItem('version') == null) {
+  localStorage.clear();
+}
+localStorage.setItem('version', '201702201824');
+
+
 const levelCtrl = new LevelCtrl();
 const game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'parent');
 
