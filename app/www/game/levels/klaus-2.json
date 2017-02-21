@@ -22,7 +22,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/..\/..\/..\/artwork\/level-templates\/wall.png",
+         "image":"/wall.png",
          "imageheight":16,
          "imagewidth":16,
          "margin":0,
@@ -38,7 +38,7 @@
         }, 
         {
          "firstgid":2,
-         "image":"..\/..\/..\/..\/artwork\/level-templates\/health.png",
+         "image":"/health.png",
          "imageheight":16,
          "imagewidth":16,
          "margin":0,
@@ -54,7 +54,7 @@
         }, 
         {
          "firstgid":3,
-         "image":"..\/..\/..\/..\/artwork\/level-templates\/goal.png",
+         "image":"/goal.png",
          "imageheight":16,
          "imagewidth":16,
          "margin":0,
@@ -70,7 +70,7 @@
         }, 
         {
          "firstgid":4,
-         "image":"..\/..\/..\/..\/artwork\/level-templates\/pause.png",
+         "image":"/pause.png",
          "imageheight":16,
          "imagewidth":16,
          "margin":0,
@@ -86,7 +86,7 @@
         }, 
         {
          "firstgid":5,
-         "image":"..\/..\/..\/..\/artwork\/level-templates\/speed.png",
+         "image":"/speed.png",
          "imageheight":16,
          "imagewidth":16,
          "margin":0,

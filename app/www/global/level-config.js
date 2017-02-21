@@ -9,6 +9,8 @@ const LEVEL_CONFIG = [{
   },
   startAngle: 260
 }, {
+  name: 'labyrinth-50x50-circles'
+}, {
   name: 'labyrinth-12x12-1'
 }, {
   name: 'labyrinth-12x12-2'
@@ -73,6 +75,11 @@ const LEVEL_CONFIG = [{
   hasPause: false,
   heroSpeed: 300
 }, {
+  name: 'tiles-shifted-29x197-1'
+}, {
+  name: 'tiles-29x197-1'
+}, {
+  name: 'rain'
   //   name: 'intro-pause'
   // }, {
   //   name: 'intro-speed'
@@ -80,5 +87,4 @@ const LEVEL_CONFIG = [{
   //   name: 'slow-and-accurate',
   //   heroSpeed: 5
   // }, {
-  name: 'rain'
 }];

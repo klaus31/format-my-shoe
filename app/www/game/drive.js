@@ -1,7 +1,7 @@
 let Drive = function(speed) {
 
   const ME = this;
-  const ANGLE_SNAP_INTO_PLACE = 20;
+  const ANGLE_SNAP_INTO_PLACE = 10;
   let x;
   let y;
   let firstMoveMade = false;

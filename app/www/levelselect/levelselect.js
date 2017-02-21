@@ -60,7 +60,8 @@ let Resultscreen = function() {
       if (highlightLevel(level, currentLevel)) {
         graphics.beginFill(0x73FFA4);
         graphics.drawCircle(0, 0, circle.width + 10);
-        swipe.startSpriteY = circle.y;
+        swipe.forceSpriteY = circle.y;
+        console.info(swipe.forceSpriteY);
         graphics.endFill();
       }
       graphics.beginFill(0xAA3333);
@@ -112,23 +113,29 @@ let Resultscreen = function() {
   }
 
   this.update = function() {
+    let newpos = false;
     if(!position.startSpriteSet) {
-      position.sprite.body.position.y = Math.max(game.input.y, game.height / 2);
+      newpos = swipe.forceSpriteY || Math.max(game.input.y, game.height / 2);
+      if (newpos > worldHeight - game.height / 2) newpos = worldHeight - game.height / 2;
+      position.sprite.body.position.y = newpos;
       position.startSpriteSet = true;
     }
     if (game.input.activePointer.isDown) {
       if (!swipe.started) {
         swipe.started = true;
-        swipe.startInputY = game.input.y, game.height / 2;
+        swipe.startInputY = game.input.y;
         swipe.startSpriteY = position.sprite.body.position.y;
       }
-      let newpos = swipe.startSpriteY + swipe.startInputY - game.input.y;
+      newpos = swipe.startSpriteY + swipe.startInputY - game.input.y;
       if (newpos < game.height / 2) newpos = game.height / 2;
       if (newpos > worldHeight - game.height / 2) newpos = worldHeight - game.height / 2;
       position.sprite.body.position.y = newpos;
+      // game.camera.focusOn(position.sprite);
     };
     if (game.input.activePointer.isUp) {
+      if(swipe.started) {
       swipe = {};
+      }
     };
   }
 }
