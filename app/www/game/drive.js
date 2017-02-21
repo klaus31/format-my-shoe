@@ -1,6 +1,7 @@
 let Drive = function(speed) {
 
   const ME = this;
+  const ANGLE_SNAP_INTO_PLACE = 20;
   let x;
   let y;
   let firstMoveMade = false;
@@ -29,7 +30,11 @@ let Drive = function(speed) {
         angle: sprite.angle,
         x: game.input.worldX
       };
-      sprite.angle = stateBeforePointerDown.angle + game.input.worldX - stateBeforePointerDown.x;
+      let newAngle = stateBeforePointerDown.angle + game.input.worldX - stateBeforePointerDown.x;
+      if(Math.abs(newAngle % 90) < ANGLE_SNAP_INTO_PLACE || Math.abs(newAngle % 90) > 90-ANGLE_SNAP_INTO_PLACE) {
+        newAngle = Math.round(newAngle / 90) * 90;
+      }
+      sprite.angle = newAngle;
     };
     if (wasDown && game.input.activePointer.isUp) {
       firstMoveMade = true;
