@@ -22,7 +22,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/..\/app\/www\/game\/levels\/wall.png",
+         "image":"wall.png",
          "imageheight":16,
          "imagewidth":16,
          "margin":0,
@@ -38,7 +38,7 @@
         }, 
         {
          "firstgid":2,
-         "image":"..\/..\/app\/www\/game\/levels\/health.png",
+         "image":"health.png",
          "imageheight":16,
          "imagewidth":16,
          "margin":0,
@@ -54,7 +54,7 @@
         }, 
         {
          "firstgid":3,
-         "image":"..\/..\/app\/www\/game\/levels\/goal.png",
+         "image":"goal.png",
          "imageheight":16,
          "imagewidth":16,
          "margin":0,
@@ -70,7 +70,7 @@
         }, 
         {
          "firstgid":4,
-         "image":"..\/..\/app\/www\/game\/levels\/pause.png",
+         "image":"pause.png",
          "imageheight":16,
          "imagewidth":16,
          "margin":0,
@@ -86,7 +86,7 @@
         }, 
         {
          "firstgid":5,
-         "image":"..\/..\/app\/www\/game\/levels\/speed.png",
+         "image":"speed.png",
          "imageheight":16,
          "imagewidth":16,
          "margin":0,

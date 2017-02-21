@@ -77,6 +77,8 @@ const LEVEL_CONFIG = [{
 }, {
   name: 'tiles-shifted-29x197-1'
 }, {
+  name: 'tiles-29x197-2'
+}, {
   name: 'tiles-29x197-1'
 }, {
   name: 'rain'
