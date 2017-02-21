@@ -1,6 +1,6 @@
 let Resultscreen = function() {
   const position = {};
-    let swipe = {};
+  let swipe = {};
   let worldHeight;
   const FONT_STYLE = {
     fill: '#73FFA4',
@@ -114,7 +114,7 @@ let Resultscreen = function() {
 
   this.update = function() {
     let newpos = false;
-    if(!position.startSpriteSet) {
+    if (!position.startSpriteSet) {
       newpos = swipe.forceSpriteY || Math.max(game.input.y, game.height / 2);
       if (newpos > worldHeight - game.height / 2) newpos = worldHeight - game.height / 2;
       position.sprite.body.position.y = newpos;
@@ -133,8 +133,8 @@ let Resultscreen = function() {
       // game.camera.focusOn(position.sprite);
     };
     if (game.input.activePointer.isUp) {
-      if(swipe.started) {
-      swipe = {};
+      if (swipe.started) {
+        swipe = {};
       }
     };
   }

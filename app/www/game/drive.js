@@ -31,7 +31,7 @@ let Drive = function(speed) {
         x: game.input.worldX
       };
       let newAngle = stateBeforePointerDown.angle + game.input.worldX - stateBeforePointerDown.x;
-      if(Math.abs(newAngle % 90) < ANGLE_SNAP_INTO_PLACE || Math.abs(newAngle % 90) > 90-ANGLE_SNAP_INTO_PLACE) {
+      if (Math.abs(newAngle % 90) < ANGLE_SNAP_INTO_PLACE || Math.abs(newAngle % 90) > 90 - ANGLE_SNAP_INTO_PLACE) {
         newAngle = Math.round(newAngle / 90) * 90;
       }
       sprite.angle = newAngle;

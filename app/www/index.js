@@ -1,5 +1,5 @@
 // set version for db migration reasons
-if(localStorage.getItem('version') == null) {
+if (localStorage.getItem('version') == null) {
   localStorage.clear();
 }
 localStorage.setItem('version', '201702201824');

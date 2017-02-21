@@ -82,11 +82,11 @@ const LEVEL_CONFIG = [{
   name: 'tiles-29x197-1'
 }, {
   name: 'rain'
-  //   name: 'intro-pause'
-  // }, {
-  //   name: 'intro-speed'
-  // }, {
-  //   name: 'slow-and-accurate',
-  //   heroSpeed: 5
-  // }, {
+    //   name: 'intro-pause'
+    // }, {
+    //   name: 'intro-speed'
+    // }, {
+    //   name: 'slow-and-accurate',
+    //   heroSpeed: 5
+    // }, {
 }];

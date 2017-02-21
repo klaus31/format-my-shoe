@@ -7,7 +7,7 @@ let Startscreen = function() {
   }
 
   this.create = function() {
-    game.add.image(game.width / 2 - 217, game.height / 2 - 230,'splash');
+    game.add.image(game.width / 2 - 217, game.height / 2 - 230, 'splash');
     window.setTimeout(startgame, 3000);
   }
 

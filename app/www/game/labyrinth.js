@@ -37,7 +37,7 @@ let Labyrinth = function(levelInfo) {
 
   this.onGoalHit = function(func) {
     let cb = function(a, b) {
-      sounds.goal.play();
+      if (GlobalConfig.isSoundOn()) sounds.goal.play();
       func(a, b);
     }
     map.setTileIndexCallback(ID_GOAL, cb);
@@ -63,7 +63,7 @@ let Labyrinth = function(levelInfo) {
 
   this.onHealthHit = function(func) {
     let cb = function(a, b) {
-      sounds.health.play();
+      if (GlobalConfig.isSoundOn()) sounds.health.play();
       func(a, b);
     }
     oneTimeAction(ID_HEALTH, cb);

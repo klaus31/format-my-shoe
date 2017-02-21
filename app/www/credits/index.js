@@ -16,7 +16,7 @@ let Credits = function() {
   this.create = function() {
     let y = 40;
     let fontCtrl = new FontCtrl();
-    fontCtrl.addText(20,y,'FINISHED GAME!');
+    fontCtrl.addText(20, y, 'FINISHED GAME!');
     y += 40;
     let text = CREDIT_TEXT;
     while (text.length > 0) {
