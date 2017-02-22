@@ -1,6 +1,50 @@
+const VERY_HARD = 10;
+const HARD = 8;
+const QUIET_HARD = 6;
+const NORMAL = 4;
+const QUIET_EASY = 2;
+const VERY_EASY = 0;
 const LEVEL_CONFIG = [{
   name: 'intro-goal',
   startAngle: 90
+}, {
+  name: 'intro-health',
+  startAngle: 255,
+  startingPosition: {
+    x: 25,
+    y: 47
+  }
+}, {
+  name: 'intro-health-2',
+  startAngle: 270,
+  heroSpeed: 120,
+  startingPosition: {
+    x: 5,
+    y: 197
+  }
+}, {
+  name: 'intro-direction-change',
+  startAngle: 270,
+  startingPosition: {
+    x: 25,
+    y: 47
+  }
+}, {
+  name: 'intro-health-heart',
+  hasSpeed: false,
+  hasPause: false
+}, {
+  name: 'small-labyrinth',
+  hasSpeed: false,
+  hasPause: false,
+  heroSpeed: 150
+}, {
+  name: 'rain'
+}, {
+  name: 'long-ways-to-go',
+  hasSpeed: false,
+  hasPause: false,
+  heroSpeed: 300
 }, {
   name: 'lotta-5',
   startingPosition: {
@@ -39,54 +83,12 @@ const LEVEL_CONFIG = [{
 }, {
   name: 'lotta-2'
 }, {
-  name: 'intro-health',
-  startAngle: 255,
-  startingPosition: {
-    x: 25,
-    y: 47
-  }
-}, {
-  name: 'intro-health-2',
-  startAngle: 270,
-  heroSpeed: 120,
-  startingPosition: {
-    x: 5,
-    y: 197
-  }
-}, {
-  name: 'intro-direction-change',
-  startAngle: 270,
-  startingPosition: {
-    x: 25,
-    y: 47
-  }
-}, {
-  name: 'intro-health-heart',
-  hasSpeed: false,
-  hasPause: false
-}, {
-  name: 'small-labyrinth',
-  hasSpeed: false,
-  hasPause: false,
-  heroSpeed: 150
-}, {
-  name: 'long-ways-to-go',
-  hasSpeed: false,
-  hasPause: false,
-  heroSpeed: 300
-}, {
   name: 'tiles-shifted-29x197-1'
 }, {
   name: 'tiles-29x197-2'
 }, {
-  name: 'tiles-29x197-1'
+  name: 'labyrinth-29x197-3',
+  difficulty: VERY_HARD
 }, {
-  name: 'rain'
-    //   name: 'intro-pause'
-    // }, {
-    //   name: 'intro-speed'
-    // }, {
-    //   name: 'slow-and-accurate',
-    //   heroSpeed: 5
-    // }, {
+  name: 'tiles-29x197-1'
 }];
