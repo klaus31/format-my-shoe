@@ -61,7 +61,6 @@ let Resultscreen = function() {
         graphics.beginFill(0x73FFA4);
         graphics.drawCircle(0, 0, circle.width + 10);
         swipe.forceSpriteY = circle.y;
-        console.info(swipe.forceSpriteY);
         graphics.endFill();
       }
       graphics.beginFill(0xAA3333);
