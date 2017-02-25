@@ -5,90 +5,94 @@ const NORMAL = 4;
 const QUIET_EASY = 2;
 const VERY_EASY = 0;
 const LEVEL_CONFIG = [{
-  name: 'intro-goal',
-  startAngle: 90
+  "name": "intro-goal",
+  "startAngle": 90,
+  "startingPosition": {},
+  "topTime": 702
 }, {
-  name: 'intro-health',
-  startAngle: 255,
-  startingPosition: {
-    x: 25,
-    y: 47
+  "name": "intro-health",
+  "startAngle": 255,
+  "startingPosition": {
+    "x": 25,
+    "y": 47
   }
 }, {
-  name: 'intro-health-2',
-  startAngle: 270,
-  heroSpeed: 120,
-  startingPosition: {
-    x: 5,
-    y: 197
-  }
-}, {
-  name: 'intro-direction-change',
-  startAngle: 270,
-  startingPosition: {
-    x: 25,
-    y: 47
-  }
-}, {
-  name: 'intro-health-heart',
-  hasSpeed: false,
-  hasPause: false
-}, {
-  name: 'small-labyrinth',
-  hasSpeed: false,
-  hasPause: false,
-  heroSpeed: 150
-}, {
-  name: 'rain'
-}, {
-  name: 'long-ways-to-go',
-  hasSpeed: false,
-  hasPause: false,
-  heroSpeed: 300
-}, {
-  name: 'lotta-5',
-  startingPosition: {
-    x: 16,
-    y: 15
+  "name": "intro-health-2",
+  "startAngle": 270,
+  "heroSpeed": 120,
+  "startingPosition": {
+    "x": 5,
+    "y": 197
   },
-  startAngle: 260
+  "topTime": 25805
 }, {
-  name: 'labyrinth-50x50-circles'
-}, {
-  name: 'labyrinth-12x12-1'
-}, {
-  name: 'labyrinth-12x12-2'
-}, {
-  name: 'labyrinth-12x12-3'
-}, {
-  name: 'labyrinth-12x12-4'
-}, {
-  name: 'labyrinth-12x12-5'
-}, {
-  name: 'labyrinth-12x12-6'
-}, {
-  name: 'lotta-4'
-}, {
-  name: 'lotta-3'
-}, {
-  name: 'lotta-1'
-}, {
-  name: 'klaus-1',
-  startingPosition: {
-    x: 1,
-    y: 4
+  "name": "intro-direction-change",
+  "startAngle": 270,
+  "startingPosition": {
+    "x": 25,
+    "y": 47
   }
 }, {
-  name: 'klaus-2'
+  "name": "intro-health-heart",
+  "hasSpeed": false,
+  "hasPause": false
 }, {
-  name: 'lotta-2'
+  "name": "small-labyrinth",
+  "hasSpeed": false,
+  "hasPause": false,
+  "heroSpeed": 150
 }, {
-  name: 'tiles-shifted-29x197-1'
+  "name": "rain"
 }, {
-  name: 'tiles-29x197-2'
+  "name": "long-ways-to-go",
+  "hasSpeed": false,
+  "hasPause": false,
+  "heroSpeed": 300
 }, {
-  name: 'labyrinth-29x197-3',
-  difficulty: VERY_HARD
+  "name": "lotta-5",
+  "startingPosition": {
+    "x": 16,
+    "y": 15
+  },
+  "startAngle": 260,
+  "topTime": 45253
 }, {
-  name: 'tiles-29x197-1'
+  "name": "labyrinth-50x50-circles"
+}, {
+  "name": "labyrinth-12x12-1"
+}, {
+  "name": "labyrinth-12x12-2"
+}, {
+  "name": "labyrinth-12x12-3"
+}, {
+  "name": "labyrinth-12x12-4"
+}, {
+  "name": "labyrinth-12x12-5"
+}, {
+  "name": "labyrinth-12x12-6"
+}, {
+  "name": "lotta-4"
+}, {
+  "name": "lotta-3"
+}, {
+  "name": "lotta-1"
+}, {
+  "name": "klaus-1",
+  "startingPosition": {
+    "x": 1,
+    "y": 4
+  }
+}, {
+  "name": "klaus-2"
+}, {
+  "name": "lotta-2"
+}, {
+  "name": "tiles-shifted-29x197-1"
+}, {
+  "name": "tiles-29x197-2"
+}, {
+  "name": "labyrinth-29x197-3",
+  "difficulty": 10
+}, {
+  "name": "tiles-29x197-1"
 }];

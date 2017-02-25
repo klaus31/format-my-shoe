@@ -1,10 +1,12 @@
-// TODO there is no correct way for scoring yet ...
-const Score = function(startTime, endTime) {
-  this.calculatePoints = function() {
-    let ms = endTime.getTime() - startTime.getTime();
-    if (ms < 10 * 1000) {
+const Score = function() {
+  const ME = this;
+  this.msNeeded = function(startTime, endTime) {
+    return endTime.getTime() - startTime.getTime();
+  }
+  this.calculatePoints = function(msNeeded, levelTopTime) {
+    if (msNeeded <= levelTopTime) {
       return 3;
-    } else if (ms < 20 * 1000) {
+    } else if (msNeeded <= levelTopTime * 1.3) {
       return 2;
     } else {
       return 1;

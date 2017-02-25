@@ -27,14 +27,14 @@ let Drive = function(maxSpeed, maxBackwardSpeed) {
 
   let updateCurrentSpeed = function() {
     if (game.input.activePointer.isDown) {
-      if(prevY) {
+      if (prevY) {
         let newCurrentSpeed = currentSpeed + prevY - game.input.y;
-        if(maxSpeed < newCurrentSpeed) {
+        if (maxSpeed < newCurrentSpeed) {
           // correct prevY, for being with the finger maximal on max speed (and not over)
           prevY = game.input.y - (maxSpeed - newCurrentSpeed);
           newCurrentSpeed = maxSpeed;
         }
-        if(newCurrentSpeed < maxBackwardSpeed) {
+        if (newCurrentSpeed < maxBackwardSpeed) {
           newCurrentSpeed = maxBackwardSpeed;
         }
         currentSpeed = newCurrentSpeed;
@@ -51,7 +51,7 @@ let Drive = function(maxSpeed, maxBackwardSpeed) {
   this.update = function(sprite) {
     updateCurrentSpeed();
     if (game.input.activePointer.isDown) {
-      if(prevX) {
+      if (prevX) {
         firstMoveMade = true;
         let newAngle = sprite.angle + game.input.x - prevX;
         sprite.angle = newAngle;

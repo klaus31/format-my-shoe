@@ -6,6 +6,7 @@ const Level = function(config, index) {
   let wonAtAnyTime = data && data.wonAtAnyTime;
   let startTime;
   let endTime;
+  let score = new Score();
   this.getIndex = function() {
     return index;
   }
@@ -24,11 +25,8 @@ const Level = function(config, index) {
   this.end = function() {
     endTime = new Date();
   }
-  this.createScoreCurrent = function() {
-    return new Score(startTime, endTime);
-  }
   this.getScoreAllTimeBest = function() {
-    return data.scoreAllTimeBest;
+    return score.calculatePoints(data.msBest, data.topTime || 20000);
   }
   this.getStartingPosition = function() {
     config.startingPosition = config.startingPosition || {};
@@ -63,10 +61,23 @@ const Level = function(config, index) {
     return wonAtAnyTime;
   }
   this.persist = function() {
-    data = data || {};
-    data.wonAtAnyTime = wonAtAnyTime;
-    let isNewHighscore = !data.scoreAllTimeBest || ME.createScoreCurrent().calculatePoints() > data.scoreAllTimeBest;
-    if (isNewHighscore) data.scoreAllTimeBest = ME.createScoreCurrent().calculatePoints();
-    localStorage.setItem('level-' + config.name, JSON.stringify(data));
-  }
+      data = data || {};
+      data.wonAtAnyTime = wonAtAnyTime;
+      if (wonAtAnyTime) {
+        let msNeededCurrent = score.msNeeded(startTime, endTime);
+        if (!data.msBest || data.msBest > msNeededCurrent) {
+          data.msBest = msNeededCurrent;
+        }
+      }
+      localStorage.setItem('level-' + config.name, JSON.stringify(data));
+      // FIXME auskommentieren: Das ist Code, um eigene Bestleistungen besser zu warten
+      newConfigs = newConfigs || JSON.parse(JSON.stringify(LEVEL_CONFIG));
+      let i = newConfigs.length;
+      while (i--) {
+        if (newConfigs[i].name == config.name && !newConfigs[i].topTime) newConfigs[i].topTime = score.msNeeded(startTime, endTime);
+      }
+      console.info(JSON.stringify(newConfigs));
+    }
+    // FIXME auskommentieren: Das ist Code, um eigene Bestleistungen besser zu warten
+  let newConfigs = JSON.parse(JSON.stringify(LEVEL_CONFIG));
 };
