@@ -53,12 +53,14 @@ let Drive = function(maxSpeed, maxBackwardSpeed) {
     if (game.input.activePointer.isDown) {
       if (prevX) {
         firstMoveMade = true;
-        let newAngle = sprite.angle + game.input.x - prevX;
-        sprite.angle = newAngle;
+        if(Math.abs(prevX - game.input.x) > 5) {
+          sprite.angle += (game.input.x - prevX) * 0.1;
+        }
         x = currentSpeed * Math.cos(sprite.angle * Math.PI / 180);
         y = currentSpeed * Math.sin(sprite.angle * Math.PI / 180);
+      } else {
+        prevX = game.input.x;
       }
-      prevX = game.input.x;
     }
     if (game.input.activePointer.isUp) {
       prevX = false;
