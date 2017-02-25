@@ -11,7 +11,7 @@ const LEVEL_CONFIG = [{
   "topTime": 702
 }, {
   "name": "intro-health",
-  "startAngle": 255,
+  "startAngle": 270,
   "startingPosition": {
     "x": 25,
     "y": 47
@@ -54,7 +54,7 @@ const LEVEL_CONFIG = [{
     "x": 16,
     "y": 15
   },
-  "startAngle": 260,
+  "startAngle": 270,
   "topTime": 45253
 }, {
   "name": "labyrinth-50x50-circles"
