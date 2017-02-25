@@ -22,7 +22,7 @@ let Hero = function() {
   }
 
   this.create = function() {
-    hero = game.add.sprite(STARTING_POSITION.x, STARTING_POSITION.y, 'hero');
+    hero = game.add.sprite(STARTING_POSITION.x + 8, STARTING_POSITION.y + 8, 'hero');
     hero.anchor.setTo(0.5, 0.5);
     game.physics.enable(hero, Phaser.Physics.ARCADE);
     game.camera.follow(hero);
