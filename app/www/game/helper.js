@@ -26,7 +26,7 @@ let Helper = function(level) {
     if (helpersOn && level.isStarted()) {
       let i = helpers.length;
       while (i--) {
-        helpers[i].alpha -= 0.01;
+        helpers[i].alpha -= 0.05;
         if (helpers[i].alpha <= 0.1) {
           helpersOn = false;
           helpers[i].destroy();
