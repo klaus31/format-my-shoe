@@ -1,27 +1,27 @@
 const LevelCtrl = function() {
 
   this.sortByDifficulty = function(levelA, levelB) {
-    if (levelA.getDifficulty() == levelB.getDifficulty()) {
+    if (levelA.difficulty == levelB.difficulty) {
       return 0;
     } else {
-      return levelA.getDifficulty() < levelB.getDifficulty() ? -1 : 1;
+      return levelA.difficulty < levelB.difficulty ? -1 : 1;
     }
   }
 
   const ME = this;
   let currentLevel;
-  let i = 0;
+  let i = LEVEL_CONFIG.length;
+  const levelConfigs = LEVEL_CONFIG.sort(ME.sortByDifficulty);
   const levels = [];
-  while (i < LEVEL_CONFIG.length) {
-    levels[i] = new Level(LEVEL_CONFIG[i], i);
-    i++;
-  }
-  levels.sort(ME.sortByDifficulty);
   i = 0;
-  while (i < LEVEL_CONFIG.length - 1 && levels[i].isWonAtAnyTime()) {
+  while (i < levelConfigs.length) {
+    levels[i] = new Level(levelConfigs[i], i);
     i++;
   }
-  currentLevel = levels[i];
+  i = 0;
+  while (i < levelConfigs.length - 1 && levels[i].isWonAtAnyTime()) {
+    currentLevel = levels[++i];
+  }
 
   this.getCurrentLevel = function() {
     return currentLevel;
