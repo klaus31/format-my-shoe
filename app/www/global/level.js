@@ -42,22 +42,21 @@ const Level = function(config, index) {
     }
   }
   this.getStartAngle = function() {
-    if(config.startDirection) {
-      switch(config.startDirection) {
-        case 'up': return -90;
-        case 'right': return 0;
-        case 'down': return 90;
-        case 'left': return 180;
-        default: throw 'invalid direction ' + config.startDirection;
+    if (config.startDirection) {
+      switch (config.startDirection) {
+        case 'up':
+          return -90;
+        case 'right':
+          return 0;
+        case 'down':
+          return 90;
+        case 'left':
+          return 180;
+        default:
+          throw 'invalid direction ' + config.startDirection;
       }
     }
     return 0;
-  }
-  this.hasPause = function() {
-    return config.hasPause !== false;
-  }
-  this.hasSpeed = function() {
-    return config.hasPause !== false;
   }
   this.setPlayed = function() {
     played = true;

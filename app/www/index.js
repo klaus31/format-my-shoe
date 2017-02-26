@@ -24,4 +24,4 @@ game.state.add('Game', new Game());
 game.state.add('Resultscreen', resultscreen);
 game.state.start('Startscreen'); // FIXME raus
 // FIXME rein - in der entwicklung nervt das: game.state.start('Startscreen');
-if(debugMode) console.info('Debug-Mode activated');
+if (debugMode) console.info('Debug-Mode activated');

@@ -3,8 +3,6 @@ let Labyrinth = function(levelInfo) {
   const ID_WALL = 1;
   const ID_HEALTH = 2;
   const ID_GOAL = 3;
-  const ID_PAUSE = 4;
-  const ID_SPEED = 5;
 
   let map;
   let layer;
@@ -16,8 +14,6 @@ let Labyrinth = function(levelInfo) {
     game.load.image('goal', 'game/levels/goal.png');
     game.load.image('turn-left-hint', 'game/turn-left-hint.png');
     game.load.image('turn-right-hint', 'game/turn-right-hint.png');
-    if (levelInfo.hasPause()) game.load.image('pause', 'game/levels/pause.png');
-    if (levelInfo.hasSpeed()) game.load.image('speed', 'game/levels/speed.png');
     game.load.audio('sound-goal', 'game/goal.mp3');
     game.load.audio('sound-health', 'game/health.mp3');
   }
@@ -31,8 +27,6 @@ let Labyrinth = function(levelInfo) {
     map.addTilesetImage('wall');
     map.addTilesetImage('health');
     map.addTilesetImage('goal');
-    if (levelInfo.hasPause()) map.addTilesetImage('pause');
-    if (levelInfo.hasSpeed()) map.addTilesetImage('speed');
     sounds.goal = game.add.audio('sound-goal');
     sounds.health = game.add.audio('sound-health');
   }
@@ -53,14 +47,6 @@ let Labyrinth = function(levelInfo) {
         func();
       }
     }, this);
-  }
-
-  this.onPauseHit = function(func) {
-    oneTimeAction(ID_PAUSE, func);
-  }
-
-  this.onSpeedHit = function(func) {
-    oneTimeAction(ID_SPEED, func);
   }
 
   this.onHealthHit = function(func) {

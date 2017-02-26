@@ -27,7 +27,7 @@ let Drive = function(hero) {
     if (!hero.isMoving()) {
       if (wasUp && game.input.activePointer.isDown) {
         wasUp = false;
-        if(firstMoveMade) {
+        if (firstMoveMade) {
           if (game.input.x > game.width / 2) {
             hero.rotateClockwise();
           } else {
