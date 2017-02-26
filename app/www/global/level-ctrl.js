@@ -1,7 +1,7 @@
 const LevelCtrl = function() {
 
   this.sortByDifficulty = function(levelA, levelB) {
-    if(levelA.getDifficulty() == levelB.getDifficulty() ) {
+    if (levelA.getDifficulty() == levelB.getDifficulty()) {
       return 0;
     } else {
       return levelA.getDifficulty() < levelB.getDifficulty() ? -1 : 1;

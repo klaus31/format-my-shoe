@@ -90,11 +90,16 @@ let Resultscreen = function() {
       }
       addNumberToCircle();
       addStarsToCircle();
-      if(levelCtrl.isPlayable(level)) {
+      if (levelCtrl.isPlayable(level)) {
         sprite.inputEnabled = true;
         sprite.events.onInputDown.add(startLevel(i), this);
       } else {
         sprite.alpha = 0.3;
+        if (debugMode) {
+          console.info('will unlock all levels because of debug mode');
+          sprite.inputEnabled = true;
+          sprite.events.onInputDown.add(startLevel(i), this);
+        }
       }
       i++;
     }
