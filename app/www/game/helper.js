@@ -7,7 +7,9 @@ let Helper = function(level) {
     fontSize: '16pt'
   };
 
-  this.preload = function() {}
+  this.preload = function() {
+    helpersOn = false;
+  }
 
   this.create = function() {
     fontCtrl.addText(10, game.height - 50, '↺ turn anticlockwise', FONT_STYLE, addHelperText);

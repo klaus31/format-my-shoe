@@ -124,6 +124,18 @@ const LEVEL_CONFIG = [{
   topTime: 16486,
   difficulty: EASY
 }, {
+  name: 'snake-feb',
+  topTime: 24333,
+  difficulty: QUIET_HARD,
+  startingPosition: {
+    x: 1,
+    y: 1
+  }
+}, {
+  name: 'tiles-shifted-29x197-2',
+  topTime: 82133,
+  difficulty: QUIET_HARD
+}, {
   name: 'tiles-shifted-29x197-1',
   topTime: 102461,
   difficulty: HARD

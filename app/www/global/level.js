@@ -14,7 +14,7 @@ const Level = function(config, index) {
     return index + 1;
   }
   this.isStarted = function() {
-    return !!startTime;
+    return startTime && !endTime;
   }
   this.getName = function() {
     return config.name;
@@ -27,6 +27,7 @@ const Level = function(config, index) {
       console.info('starting: ' + config.name);
     }
     startTime = new Date();
+    endTime = false;
   }
   this.end = function() {
     endTime = new Date();

@@ -16,6 +16,7 @@ const LevelCtrl = function() {
   i = 0;
   while (i < levelConfigs.length) {
     levels[i] = new Level(levelConfigs[i], i);
+    if(debugMode)console.info((i+1) + ' ' + levelConfigs[i].name);
     i++;
   }
   i = 0;
