@@ -14,7 +14,11 @@ let Hero = function() {
     game.load.spritesheet('hero', 'game/hero.png', 16, 16);
     onDead = null;
     life = new Life();
-    drive = new Drive(levelCtrl.getCurrentLevel().getHeroSpeed());
+    drive = new Drive(ME);
+  }
+
+  this.getMaximalSpeed = function() {
+    return levelCtrl.getCurrentLevel().getHeroSpeed();
   }
 
   this.onDead = function(func) {
@@ -22,7 +26,7 @@ let Hero = function() {
   }
 
   this.create = function() {
-    hero = game.add.sprite(STARTING_POSITION.x + 8, STARTING_POSITION.y + 8, 'hero');
+    hero = game.add.sprite(STARTING_POSITION.x, STARTING_POSITION.y, 'hero');
     hero.anchor.setTo(0.5, 0.5);
     game.physics.enable(hero, Phaser.Physics.ARCADE);
     game.camera.follow(hero);
@@ -45,6 +49,19 @@ let Hero = function() {
     levelCtrl.getCurrentLevel().end();
     if (onDead) onDead();
   }
+  this.isMoving = function() {
+    return hero.body.velocity.x || hero.body.velocity.y;
+  }
+
+  this.rotateClockwise = function() {
+    hero.angle += 90;
+  }
+  this.rotateCounterClockwise = function() {
+    hero.angle -= 90;
+  }
+  this.getAngle = function() {
+    return Math.round(hero.angle);
+  }
 
   let updateLife = function() {
     hero.frame = FRAMES - life.getExpectation(FRAMES);
@@ -58,7 +75,7 @@ let Hero = function() {
     }
   }
   let updateDrive = function() {
-    drive.update(hero);
+    drive.update();
     hero.body.velocity.x = drive.getX();
     hero.body.velocity.y = drive.getY();
   }

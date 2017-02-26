@@ -20,6 +20,9 @@ const Level = function(config, index) {
     return config.heroSpeed || 200;
   }
   this.start = function() {
+    if (debugMode) {
+      console.info('starting: ' + config.name);
+    }
     startTime = new Date();
   }
   this.end = function() {
@@ -31,12 +34,21 @@ const Level = function(config, index) {
   this.getStartingPosition = function() {
     config.startingPosition = config.startingPosition || {};
     return {
-      x: 16 * (config.startingPosition.x || 2),
-      y: 16 * (config.startingPosition.y || 2)
+      x: 16 * (config.startingPosition.x || 2) + 8,
+      y: 16 * (config.startingPosition.y || 2) + 8
     }
   }
   this.getStartAngle = function() {
-    return config.startAngle || 0;
+    if(config.startDirection) {
+      switch(config.startDirection) {
+        case 'up': return -90;
+        case 'right': return 0;
+        case 'bottom': return 90;
+        case 'left': return 180;
+        default: throw 'invalid direction ' + config.startDirection;
+      }
+    }
+    return 0;
   }
   this.hasPause = function() {
     return config.hasPause !== false;
@@ -61,23 +73,17 @@ const Level = function(config, index) {
     return wonAtAnyTime;
   }
   this.persist = function() {
-      data = data || {};
-      data.wonAtAnyTime = wonAtAnyTime;
-      if (wonAtAnyTime) {
-        let msNeededCurrent = score.msNeeded(startTime, endTime);
-        if (!data.msBest || data.msBest > msNeededCurrent) {
-          data.msBest = msNeededCurrent;
-        }
+    data = data || {};
+    data.wonAtAnyTime = wonAtAnyTime;
+    if (wonAtAnyTime) {
+      let msNeededCurrent = score.msNeeded(startTime, endTime);
+      if (!data.msBest || data.msBest > msNeededCurrent) {
+        data.msBest = msNeededCurrent;
       }
-      localStorage.setItem('level-' + config.name, JSON.stringify(data));
-      // FIXME auskommentieren: Das ist Code, um eigene Bestleistungen besser zu warten
-      newConfigs = newConfigs || JSON.parse(JSON.stringify(LEVEL_CONFIG));
-      let i = newConfigs.length;
-      while (i--) {
-        if (newConfigs[i].name == config.name && !newConfigs[i].topTime) newConfigs[i].topTime = score.msNeeded(startTime, endTime);
-      }
-      console.info(JSON.stringify(newConfigs));
     }
-    // FIXME auskommentieren: Das ist Code, um eigene Bestleistungen besser zu warten
-  let newConfigs = JSON.parse(JSON.stringify(LEVEL_CONFIG));
+    localStorage.setItem('level-' + config.name, JSON.stringify(data));
+    if (debugMode) {
+      console.info('topTime: ' + score.msNeeded(startTime, endTime))
+    }
+  }
 };

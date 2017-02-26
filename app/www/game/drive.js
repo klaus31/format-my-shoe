@@ -1,10 +1,11 @@
-let Drive = function(speed) {
+let Drive = function(hero) {
 
   const ME = this;
   let x;
   let y;
   let firstMoveMade = false;
   let wasUp = false;
+  let speed = hero.getMaximalSpeed();
 
   this.stop = function() {
     x = 0;
@@ -21,21 +22,41 @@ let Drive = function(speed) {
     return y;
   }
 
-  this.update = function(sprite) {
-    if (game.input.activePointer.isDown) {
-      if (wasUp) {
-        firstMoveMade = true;
-        sprite.angle += game.input.x > game.width / 2 ? 90 : -90;
-        wasUp = false;
+
+  this.update = function() {
+    if (!hero.isMoving()) {
+      if (wasUp && game.input.activePointer.isDown) {
+        if(firstMoveMade) {
+          if (game.input.x > game.width / 2) {
+            hero.rotateClockwise();
+          } else {
+            hero.rotateCounterClockwise();
+          }
+        } else {
+          firstMoveMade = true;
+        }
+        switch (hero.getAngle()) {
+          case 90:
+            x = 0;
+            y = speed;
+            break;
+          case -180:
+            x = speed * -1;
+            y = 0;
+            break;
+          case -90:
+            x = 0;
+            y = speed * -1;
+            break;
+          case 0:
+            x = speed;
+            y = 0;
+            break;
+        }
       }
-    }
-    if (game.input.activePointer.isUp) {
-      wasUp = true;
-    }
-    console.log(sprite.position.x % 16, sprite.position.y % 16)
-    if(Math.round(sprite.position.x) % 8 == 0 && Math.round(sprite.position.y) % 8 == 0 || !firstMoveMade) {
-      x = speed * Math.cos(sprite.angle * Math.PI / 180);
-      y = speed * Math.sin(sprite.angle * Math.PI / 180);
+      if (game.input.activePointer.isUp) {
+        wasUp = true;
+      }
     }
   }
 }

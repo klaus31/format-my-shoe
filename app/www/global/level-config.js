@@ -5,94 +5,114 @@ const NORMAL = 4;
 const QUIET_EASY = 2;
 const VERY_EASY = 0;
 const LEVEL_CONFIG = [{
-  "name": "intro-goal",
-  "startAngle": 90,
-  "startingPosition": {},
-  "topTime": 702
+  name: 'intro-goal',
+  topTime: 951,
+  startDirection: 'right',
+  startingPosition: {}
 }, {
-  "name": "intro-health",
-  "startAngle": 270,
-  "startingPosition": {
-    "x": 25,
-    "y": 47
+  name: 'intro-health-2',
+  topTime: 15501,
+  startDirection: 'up',
+  startingPosition: {
+    x: 5,
+    y: 197
   }
 }, {
-  "name": "intro-health-2",
-  "startAngle": 270,
-  "heroSpeed": 120,
-  "startingPosition": {
-    "x": 5,
-    "y": 197
+  name: 'intro-health',
+  topTime: 99999999,
+  startDirection: 'up',
+  startingPosition: {
+    x: 25,
+    y: 47
+  }
+}, {
+  name: 'intro-direction-change',
+  topTime: 99999999,
+  startDirection: 'up',
+  startingPosition: {
+    x: 25,
+    y: 47
+  }
+}, {
+  name: 'intro-health-heart',
+  topTime: 99999999,
+  hasSpeed: false,
+  hasPause: false
+}, {
+  name: 'small-labyrinth',
+  topTime: 99999999,
+  hasSpeed: false,
+  hasPause: false
+}, {
+  name: 'rain',
+  topTime: 99999999
+}, {
+  name: 'long-ways-to-go',
+  topTime: 99999999,
+  hasSpeed: false,
+  hasPause: false,
+  heroSpeed: 300
+}, {
+  name: 'lotta-5',
+  topTime: 99999999,
+  startingPosition: {
+    x: 16,
+    y: 15
   },
-  "topTime": 25805
+  startDirection: 270
 }, {
-  "name": "intro-direction-change",
-  "startAngle": 270,
-  "startingPosition": {
-    "x": 25,
-    "y": 47
+  name: 'labyrinth-50x50-circles',
+  topTime: 99999999
+}, {
+  name: 'labyrinth-12x12-1',
+  topTime: 99999999
+}, {
+  name: 'labyrinth-12x12-2',
+  topTime: 99999999
+}, {
+  name: 'labyrinth-12x12-3',
+  topTime: 99999999
+}, {
+  name: 'labyrinth-12x12-4',
+  topTime: 99999999
+}, {
+  name: 'labyrinth-12x12-5',
+  topTime: 99999999
+}, {
+  name: 'labyrinth-12x12-6',
+  topTime: 99999999
+}, {
+  name: 'lotta-4',
+  topTime: 99999999
+}, {
+  name: 'lotta-3',
+  topTime: 99999999
+}, {
+  name: 'lotta-1',
+  topTime: 99999999
+}, {
+  name: 'klaus-1',
+  topTime: 99999999,
+  startingPosition: {
+    x: 1,
+    y: 4
   }
 }, {
-  "name": "intro-health-heart",
-  "hasSpeed": false,
-  "hasPause": false
+  name: 'klaus-2',
+  topTime: 99999999
 }, {
-  "name": "small-labyrinth",
-  "hasSpeed": false,
-  "hasPause": false,
-  "heroSpeed": 150
+  name: 'lotta-2',
+  topTime: 99999999
 }, {
-  "name": "rain"
+  name: 'tiles-shifted-29x197-1',
+  topTime: 99999999
 }, {
-  "name": "long-ways-to-go",
-  "hasSpeed": false,
-  "hasPause": false,
-  "heroSpeed": 300
+  name: 'tiles-29x197-2',
+  topTime: 99999999
 }, {
-  "name": "lotta-5",
-  "startingPosition": {
-    "x": 16,
-    "y": 15
-  },
-  "startAngle": 270,
-  "topTime": 45253
+  name: 'labyrinth-29x197-3',
+  topTime: 99999999
 }, {
-  "name": "labyrinth-50x50-circles"
-}, {
-  "name": "labyrinth-12x12-1"
-}, {
-  "name": "labyrinth-12x12-2"
-}, {
-  "name": "labyrinth-12x12-3"
-}, {
-  "name": "labyrinth-12x12-4"
-}, {
-  "name": "labyrinth-12x12-5"
-}, {
-  "name": "labyrinth-12x12-6"
-}, {
-  "name": "lotta-4"
-}, {
-  "name": "lotta-3"
-}, {
-  "name": "lotta-1"
-}, {
-  "name": "klaus-1",
-  "startingPosition": {
-    "x": 1,
-    "y": 4
-  }
-}, {
-  "name": "klaus-2"
-}, {
-  "name": "lotta-2"
-}, {
-  "name": "tiles-shifted-29x197-1"
-}, {
-  "name": "tiles-29x197-2"
-}, {
-  "name": "labyrinth-29x197-3",
-  "difficulty": 10
-}, {
-  "name": "tiles-29x197-1"
+  name: 'tiles-29x197-1',
+  topTime: 99999999
 }];

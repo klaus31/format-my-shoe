@@ -5,7 +5,6 @@ let Game = function() {
   let map;
   let layer;
   let endedGame = false;
-  let drive = new Drive();
 
   this.preload = function() {
     const level = levelCtrl.getCurrentLevel();
