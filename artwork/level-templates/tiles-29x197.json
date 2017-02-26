@@ -67,38 +67,6 @@
          "tilecount":1,
          "tileheight":16,
          "tilewidth":16
-        }, 
-        {
-         "firstgid":4,
-         "image":"pause.png",
-         "imageheight":16,
-         "imagewidth":16,
-         "margin":0,
-         "name":"pause",
-         "properties":
-            {
-
-            },
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":16,
-         "tilewidth":16
-        }, 
-        {
-         "firstgid":5,
-         "image":"speed.png",
-         "imageheight":16,
-         "imagewidth":16,
-         "margin":0,
-         "name":"speed",
-         "properties":
-            {
-
-            },
-         "spacing":0,
-         "tilecount":1,
-         "tileheight":16,
-         "tilewidth":16
         }],
  "tilewidth":16,
  "version":1,

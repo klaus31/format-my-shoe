@@ -21,8 +21,9 @@ const LevelCtrl = function() {
   }
   i = 0;
   while (i < levelConfigs.length - 1 && levels[i].isWonAtAnyTime()) {
-    currentLevel = levels[++i];
+    i++;
   }
+  currentLevel = levels[i];
 
   this.getCurrentLevel = function() {
     return currentLevel;

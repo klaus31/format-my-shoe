@@ -6,6 +6,7 @@ const Level = function(config, index) {
   let wonAtAnyTime = data && data.wonAtAnyTime;
   let startTime;
   let endTime;
+  let isStarted = false;
   let score = new Score();
   this.getIndex = function() {
     return index;
@@ -14,7 +15,7 @@ const Level = function(config, index) {
     return index + 1;
   }
   this.isStarted = function() {
-    return startTime && !endTime;
+    return isStarted;
   }
   this.getName = function() {
     return config.name;
@@ -28,9 +29,11 @@ const Level = function(config, index) {
     }
     startTime = new Date();
     endTime = false;
+    isStarted = true;
   }
   this.end = function() {
     endTime = new Date();
+    isStarted = false;
   }
   this.getScoreAllTimeBest = function() {
     return score.calculatePoints(data.msBest, data.topTime || 20000);

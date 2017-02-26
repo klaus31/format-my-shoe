@@ -1,6 +1,5 @@
 // get me a chance to create levels
 // activate with localStorage.setItem('debug', 'true')
-const debugMode = localStorage.getItem('debug') === 'true';
 // set version for db migration reasons
 if (localStorage.getItem('version') == null) {
   localStorage.clear();
@@ -8,10 +7,11 @@ if (localStorage.getItem('version') == null) {
 if (localStorage.getItem('version') == '201702201824') {
   localStorage.clear();
 }
-if (localStorage.getItem('version') - 0 < 1702261533) {
+if (localStorage.getItem('version') - 0 < 1702262031) {
   localStorage.clear();
 }
-localStorage.setItem('version', 1702261533);
+localStorage.setItem('version', 1702262031);
+const debugMode = localStorage.getItem('debug') === 'true';
 
 
 const levelCtrl = new LevelCtrl();
