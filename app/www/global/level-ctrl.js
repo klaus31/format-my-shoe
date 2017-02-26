@@ -1,5 +1,13 @@
 const LevelCtrl = function() {
 
+  this.sortByDifficulty = function(levelA, levelB) {
+    if(levelA.getDifficulty() == levelB.getDifficulty() ) {
+      return 0;
+    } else {
+      return levelA.getDifficulty() < levelB.getDifficulty() ? -1 : 1;
+    }
+  }
+
   const ME = this;
   let currentLevel;
   let i = 0;
@@ -8,6 +16,7 @@ const LevelCtrl = function() {
     levels[i] = new Level(LEVEL_CONFIG[i], i);
     i++;
   }
+  levels.sort(ME.sortByDifficulty);
   i = 0;
   while (i < LEVEL_CONFIG.length - 1 && levels[i].isWonAtAnyTime()) {
     i++;
@@ -22,6 +31,10 @@ const LevelCtrl = function() {
   }
   this.setCurrentLevelIndex = function(index) {
     currentLevel = levels[index];
+  }
+  this.isPlayable = function(level) {
+    let index = levels.indexOf(level);
+    return index == 0 || level.isWonAtAnyTime() || levels[index - 1].isWonAtAnyTime();
   }
   this.setCurrentLevelPlayed = function() {
     currentLevel.setPlayed();

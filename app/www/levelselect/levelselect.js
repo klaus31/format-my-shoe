@@ -90,8 +90,12 @@ let Resultscreen = function() {
       }
       addNumberToCircle();
       addStarsToCircle();
-      sprite.inputEnabled = true;
-      sprite.events.onInputDown.add(startLevel(i), this);
+      if(levelCtrl.isPlayable(level)) {
+        sprite.inputEnabled = true;
+        sprite.events.onInputDown.add(startLevel(i), this);
+      } else {
+        sprite.alpha = 0.3;
+      }
       i++;
     }
     worldHeight = 200 + (55 * i);

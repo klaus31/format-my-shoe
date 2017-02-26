@@ -8,7 +8,10 @@ if (localStorage.getItem('version') == null) {
 if (localStorage.getItem('version') == '201702201824') {
   localStorage.clear();
 }
-localStorage.setItem('version', 1702250838);
+if (localStorage.getItem('version') - 0 < 1702261533) {
+  localStorage.clear();
+}
+localStorage.setItem('version', 1702261533);
 
 
 const levelCtrl = new LevelCtrl();

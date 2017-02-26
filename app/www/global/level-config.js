@@ -1,10 +1,10 @@
-const VERY_HARD = 10;
-const HARD = 8;
-const QUIET_HARD = 6;
+const VERY_HARD = 7;
+const HARD = 6;
+const QUIET_HARD = 5;
 const NORMAL = 4;
-const QUIET_EASY = 2;
-const EASY = 1;
-const VERY_EASY = 0;
+const QUIET_EASY = 3;
+const EASY = 2;
+const VERY_EASY = 1;
 const LEVEL_CONFIG = [{
   name: 'intro-goal',
   topTime: 951,
@@ -44,7 +44,7 @@ const LEVEL_CONFIG = [{
 }, {
   name: 'small-labyrinth',
   topTime: 38431,
-  difficulty: EASY
+  difficulty: QUIET_EASY
 }, {
   name: 'rain',
   topTime: 11454,

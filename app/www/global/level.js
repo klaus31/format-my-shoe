@@ -34,6 +34,9 @@ const Level = function(config, index) {
   this.getScoreAllTimeBest = function() {
     return score.calculatePoints(data.msBest, data.topTime || 20000);
   }
+  this.getDifficulty = function() {
+    return config.difficulty || NORMAL;
+  }
   this.getStartingPosition = function() {
     config.startingPosition = config.startingPosition || {};
     return {
