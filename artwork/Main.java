@@ -39,11 +39,11 @@ public class Main {
         int imageHeight = 16;
         BufferedImage image = new BufferedImage(imageWidth * tiles, imageHeight, TYPE_INT_RGB);
         Color colorMain = Color.GREEN.darker();
-        Color colorArrow = new Color(170,255,170);
+        Color colorArrow = new Color(150,255,150);
         int offset = 0;
         int x = 0;
         int y = 0;
-        Point p = new Point(0, 0);
+        Point p = new Point(1, 1);
         Direction eatYourselfUpDirection = DOWN;
         ;
         while (offset < tiles) {
@@ -68,20 +68,38 @@ public class Main {
             }
             y = 0;
             x = 0;
-            colorMain = getHueNeighbor(colorMain, -0.508F);
+            colorMain = getHueNeighbor(colorMain, -0.506F);
             colorArrow = getHueNeighbor(colorArrow, -0.5F);
             offset++;
 
             // which direction should be self destructed next?
-            String checkpoint = p.x + "/" + p.y;
-            if(p.y == 0 && p.x % 2 == 1) {
-                eatYourselfUpDirection = RIGHT;
-            } else if(p.y == 0 && p.x % 2 == 0) {
-                eatYourselfUpDirection = DOWN;
-            } else if(p.y == 15 && p.x % 2 == 0) {
-                eatYourselfUpDirection = RIGHT;
-            } else if(p.y == 15 && p.x % 2 == 1) {
-                eatYourselfUpDirection = UP;
+            if(modusStart) {
+                if(p.x % 2 == 1 && p.y < 14) {
+                    eatYourselfUpDirection = DOWN;
+                } else if(p.x % 2 == 1 && p.y == 14) {
+                    eatYourselfUpDirection = RIGHT;
+                } else if(p.x % 2 == 0 && p.y > 1) {
+                    eatYourselfUpDirection = UP;
+                } else if(p.x % 2 == 0  && p.y == 1) {
+                    eatYourselfUpDirection = RIGHT;
+                }
+                if(p.y == 1 && p.x == 14) {
+                    System.out.println(p);
+                    p = new Point(15,0);
+                    eatYourselfUpDirection = LEFT;
+                    modusStart = false;
+                }
+            } else {
+                System.out.println(p);
+                if(p.y == 0 && p.x > 0) {
+                    eatYourselfUpDirection = LEFT;
+                } else if(p.y < 14 && p.x == 0) {
+                    eatYourselfUpDirection = DOWN;
+                } else if(p.y == 15 && p.x < 14) {
+                    eatYourselfUpDirection = RIGHT;
+                } else if(p.y > 0 && p.x == 15) {
+                    eatYourselfUpDirection = UP;
+                }
             }
 
             switch (eatYourselfUpDirection) {
@@ -103,6 +121,7 @@ public class Main {
         System.out.println("Writing: " + out.getAbsolutePath());
         ImageIO.write(image, "PNG", out);
     }
+    private static boolean modusStart = true;
 
     public static Color getHueNeighbor(Color color, float nextDoors) {
         float change = nextDoors / 360.f;
