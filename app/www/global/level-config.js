@@ -19,7 +19,7 @@ const LEVEL_CONFIG = [{
   }
 }, {
   name: 'intro-health',
-  topTime: 99999999,
+  topTime: 10603,
   startDirection: 'up',
   startingPosition: {
     x: 25,
@@ -27,7 +27,7 @@ const LEVEL_CONFIG = [{
   }
 }, {
   name: 'intro-direction-change',
-  topTime: 99999999,
+  topTime: 22792,
   startDirection: 'up',
   startingPosition: {
     x: 25,
@@ -35,37 +35,37 @@ const LEVEL_CONFIG = [{
   }
 }, {
   name: 'intro-health-heart',
-  topTime: 99999999,
+  topTime: 17492,
   hasSpeed: false,
   hasPause: false
 }, {
   name: 'small-labyrinth',
-  topTime: 99999999,
+  topTime: 38431,
   hasSpeed: false,
   hasPause: false
 }, {
   name: 'rain',
-  topTime: 99999999
+  topTime: 11454
 }, {
   name: 'long-ways-to-go',
-  topTime: 99999999,
+  topTime: 18177,
   hasSpeed: false,
   hasPause: false,
   heroSpeed: 300
 }, {
   name: 'lotta-5',
-  topTime: 99999999,
+  topTime: 34583,
   startingPosition: {
-    x: 16,
+    x: 13,
     y: 15
   },
-  startDirection: 270
+  startDirection: 'down'
 }, {
   name: 'labyrinth-50x50-circles',
-  topTime: 99999999
+  topTime: 12123
 }, {
   name: 'labyrinth-12x12-1',
-  topTime: 99999999
+  topTime: 8912
 }, {
   name: 'labyrinth-12x12-2',
   topTime: 99999999

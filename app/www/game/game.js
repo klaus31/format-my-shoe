@@ -5,13 +5,16 @@ let Game = function() {
   let map;
   let layer;
   let endedGame = false;
+  let helper;
 
   this.preload = function() {
     const level = levelCtrl.getCurrentLevel();
     hero = new Hero();
     labyrinth = new Labyrinth(level);
+    helper = new Helper(level);
     labyrinth.preload();
     hero.preload();
+    helper.preload();
     endedGame = false;
     setGlobalScalingRules();
   }
@@ -25,6 +28,7 @@ let Game = function() {
     labyrinth.onPauseHit(hero.pause);
     labyrinth.onSpeedHit(hero.speedUp);
     hero.create();
+    helper.create();
   }
 
   let endGame = function(won) {
@@ -49,5 +53,6 @@ let Game = function() {
   this.update = function() {
     game.physics.arcade.collide(hero.getSprite(), labyrinth.getLayer());
     hero.update();
+    helper.update();
   }
 }

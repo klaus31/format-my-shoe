@@ -13,6 +13,9 @@ const Level = function(config, index) {
   this.getNumber = function() {
     return index + 1;
   }
+  this.isStarted = function() {
+    return !!startTime;
+  }
   this.getName = function() {
     return config.name;
   }
@@ -43,7 +46,7 @@ const Level = function(config, index) {
       switch(config.startDirection) {
         case 'up': return -90;
         case 'right': return 0;
-        case 'bottom': return 90;
+        case 'down': return 90;
         case 'left': return 180;
         default: throw 'invalid direction ' + config.startDirection;
       }

@@ -14,6 +14,8 @@ let Labyrinth = function(levelInfo) {
     game.load.image('wall', 'game/levels/wall.png');
     game.load.image('health', 'game/levels/health.png');
     game.load.image('goal', 'game/levels/goal.png');
+    game.load.image('turn-left-hint', 'game/turn-left-hint.png');
+    game.load.image('turn-right-hint', 'game/turn-right-hint.png');
     if (levelInfo.hasPause()) game.load.image('pause', 'game/levels/pause.png');
     if (levelInfo.hasSpeed()) game.load.image('speed', 'game/levels/speed.png');
     game.load.audio('sound-goal', 'game/goal.mp3');

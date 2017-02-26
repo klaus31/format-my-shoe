@@ -4,7 +4,7 @@ const Score = function() {
     return endTime.getTime() - startTime.getTime();
   }
   this.calculatePoints = function(msNeeded, levelTopTime) {
-    if (msNeeded <= levelTopTime) {
+    if (msNeeded <= levelTopTime * 1.05) {
       return 3;
     } else if (msNeeded <= levelTopTime * 1.3) {
       return 2;
