@@ -48,7 +48,7 @@ const LEVEL_CONFIG = [{
 }, {
   name: 'rain',
   topTime: 11454,
-  difficulty: NORMAL
+  difficulty: VERY_HARD
 }, {
   name: 'long-ways-to-go',
   topTime: 18177,
@@ -70,7 +70,7 @@ const LEVEL_CONFIG = [{
 }, {
   name: 'labyrinth-12x12-1',
   topTime: 8912,
-  difficulty: NORMAL
+  difficulty: QUIET_EASY
 }, {
   name: 'labyrinth-12x12-2',
   topTime: 6488,
@@ -78,23 +78,23 @@ const LEVEL_CONFIG = [{
     x: 1,
     y: 2
   },
-  difficulty: NORMAL
+  difficulty: QUIET_EASY
 }, {
   name: 'labyrinth-12x12-3',
   topTime: 16891,
-  difficulty: NORMAL
+  difficulty: QUIET_EASY
 }, {
   name: 'labyrinth-12x12-4',
   topTime: 8511,
-  difficulty: NORMAL
+  difficulty: QUIET_EASY
 }, {
   name: 'labyrinth-12x12-5',
   topTime: 7458,
-  difficulty: NORMAL
+  difficulty: QUIET_EASY
 }, {
   name: 'labyrinth-12x12-6',
   topTime: 6287,
-  difficulty: NORMAL
+  difficulty: QUIET_EASY
 }, {
   name: 'lotta-4',
   topTime: 11588,

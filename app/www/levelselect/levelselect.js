@@ -96,7 +96,6 @@ let Resultscreen = function() {
       } else {
         sprite.alpha = 0.3;
         if (debugMode) {
-          console.info('will unlock all levels because of debug mode');
           sprite.inputEnabled = true;
           sprite.events.onInputDown.add(startLevel(i), this);
         }
