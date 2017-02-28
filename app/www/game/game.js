@@ -34,7 +34,7 @@ let Game = function() {
       levelCtrl.setCurrentLevelPlayed();
       levelCtrl.setCurrentLevelWon(won);
       levelCtrl.getCurrentLevel().end();
-      if(won) {
+      if (won) {
         levelCtrl.getCurrentLevel().persist();
       }
       game.state.start('Resultscreen');

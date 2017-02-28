@@ -37,6 +37,19 @@ let Hero = function() {
     hero.angle = levelCtrl.getCurrentLevel().getStartAngle();
   }
 
+  this.rotateToLeft = function() {
+    hero.angle = -180;
+  }
+  this.rotateToTop = function() {
+    hero.angle = -90;
+  }
+  this.rotateToRight = function() {
+    hero.angle = 0;
+  }
+  this.rotateToBottom = function() {
+    hero.angle = 90;
+  }
+
   this.getSprite = function() {
     return hero;
   }

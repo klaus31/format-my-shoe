@@ -4,8 +4,11 @@ let Drive = function(hero) {
   let x;
   let y;
   let firstMoveMade = false;
-  let wasUp = false;
+  let wasDown = false;
   let speed = hero.getMaximalSpeed();
+  let swipe = {
+    minDistance: 20
+  }
 
   this.stop = function() {
     x = 0;
@@ -25,16 +28,26 @@ let Drive = function(hero) {
 
   this.update = function() {
     if (!hero.isMoving()) {
-      if (wasUp && game.input.activePointer.isDown) {
-        wasUp = false;
-        if (firstMoveMade) {
-          if (game.input.x > game.width / 2) {
-            hero.rotateClockwise();
-          } else {
-            hero.rotateCounterClockwise();
-          }
-        } else {
-          firstMoveMade = true;
+      if (game.input.activePointer.isDown) {
+        if (!wasDown) {
+          swipe.downX = game.input.x - 0;
+          swipe.downY = game.input.y - 0;
+        }
+        wasDown = true;
+      }
+      if (wasDown && game.input.activePointer.isUp) {
+        swipe.upX = game.input.x - 0;
+        swipe.upY = game.input.y - 0;
+        firstMoveMade = true;
+
+        if (swipe.upX < swipe.downX - swipe.minDistance) {
+          hero.rotateToLeft();
+        } else if (swipe.upX > swipe.downX + swipe.minDistance) {
+          hero.rotateToRight();
+        } else if (swipe.upY < swipe.downY - swipe.minDistance) {
+          hero.rotateToTop();
+        } else if (swipe.upY > swipe.downY + swipe.minDistance) {
+          hero.rotateToBottom();
         }
         switch (hero.getAngle()) {
           case 90:
@@ -54,9 +67,7 @@ let Drive = function(hero) {
             y = 0;
             break;
         }
-      }
-      if (game.input.activePointer.isUp) {
-        wasUp = true;
+        wasDown = false;
       }
     }
   }
