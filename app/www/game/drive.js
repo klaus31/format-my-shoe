@@ -39,10 +39,10 @@ let Drive = function(hero) {
         swipe.upX = game.input.x - 0;
         swipe.upY = game.input.y - 0;
         firstMoveMade = true;
-
-        if (swipe.upX < swipe.downX - swipe.minDistance) {
+        let horizontalSwipe = Math.abs(swipe.downX - swipe.upX) > Math.abs(swipe.downY - swipe.upY);
+        if (horizontalSwipe && swipe.upX < swipe.downX - swipe.minDistance) {
           hero.rotateToLeft();
-        } else if (swipe.upX > swipe.downX + swipe.minDistance) {
+        } else if (horizontalSwipe && swipe.upX > swipe.downX + swipe.minDistance) {
           hero.rotateToRight();
         } else if (swipe.upY < swipe.downY - swipe.minDistance) {
           hero.rotateToTop();
