@@ -24,6 +24,13 @@ let Drive = function(hero) {
   this.getY = function() {
     return y;
   }
+  this.getDirection = function() {
+    if(x > 0) return 'right';
+    if(x < 0) return 'left';
+    if(y > 0) return 'down';
+    if(y < 0) return 'up';
+    else return null;
+  }
 
 
   this.update = function() {
@@ -41,19 +48,15 @@ let Drive = function(hero) {
         firstMoveMade = true;
         let horizontalSwipe = Math.abs(swipe.downX - swipe.upX) > Math.abs(swipe.downY - swipe.upY);
         if (horizontalSwipe && swipe.upX < swipe.downX - swipe.minDistance) {
-          hero.rotateToLeft();
           x = speed * -1;
           y = 0;
         } else if (horizontalSwipe && swipe.upX > swipe.downX + swipe.minDistance) {
-          hero.rotateToRight();
           x = speed;
           y = 0;
         } else if (swipe.upY < swipe.downY - swipe.minDistance) {
-          hero.rotateToTop();
           x = 0;
           y = speed * -1;
         } else if (swipe.upY > swipe.downY + swipe.minDistance) {
-          hero.rotateToBottom();
           x = 0;
           y = speed;
         }

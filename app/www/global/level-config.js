@@ -11,15 +11,6 @@ const LEVEL_CONFIG = [{
   startDirection: 'right',
   difficulty: VERY_EASY
 }, {
-  name: 'intro-health-2',
-  topTime: 15501,
-  startDirection: 'up',
-  startingPosition: {
-    x: 5,
-    y: 197
-  },
-  difficulty: VERY_EASY
-}, {
   name: 'intro-health',
   topTime: 10603,
   startDirection: 'up',

@@ -9,7 +9,7 @@ let Hero = function() {
   let drive;
   let lastPosition = false;
   let isMoving = false;
-  let moveDirection = false;
+  let angleUpdateDeg = 10;
 
   const STARTING_POSITION = levelCtrl.getCurrentLevel().getStartingPosition();
 
@@ -38,19 +38,6 @@ let Hero = function() {
     hero.angle = levelCtrl.getCurrentLevel().getStartAngle();
   }
 
-  this.rotateToLeft = function() {
-    moveDirection = 'left';
-  }
-  this.rotateToTop = function() {
-    moveDirection = 'top';
-  }
-  this.rotateToRight = function() {
-    moveDirection = 'right';
-  }
-  this.rotateToBottom = function() {
-    moveDirection = 'bottom';
-  }
-
   this.getSprite = function() {
     return hero;
   }
@@ -70,16 +57,6 @@ let Hero = function() {
     return isMoving;
   }
 
-  this.rotateClockwise = function() {
-    hero.angle += 90;
-  }
-  this.rotateCounterClockwise = function() {
-    hero.angle -= 90;
-  }
-  this.getAngle = function() {
-    return Math.round(hero.angle);
-  }
-
   let updateLife = function() {
     hero.frame = FRAMES - life.getExpectation(FRAMES);
     if (drive.firstMoveMade() && !life.lifeStarted()) {
@@ -97,25 +74,31 @@ let Hero = function() {
     hero.body.velocity.y = drive.getY();
   }
 
-  let todo = 2;
+  let lastBlocked = false;
   this.update = function() {
     updateLife();
     updateDrive();
+    // rotate hero
     if(ME.isMoving()) {
-      switch(moveDirection) {
-        case 'top':
-        hero.angle += 10;
-        break;
-        case 'right':
-        hero.angle += 5;
-        break;
-        case 'bottom':
-        hero.angle += -20;
-        break;
-        case 'left':
-        hero.angle -= 10;
-        break;
+      if(hero.body.blocked.up) {
+        lastBlocked = 'up';
+      } else if(hero.body.blocked.right) {
+        lastBlocked = 'right';
+      } else if(hero.body.blocked.down) {
+        lastBlocked = 'down';
+      } else if(hero.body.blocked.left) {
+        lastBlocked = 'left';
       }
+      if(drive.getDirection() == 'up') {
+        angleUpdateDeg = lastBlocked == 'left' ? -10 : 10;
+      } else if(drive.getDirection() == 'right') {
+        angleUpdateDeg = lastBlocked == 'down' ? 10 : -10;
+      } else if(drive.getDirection() == 'down') {
+        angleUpdateDeg = lastBlocked == 'right' ? -10 : 10;
+      } else if(drive.getDirection() == 'left') {
+        angleUpdateDeg = lastBlocked == 'down' ? -10 : 10;
+      }
+      hero.angle += angleUpdateDeg;
     }
     // correct position and set info, if sprite is moving manualy
     if (lastPosition) {
