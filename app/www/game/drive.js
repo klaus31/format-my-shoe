@@ -42,30 +42,20 @@ let Drive = function(hero) {
         let horizontalSwipe = Math.abs(swipe.downX - swipe.upX) > Math.abs(swipe.downY - swipe.upY);
         if (horizontalSwipe && swipe.upX < swipe.downX - swipe.minDistance) {
           hero.rotateToLeft();
+          x = speed * -1;
+          y = 0;
         } else if (horizontalSwipe && swipe.upX > swipe.downX + swipe.minDistance) {
           hero.rotateToRight();
+          x = speed;
+          y = 0;
         } else if (swipe.upY < swipe.downY - swipe.minDistance) {
           hero.rotateToTop();
+          x = 0;
+          y = speed * -1;
         } else if (swipe.upY > swipe.downY + swipe.minDistance) {
           hero.rotateToBottom();
-        }
-        switch (hero.getAngle()) {
-          case 90:
-            x = 0;
-            y = speed;
-            break;
-          case -180:
-            x = speed * -1;
-            y = 0;
-            break;
-          case -90:
-            x = 0;
-            y = speed * -1;
-            break;
-          case 0:
-            x = speed;
-            y = 0;
-            break;
+          x = 0;
+          y = speed;
         }
         wasDown = false;
       }

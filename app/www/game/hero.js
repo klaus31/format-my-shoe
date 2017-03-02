@@ -9,6 +9,7 @@ let Hero = function() {
   let drive;
   let lastPosition = false;
   let isMoving = false;
+  let moveDirection = false;
 
   const STARTING_POSITION = levelCtrl.getCurrentLevel().getStartingPosition();
 
@@ -38,16 +39,16 @@ let Hero = function() {
   }
 
   this.rotateToLeft = function() {
-    hero.angle = -180;
+    moveDirection = 'left';
   }
   this.rotateToTop = function() {
-    hero.angle = -90;
+    moveDirection = 'top';
   }
   this.rotateToRight = function() {
-    hero.angle = 0;
+    moveDirection = 'right';
   }
   this.rotateToBottom = function() {
-    hero.angle = 90;
+    moveDirection = 'bottom';
   }
 
   this.getSprite = function() {
@@ -100,6 +101,22 @@ let Hero = function() {
   this.update = function() {
     updateLife();
     updateDrive();
+    if(ME.isMoving()) {
+      switch(moveDirection) {
+        case 'top':
+        hero.angle += 10;
+        break;
+        case 'right':
+        hero.angle += 5;
+        break;
+        case 'bottom':
+        hero.angle += -20;
+        break;
+        case 'left':
+        hero.angle -= 10;
+        break;
+      }
+    }
     // correct position and set info, if sprite is moving manualy
     if (lastPosition) {
       isMoving = Math.round(lastPosition.x) != Math.round(hero.position.x) || Math.round(lastPosition.y) != Math.round(hero.position.y);
