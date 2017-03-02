@@ -12,14 +12,18 @@ let Labyrinth = function(levelInfo) {
     game.load.image('wall', 'game/levels/wall.png');
     game.load.image('health', 'game/levels/health.png');
     game.load.image('goal', 'game/levels/goal.png');
+    game.load.image('background', 'game/levels/bg.png');
     game.load.audio('sound-goal', 'game/goal.mp3');
     game.load.audio('sound-health', 'game/health.mp3');
   }
 
   this.create = function() {
+    let background = game.add.tileSprite(0, 0, game.width, game.height, 'background');
     map = game.add.tilemap('map');
     layer = map.createLayer('layer');
     layer.resizeWorld();
+    background.height = map.height * 16;
+    background.width = map.width * 16;
     map.setCollisionBetween(1, 12);
     game.physics.enable(layer);
     map.addTilesetImage('wall');
