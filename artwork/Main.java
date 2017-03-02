@@ -11,40 +11,43 @@ import static java.awt.image.BufferedImage.TYPE_INT_RGB;
 import static x.Main.Direction.*;
 
 public class Main {
+    private static int currentStepsInOneDirection = 1;
+    private static int stepMade = 0;
+
     public static void main(final String... args) throws IOException {
         int[][] xy = {
-                {1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1},
-                {2, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 2},
-                {2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 2, 2},
-                {2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2},
-                {2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2},
-                {1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1},
-                {1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1},
-                {1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1},
-                {1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1}
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1},
+                {1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1},
+                {1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1},
+                {1, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 1},
+                {1, 2, 1, 2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1},
+                {1, 2, 1, 2, 1, 2, 1, 2, 2, 2, 1, 2, 1, 2, 1, 1},
+                {1, 2, 1, 2, 1, 2, 1, 1, 1, 2, 1, 2, 1, 2, 1, 1},
+                {1, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, 1, 2, 1, 1},
+                {1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1},
+                {1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 1},
+                {1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1},
+                {1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
         };
         final int MAIN = 1;
         final int MAIN_DIED = 0;
         final int ARROW = 2;
         final int ARROW_DIED = 3;
-        int tiles = 256;
         int imageWidth = 16;
         int imageHeight = 16;
+        int tiles = imageHeight * imageWidth;
         BufferedImage image = new BufferedImage(imageWidth * tiles, imageHeight, TYPE_INT_RGB);
         Color colorMain = Color.GREEN.darker();
-        Color colorArrow = new Color(150,255,150);
+        Color colorArrow = new Color(255,255,255);
         int offset = 0;
         int x = 0;
         int y = 0;
-        Point p = new Point(1, 1);
-        Direction eatYourselfUpDirection = DOWN;
+        Point p = new Point(7, 7);
+        Direction eatYourselfUpDirection = RIGHT;
         ;
         while (offset < tiles) {
             xy[p.x][p.y] = xy[p.x][p.y] == MAIN ? MAIN_DIED : ARROW_DIED;
@@ -73,35 +76,7 @@ public class Main {
             offset++;
 
             // which direction should be self destructed next?
-            if(modusStart) {
-                if(p.x % 2 == 1 && p.y < 14) {
-                    eatYourselfUpDirection = DOWN;
-                } else if(p.x % 2 == 1 && p.y == 14) {
-                    eatYourselfUpDirection = RIGHT;
-                } else if(p.x % 2 == 0 && p.y > 1) {
-                    eatYourselfUpDirection = UP;
-                } else if(p.x % 2 == 0  && p.y == 1) {
-                    eatYourselfUpDirection = RIGHT;
-                }
-                if(p.y == 1 && p.x == 14) {
-                    System.out.println(p);
-                    p = new Point(15,0);
-                    eatYourselfUpDirection = LEFT;
-                    modusStart = false;
-                }
-            } else {
-                System.out.println(p);
-                if(p.y == 0 && p.x > 0) {
-                    eatYourselfUpDirection = LEFT;
-                } else if(p.y < 14 && p.x == 0) {
-                    eatYourselfUpDirection = DOWN;
-                } else if(p.y == 15 && p.x < 14) {
-                    eatYourselfUpDirection = RIGHT;
-                } else if(p.y > 0 && p.x == 15) {
-                    eatYourselfUpDirection = UP;
-                }
-            }
-
+            System.out.println(p);
             switch (eatYourselfUpDirection) {
                 case DOWN:
                     p = new Point(p.x, p.y + 1);
@@ -115,6 +90,25 @@ public class Main {
                 case UP:
                     p = new Point(p.x, p.y - 1);
                     break;
+            }
+            if(++stepMade == currentStepsInOneDirection) {
+                stepMade=0;
+                switch (eatYourselfUpDirection) {
+                    case DOWN:
+                        currentStepsInOneDirection+=1;
+                        eatYourselfUpDirection=LEFT;
+                        break;
+                    case LEFT:
+                        eatYourselfUpDirection=UP;
+                        break;
+                    case RIGHT:
+                        eatYourselfUpDirection=DOWN;
+                        break;
+                    case UP:
+                        currentStepsInOneDirection+=1;
+                        eatYourselfUpDirection=RIGHT;
+                        break;
+                }
             }
         }
         File out = new File("/tmp/hero.png");
