@@ -74,31 +74,13 @@ let Hero = function() {
     hero.body.velocity.y = drive.getY();
   }
 
-  let lastBlocked = false;
   this.update = function() {
     updateLife();
     updateDrive();
     // rotate hero
     if(ME.isMoving()) {
-      if(hero.body.blocked.up) {
-        lastBlocked = 'up';
-      } else if(hero.body.blocked.right) {
-        lastBlocked = 'right';
-      } else if(hero.body.blocked.down) {
-        lastBlocked = 'down';
-      } else if(hero.body.blocked.left) {
-        lastBlocked = 'left';
-      }
-      if(drive.getDirection() == 'up') {
-        angleUpdateDeg = lastBlocked == 'left' ? -10 : 10;
-      } else if(drive.getDirection() == 'right') {
-        angleUpdateDeg = lastBlocked == 'down' ? 10 : -10;
-      } else if(drive.getDirection() == 'down') {
-        angleUpdateDeg = lastBlocked == 'right' ? -10 : 10;
-      } else if(drive.getDirection() == 'left') {
-        angleUpdateDeg = lastBlocked == 'down' ? -10 : 10;
-      }
-      hero.angle += angleUpdateDeg;
+      let pos = (hero.position.x - 8) % 16 || (hero.position.y - 8) % 16;
+      hero.angle = pos * 90 / 16;
     }
     // correct position and set info, if sprite is moving manualy
     if (lastPosition) {
