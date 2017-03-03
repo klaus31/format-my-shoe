@@ -10,17 +10,17 @@ var WebFontConfig = {
     AddTextImpl.functions = [];
   },
   google: {
-    families: ['Amatic SC']
+    families: ['Raleway', 'Baloo']
   }
 };
 
 const FontCtrl = function() {
-  this.addText = function(x, y, content, style, cb, font) {
-    font = font || 'Amatic SC';
+  this.addText = function(x, y, content, style, cb) {
     style = style || {};
+    style.font = style.font || 'Raleway';
     let addTextInner = function() {
       let text = game.add.text(x, y, content, style);
-      text.font = font;
+      text.font = style.font;
       if (cb) cb(text);
     }
     if (AddTextImpl.ready) {

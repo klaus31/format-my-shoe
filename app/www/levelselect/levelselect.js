@@ -2,12 +2,23 @@ let Resultscreen = function() {
   const position = {};
   let swipe = {};
   let worldHeight;
+  let headline;
   const FONT_STYLE = {
-    fill: '#73FFA4',
-    fontSize: '24pt'
+    fill: '#6F00E3',
+    fontSize: '26pt',
+    boundsAlignH: 'center',
+    boundsAlignV: 'middle',
+    font: 'Baloo'
+  };
+  const FONT_STYLE_START = {
+    fill: '#6F00E3',
+    fontSize: '20pt',
+    boundsAlignH: 'center',
+    boundsAlignV: 'middle',
+    font: 'Baloo'
   };
   const FONT_STYLE_LEVEL_CIRCLE = {
-    fontSize: '20pt',
+    fontSize: '10pt',
     fill: '#FFFFFF'
   }
   const fontCtrl = new FontCtrl();
@@ -31,35 +42,49 @@ let Resultscreen = function() {
       if (levelCtrl.isCurrentLevelLastLevel()) {
         game.state.start('Credits');
       } else {
-        message = 'FINISHED LEVEL ' + levelCtrl.getCurrentLevel().getNumber() + '!';
+        message = 'INGENIOUS!';
       }
     } else if (currentLevel.isPlayed()) {
       message = 'LOOSE!';
     } else {
       message = 'WELCOME BACK!';
     }
-    fontCtrl.addText(130, 20, message, FONT_STYLE, function(text) {
-      text.fixedToCamera = true;
-    });
     addLevels();
+    fontCtrl.addText(0, 0, message, FONT_STYLE, function(text) {
+      text.fixedToCamera = true;
+      text.stroke = "#73FFA4";
+      text.strokeThickness = 13;
+      text.setShadow(3, 3, "#333", 2, true, true);
+      text.setTextBounds(0, 0, game.width, game.height * 0.8);
+      window.setTimeout(function() {
+        headline = text;
+      }, 3000);
+    });
   }
 
   let addLevels = function() {
     let i = 0;
     const currentLevel = levelCtrl.getCurrentLevel();
     const levelCount = levelCtrl.getLevelCount();
+    const circleWidth = 35;
+    fontCtrl.addText(0, levelCount * (circleWidth+5) - 150, 'START', FONT_STYLE_START, function(text) {
+      text.stroke = "#73FFA4";
+      text.strokeThickness = 10;
+      text.setShadow(3, 3, "#333", 2, true, true);
+      text.setTextBounds(0, 0, game.width, game.height * 0.8);
+    });
     while (i < levelCount) {
       const circle = {
-        x: 70 + (i % 2 == 0 ? -20 : 20),
-        y: 70 + (55 * i),
-        width: 50
+        x: game.width / 2 + (i % 2 == 0 ? -20 : 20),
+        y: 70 + ((circleWidth+5) * (levelCount - i)),
+        width: circleWidth
       }
       const graphics = game.add.graphics(circle.x, circle.y);
       const level = levelCtrl.getLevel(i);
       graphics.lineStyle(1, 0x000000, level.isWonAtAnyTime() ? 1 : 0.5);
       if (highlightLevel(level, currentLevel)) {
         graphics.beginFill(0x73FFA4);
-        graphics.drawCircle(0, 0, circle.width + 10);
+        graphics.drawCircle(1, 1, circle.width + 3);
         swipe.forceSpriteY = circle.y;
         graphics.endFill();
       }
@@ -77,15 +102,15 @@ let Resultscreen = function() {
           }
           number = '0' + number;
         }
-        fontCtrl.addText(circle.x - 13, circle.y - 15, number, FONT_STYLE_LEVEL_CIRCLE);
+        fontCtrl.addText(circle.x - 12, circle.y - 7, number, FONT_STYLE_LEVEL_CIRCLE);
       }
 
       function addStarsToCircle() {
         if (level.isWonAtAnyTime()) {
           let score = level.getScoreAllTimeBest();
-          game.add.image(circle.x - 21, circle.y - 30, 'star-filled');
-          game.add.image(circle.x - 7, circle.y - 36, score > 1 ? 'star-filled' : 'star-outline');
-          game.add.image(circle.x + 7, circle.y - 30, score > 2 ? 'star-filled' : 'star-outline');
+          game.add.image(circle.x - 21, circle.y - 20, 'star-filled');
+          game.add.image(circle.x - 7, circle.y - 26, score > 1 ? 'star-filled' : 'star-outline');
+          game.add.image(circle.x + 7, circle.y - 20, score > 2 ? 'star-filled' : 'star-outline');
         }
       }
       addNumberToCircle();
@@ -121,6 +146,12 @@ let Resultscreen = function() {
 
   this.update = function() {
     let newpos = false;
+    if(headline) {
+      headline.alpha -= 0.01;
+      if(headline.alpha < 0.1) {
+        headline.destroy();
+      }
+    }
     if (!position.startSpriteSet) {
       newpos = swipe.forceSpriteY || Math.max(game.input.y, game.height / 2);
       if (newpos > worldHeight - game.height / 2) newpos = worldHeight - game.height / 2;

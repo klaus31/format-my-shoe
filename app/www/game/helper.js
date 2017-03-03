@@ -4,7 +4,7 @@ let Helper = function(level) {
   const fontCtrl = new FontCtrl();
   const FONT_STYLE = {
     fill: '#FFF',
-    fontSize: '16pt'
+    fontSize: '12pt'
   };
 
   this.preload = function() {
