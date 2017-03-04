@@ -17,11 +17,23 @@ let Resultscreen = function() {
     boundsAlignV: 'middle',
     font: 'Baloo'
   };
-  const FONT_STYLE_LEVEL_CIRCLE = {
-    fontSize: '10pt',
-    fill: '#FFFFFF'
+  let fontStyleLevelCircle = {
+    fontSize: '10pt'
   }
   const fontCtrl = new FontCtrl();
+  const WON_MESSAGES = [
+    'BRILLIANT',
+    'GRANDIOSE',
+    'BULLY', 'GORGEOUS',
+    'TERRIFIC',
+    'INGENIOUS',
+    'AWESOME',
+    'MAGNIFIC',
+    'CRACKING'
+  ];
+  const FAILED_MESSAGES = [
+    'FAILED' // TODO nicely motivating message
+  ];
 
   this.preload = function() {
     position.start = game.world.height / 2;
@@ -41,20 +53,21 @@ let Resultscreen = function() {
       if (levelCtrl.isCurrentLevelLastLevel()) {
         game.state.start('Credits');
       } else {
-        message = 'INGENIOUS!';
+        message = WON_MESSAGES[Math.floor(Math.random()*WON_MESSAGES.length)] + '!';
       }
     } else if (currentLevel.isPlayed()) {
-      message = 'LOOSE!';
+      message = FAILED_MESSAGES[Math.floor(Math.random()*FAILED_MESSAGES.length)] + '!';
     } else {
-      message = 'WELCOME BACK!';
+      message = 'WELCOME!';
     }
     addLevels();
     fontCtrl.addText(0, 0, message, FONT_STYLE, function(text) {
       text.fixedToCamera = true;
-      text.stroke = "#73FFA4";
+      text.stroke = "#79F990";
       text.strokeThickness = 13;
       text.setShadow(3, 3, "#333", 2, true, true);
       text.setTextBounds(0, 0, game.width, game.height * 0.8);
+      text.alpha = 1;
       window.setTimeout(function() {
         headline = text;
       }, 3000);
@@ -66,28 +79,38 @@ let Resultscreen = function() {
     const currentLevel = levelCtrl.getCurrentLevel();
     const levelCount = levelCtrl.getLevelCount();
     const circleWidth = 35;
-    fontCtrl.addText(0, levelCount * (circleWidth+5) - 150, 'START', FONT_STYLE_START, function(text) {
-      text.stroke = "#73FFA4";
-      text.strokeThickness = 10;
-      text.setShadow(3, 3, "#333", 2, true, true);
-      text.setTextBounds(0, 0, game.width, game.height * 0.8);
-    });
+    let yPosition = levelCount * (circleWidth+5) - 150;
     while (i < levelCount) {
+      yPosition -= circleWidth+5;
       const circle = {
         x: game.width / 2 + (i % 2 == 0 ? -20 : 20),
-        y: 70 + ((circleWidth+5) * (levelCount - i)),
+        y: yPosition,
         width: circleWidth
       }
       const graphics = game.add.graphics(circle.x, circle.y);
       const level = levelCtrl.getLevel(i);
       graphics.lineStyle(1, 0x000000, level.isWonAtAnyTime() ? 1 : 0.5);
-      if (highlightLevel(level, currentLevel)) {
+
+      let highlightLevel = recommandAsNextToPlay(level, currentLevel);
+      // mark circle with second circle behind
+      if (highlightLevel) {
         graphics.beginFill(0x73FFA4);
         graphics.drawCircle(1, 1, circle.width + 3);
         swipe.forceSpriteY = circle.y;
         graphics.endFill();
       }
-      graphics.beginFill(0xAA3333);
+      // background color decision
+      if (highlightLevel) {
+        if(level.isWonAtAnyTime()) {
+          graphics.beginFill(0xFF9987);
+        } else {
+          graphics.beginFill(0xF9E379);
+        }
+      } else if(level.isWonAtAnyTime()) {
+        graphics.beginFill(0x1C802F);
+      } else {
+        graphics.beginFill(0xF9797F);
+      }
       graphics.drawCircle(0, 0, circle.width);
       graphics.endFill();
       const sprite = game.add.sprite(0, 0);
@@ -101,7 +124,14 @@ let Resultscreen = function() {
           }
           number = '0' + number;
         }
-        fontCtrl.addText(circle.x - 12, circle.y - 7, number, FONT_STYLE_LEVEL_CIRCLE);
+        if(level.isWonAtAnyTime()) {
+          fontStyleLevelCircle.fill = '#FFF';
+          fontStyleLevelCircle.fontWeight = 'bold';
+        } else {
+          fontStyleLevelCircle.fill = '#000';
+          fontStyleLevelCircle.fontWeight = 'normal';
+        }
+        fontCtrl.addText(circle.x - 12, circle.y - 7, number, fontStyleLevelCircle);
       }
 
       function addStarsToCircle() {
@@ -138,7 +168,7 @@ let Resultscreen = function() {
     }
   }
 
-  let highlightLevel = function(level, currentLevel) {
+  let recommandAsNextToPlay = function(level, currentLevel) {
     return level.getIndex() == currentLevel.getIndex() && !currentLevel.isWon() ||
       level.getIndex() == currentLevel.getIndex() + 1 && currentLevel.isWon();
   }
