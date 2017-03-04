@@ -28,7 +28,6 @@ let Resultscreen = function() {
     game.stage.backgroundColor = '#5B1075';
     game.load.image('star-filled', 'levelselect/star-filled.png', 126, 40);
     game.load.image('star-outline', 'levelselect/star-outline.png', 126, 40);
-    game.load.script('webfont', 'global/webfont.js');
     setGlobalScalingRules();
   }
 
