@@ -79,11 +79,17 @@ let Resultscreen = function() {
     const currentLevel = levelCtrl.getCurrentLevel();
     const levelCount = levelCtrl.getLevelCount();
     const circleWidth = 35;
-    let yPosition = levelCount * (circleWidth+5) - 150;
+    const circleMargin = 15;
+    const spaceLevelselectWorld = 100;
+    let yPosition = levelCount * (circleWidth + circleMargin) + spaceLevelselectWorld;
+    let xPosition = game.width / 2;
     while (i < levelCount) {
-      yPosition -= circleWidth+5;
+      yPosition -= circleWidth + circleMargin;
+      xPosition += Math.random() >= 0.5 ? -20 : 20;
+      if(xPosition<game.width / 2 - 120) xPosition += 40;
+      if(xPosition>game.width / 2 + 120) xPosition -= 40;
       const circle = {
-        x: game.width / 2 + (i % 2 == 0 ? -20 : 20),
+        x: xPosition,
         y: yPosition,
         width: circleWidth
       }
@@ -116,8 +122,8 @@ let Resultscreen = function() {
         fontStyleLevelCircle.fontWeight = 'bold';
       } else {
         graphics.beginFill(0xF9797F);
-        fontStyleLevelCircle.fill = '#FFF';
-        fontStyleLevelCircle.fontWeight = 'bold';
+        fontStyleLevelCircle.fill = '#000';
+        fontStyleLevelCircle.fontWeight = 'normal';
       }
       // draw circle
       graphics.drawCircle(0, 0, circle.width);
@@ -146,6 +152,7 @@ let Resultscreen = function() {
       }
       addNumberToCircle();
       addStarsToCircle();
+      // make it clickable
       if (levelCtrl.isPlayable(level)) {
         sprite.inputEnabled = true;
         sprite.events.onInputDown.add(startLevel(i), this);
@@ -158,7 +165,7 @@ let Resultscreen = function() {
       }
       i++;
     }
-    worldHeight = 200 + (55 * i);
+    worldHeight = (circleWidth + circleMargin) * levelCount + spaceLevelselectWorld;
     game.world.height = worldHeight;
     game.world.resize();
   }
