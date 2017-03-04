@@ -12,7 +12,7 @@ let Labyrinth = function(levelInfo) {
     game.load.image('wall', 'game/levels/wall.png');
     game.load.image('health', 'game/levels/health.png');
     game.load.image('goal', 'game/levels/goal.png');
-    game.load.image('background', 'game/levels/bg.png');
+    game.load.image('background', 'game/bg.png');
     game.load.audio('sound-goal', 'game/goal.mp3');
     game.load.audio('sound-health', 'game/health.mp3');
   }

@@ -94,23 +94,32 @@ let Resultscreen = function() {
       let highlightLevel = recommandAsNextToPlay(level, currentLevel);
       // mark circle with second circle behind
       if (highlightLevel) {
-        graphics.beginFill(0x73FFA4);
+        graphics.beginFill(level.isWonAtAnyTime() ? 0xF9E379 : 0x73FFA4);
         graphics.drawCircle(1, 1, circle.width + 3);
         swipe.forceSpriteY = circle.y;
         graphics.endFill();
       }
-      // background color decision
+      // colors for circle decision
       if (highlightLevel) {
         if(level.isWonAtAnyTime()) {
-          graphics.beginFill(0xFF9987);
+          graphics.beginFill(0x3DF962);
+          fontStyleLevelCircle.fill = '#000';
+          fontStyleLevelCircle.fontWeight = 'bold';
         } else {
           graphics.beginFill(0xF9E379);
+          fontStyleLevelCircle.fill = '#000';
+          fontStyleLevelCircle.fontWeight = 'normal';
         }
       } else if(level.isWonAtAnyTime()) {
         graphics.beginFill(0x1C802F);
+        fontStyleLevelCircle.fill = '#FFF';
+        fontStyleLevelCircle.fontWeight = 'bold';
       } else {
         graphics.beginFill(0xF9797F);
+        fontStyleLevelCircle.fill = '#FFF';
+        fontStyleLevelCircle.fontWeight = 'bold';
       }
+      // draw circle
       graphics.drawCircle(0, 0, circle.width);
       graphics.endFill();
       const sprite = game.add.sprite(0, 0);
@@ -123,13 +132,6 @@ let Resultscreen = function() {
             number = '0' + number;
           }
           number = '0' + number;
-        }
-        if(level.isWonAtAnyTime()) {
-          fontStyleLevelCircle.fill = '#FFF';
-          fontStyleLevelCircle.fontWeight = 'bold';
-        } else {
-          fontStyleLevelCircle.fill = '#000';
-          fontStyleLevelCircle.fontWeight = 'normal';
         }
         fontCtrl.addText(circle.x - 12, circle.y - 7, number, fontStyleLevelCircle);
       }
