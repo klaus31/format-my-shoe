@@ -11,6 +11,11 @@ const LEVEL_CONFIG = [{
   startDirection: 'right',
   difficulty: VERY_EASY
 }, {
+  name: 'intro-deadwall',
+  topTime: 951,
+  startDirection: 'right',
+  difficulty: VERY_EASY
+}, {
   name: 'intro-health',
   topTime: 10603,
   startDirection: 'up',

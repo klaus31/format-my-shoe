@@ -3,6 +3,7 @@ let Labyrinth = function(levelInfo) {
   const ID_WALL = 1;
   const ID_HEALTH = 2;
   const ID_GOAL = 3;
+  const ID_DEADWALL = 4;
 
   let map;
   let layer;
@@ -12,6 +13,7 @@ let Labyrinth = function(levelInfo) {
     game.load.image('wall', 'game/levels/wall.png');
     game.load.image('health', 'game/levels/health.png');
     game.load.image('goal', 'game/levels/goal.png');
+    game.load.image('deadwall', 'game/levels/deadwall.png');
     game.load.image('background', 'game/bg.png');
     game.load.audio('sound-goal', 'game/goal.mp3');
     game.load.audio('sound-health', 'game/health.mp3');
@@ -29,6 +31,7 @@ let Labyrinth = function(levelInfo) {
     map.addTilesetImage('wall');
     map.addTilesetImage('health');
     map.addTilesetImage('goal');
+    map.addTilesetImage('deadwall');
     sounds.goal = game.add.audio('sound-goal');
     sounds.health = game.add.audio('sound-health');
   }
@@ -39,6 +42,10 @@ let Labyrinth = function(levelInfo) {
       func(a, b);
     }
     map.setTileIndexCallback(ID_GOAL, cb);
+  }
+
+  this.onDeadwallHit = function(cb) {
+    map.setTileIndexCallback(ID_DEADWALL, cb);
   }
 
   var oneTimeAction = function(id, func) {
