@@ -78,7 +78,7 @@ let Hero = function() {
     updateLife();
     updateDrive();
     // rotate hero
-    if(ME.isMoving()) {
+    if (ME.isMoving()) {
       let pos = (hero.position.x - 8) % 16 || (hero.position.y - 8) % 16;
       hero.angle = pos * 90 / 16;
     }

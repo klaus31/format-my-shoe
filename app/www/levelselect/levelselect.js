@@ -53,10 +53,10 @@ let Resultscreen = function() {
       if (levelCtrl.isCurrentLevelLastLevel()) {
         game.state.start('Credits');
       } else {
-        message = WON_MESSAGES[Math.floor(Math.random()*WON_MESSAGES.length)] + '!';
+        message = WON_MESSAGES[Math.floor(Math.random() * WON_MESSAGES.length)] + '!';
       }
     } else if (currentLevel.isPlayed()) {
-      message = FAILED_MESSAGES[Math.floor(Math.random()*FAILED_MESSAGES.length)] + '!';
+      message = FAILED_MESSAGES[Math.floor(Math.random() * FAILED_MESSAGES.length)] + '!';
     } else {
       message = 'WELCOME!';
     }
@@ -86,8 +86,8 @@ let Resultscreen = function() {
     while (i < levelCount) {
       yPosition -= circleWidth + circleMargin;
       xPosition += Math.random() >= 0.5 ? -20 : 20;
-      if(xPosition<game.width / 2 - 120) xPosition += 40;
-      if(xPosition>game.width / 2 + 120) xPosition -= 40;
+      if (xPosition < game.width / 2 - 120) xPosition += 40;
+      if (xPosition > game.width / 2 + 120) xPosition -= 40;
       const circle = {
         x: xPosition,
         y: yPosition,
@@ -107,7 +107,7 @@ let Resultscreen = function() {
       }
       // colors for circle decision
       if (highlightLevel) {
-        if(level.isWonAtAnyTime()) {
+        if (level.isWonAtAnyTime()) {
           graphics.beginFill(0x3DF962);
           fontStyleLevelCircle.fill = '#000';
           fontStyleLevelCircle.fontWeight = 'bold';
@@ -116,7 +116,7 @@ let Resultscreen = function() {
           fontStyleLevelCircle.fill = '#000';
           fontStyleLevelCircle.fontWeight = 'normal';
         }
-      } else if(level.isWonAtAnyTime()) {
+      } else if (level.isWonAtAnyTime()) {
         graphics.beginFill(0x1C802F);
         fontStyleLevelCircle.fill = '#FFF';
         fontStyleLevelCircle.fontWeight = 'bold';
@@ -184,9 +184,9 @@ let Resultscreen = function() {
 
   this.update = function() {
     let newpos = false;
-    if(headline) {
+    if (headline) {
       headline.alpha -= 0.01;
-      if(headline.alpha < 0.1) {
+      if (headline.alpha < 0.1) {
         headline.destroy();
       }
     }

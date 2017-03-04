@@ -25,10 +25,10 @@ let Drive = function(hero) {
     return y;
   }
   this.getDirection = function() {
-    if(x > 0) return 'right';
-    if(x < 0) return 'left';
-    if(y > 0) return 'down';
-    if(y < 0) return 'up';
+    if (x > 0) return 'right';
+    if (x < 0) return 'left';
+    if (y > 0) return 'down';
+    if (y < 0) return 'up';
     else return null;
   }
 
