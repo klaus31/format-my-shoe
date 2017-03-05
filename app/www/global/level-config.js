@@ -5,6 +5,7 @@ const NORMAL = 4;
 const QUIET_EASY = 3;
 const EASY = 2;
 const VERY_EASY = 1;
+// XXX this should be part of each tilemap properties
 const LEVEL_CONFIG = [{
   name: 'intro-goal',
   topTime: 951,
