@@ -1,6 +1,6 @@
 let Helper = function(level) {
 
-  let onAbort = function(){};
+  let onAbort = function() {};
 
   this.preload = function() {
     game.load.image('back', 'game/back.png', 16, 16);
@@ -32,6 +32,6 @@ let Helper = function(level) {
   this.create = function() {
     createMenuBar();
     createBackToLevelSelect();
-}
+  }
   this.update = function() {}
 }

@@ -115,10 +115,10 @@ let Hero = function() {
     if (died) {
       if (burns) {
         fire.frame = (fire.frame + 1) % 4;
-      } else if(lifeExpectationEmpty) {
+      } else if (lifeExpectationEmpty) {
         hero.body.velocity.x = 0;
         hero.body.velocity.y = 0;
-        if(++timeout.frame == 256) {
+        if (++timeout.frame == 256) {
           ME.kill();
         }
       }
