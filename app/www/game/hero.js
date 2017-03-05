@@ -96,30 +96,30 @@ let Hero = function() {
   }
 
   this.update = function() {
-    if(died) {
-      if(burns) {
+    if (died) {
+      if (burns) {
         fire.frame = (fire.frame + 1) % 4;
       }
     } else {
-    updateLife();
-    updateDrive();
-    // rotate hero
-    if (ME.isMoving()) {
-      let pos = (hero.position.x - 8) % 16 || (hero.position.y - 8) % 16;
-      hero.angle = pos * 90 / 16;
-    }
-    // correct position and set info, if sprite is moving manualy
-    if (lastPosition) {
-      isMoving = Math.round(lastPosition.x) != Math.round(hero.position.x) || Math.round(lastPosition.y) != Math.round(hero.position.y);
-      if (!isMoving) {
-        hero.position.x = Math.round(hero.position.x);
-        hero.position.y = Math.round(hero.position.y);
+      updateLife();
+      updateDrive();
+      // rotate hero
+      if (ME.isMoving()) {
+        let pos = (hero.position.x - 8) % 16 || (hero.position.y - 8) % 16;
+        hero.angle = pos * 90 / 16;
       }
+      // correct position and set info, if sprite is moving manualy
+      if (lastPosition) {
+        isMoving = Math.round(lastPosition.x) != Math.round(hero.position.x) || Math.round(lastPosition.y) != Math.round(hero.position.y);
+        if (!isMoving) {
+          hero.position.x = Math.round(hero.position.x);
+          hero.position.y = Math.round(hero.position.y);
+        }
+      }
+      lastPosition = {
+        x: Math.round(hero.position.x - 0),
+        y: Math.round(hero.position.y - 0)
+      };
     }
-    lastPosition = {
-      x: Math.round(hero.position.x - 0),
-      y: Math.round(hero.position.y - 0)
-    };
-  }
   }
 }

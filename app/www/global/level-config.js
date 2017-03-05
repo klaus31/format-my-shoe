@@ -1,3 +1,158 @@
 // AUTO-GENERATED FILE!!!
 // DO USE npm run generate-level-config
-const LEVEL_CONFIG = [{"name":"intro-deadwall","topTime":951,"startDirection":"right","difficulty":0,"filename":"intro-deadwall.json"},{"name":"intro-direction-change","topTime":22792,"startDirection":"up","difficulty":0,"startX":25,"startY":47,"filename":"intro-direction-change.json"},{"difficulty":"0","name":"Let's start the adventure!","startDirection":"right","topTime":"951","filename":"intro-goal.json"},{"name":"intro-health-heart","topTime":17492,"difficulty":0,"filename":"intro-health-heart.json"},{"name":"klaus-1","topTime":24215,"difficulty":1000,"filename":"klaus-1.json"},{"name":"intro-health","topTime":10603,"startDirection":"up","difficulty":0,"startX":25,"startY":47,"filename":"intro-health.json"},{"name":"labyrinth-12x12-1","topTime":8912,"difficulty":200,"filename":"labyrinth-12x12-1.json"},{"name":"labyrinth-12x12-2","topTime":6488,"difficulty":200,"startX":1,"startY":2,"filename":"labyrinth-12x12-2.json"},{"name":"klaus-2","topTime":17643,"difficulty":800,"filename":"klaus-2.json"},{"name":"labyrinth-12x12-5","topTime":7458,"difficulty":200,"filename":"labyrinth-12x12-5.json"},{"name":"labyrinth-12x12-4","topTime":8511,"difficulty":200,"filename":"labyrinth-12x12-4.json"},{"name":"labyrinth-12x12-3","topTime":16891,"difficulty":200,"filename":"labyrinth-12x12-3.json"},{"name":"labyrinth-12x12-6","topTime":6287,"difficulty":200,"filename":"labyrinth-12x12-6.json"},{"name":"labyrinth-50x50-circles","topTime":12123,"difficulty":600,"filename":"labyrinth-50x50-circles.json"},{"name":"long-ways-to-go","topTime":18177,"heroSpeed":300,"difficulty":400,"filename":"long-ways-to-go.json"},{"name":"lotta-1","topTime":23981,"difficulty":1000,"filename":"lotta-1.json"},{"name":"lotta-2","topTime":16486,"difficulty":100,"filename":"lotta-2.json"},{"name":"lotta-3","topTime":36270,"difficulty":400,"filename":"lotta-3.json"},{"name":"lotta-4","topTime":11588,"difficulty":400,"startX":1,"startY":1,"filename":"lotta-4.json"},{"name":"lotta-5","topTime":34583,"startDirection":"down","difficulty":400,"startX":13,"startY":15,"filename":"lotta-5.json"},{"name":"rain","topTime":11454,"difficulty":1000,"filename":"rain.json"},{"filename":"slow-and-accurate.json"},{"name":"small-labyrinth","topTime":38431,"difficulty":200,"filename":"small-labyrinth.json"},{"name":"tiles-29x197-1","topTime":66925,"difficulty":600,"filename":"tiles-29x197-1.json"},{"name":"tiles-29x197-2","topTime":45772,"difficulty":1000,"filename":"tiles-29x197-2.json"},{"name":"snake-feb","topTime":24333,"difficulty":600,"startX":1,"startY":1,"filename":"snake-feb.json"},{"name":"tiles-shifted-29x197-1","topTime":102461,"difficulty":800,"filename":"tiles-shifted-29x197-1.json"},{"name":"tiles-shifted-29x197-2","topTime":82133,"difficulty":600,"filename":"tiles-shifted-29x197-2.json"}];
+const LEVEL_CONFIG = [{
+  "name": "intro-deadwall",
+  "topTime": 951,
+  "startDirection": "right",
+  "difficulty": 0,
+  "filename": "intro-deadwall.json"
+}, {
+  "name": "intro-direction-change",
+  "topTime": 22792,
+  "startDirection": "up",
+  "difficulty": 0,
+  "startX": 25,
+  "startY": 47,
+  "filename": "intro-direction-change.json"
+}, {
+  "difficulty": "0",
+  "name": "Let's start the adventure!",
+  "startDirection": "right",
+  "topTime": "951",
+  "filename": "intro-goal.json"
+}, {
+  "name": "intro-health-heart",
+  "topTime": 17492,
+  "difficulty": 0,
+  "filename": "intro-health-heart.json"
+}, {
+  "name": "klaus-1",
+  "topTime": 24215,
+  "difficulty": 1000,
+  "filename": "klaus-1.json"
+}, {
+  "name": "intro-health",
+  "topTime": 10603,
+  "startDirection": "up",
+  "difficulty": 0,
+  "startX": 25,
+  "startY": 47,
+  "filename": "intro-health.json"
+}, {
+  "name": "labyrinth-12x12-1",
+  "topTime": 8912,
+  "difficulty": 200,
+  "filename": "labyrinth-12x12-1.json"
+}, {
+  "name": "labyrinth-12x12-2",
+  "topTime": 6488,
+  "difficulty": 200,
+  "startX": 1,
+  "startY": 2,
+  "filename": "labyrinth-12x12-2.json"
+}, {
+  "name": "klaus-2",
+  "topTime": 17643,
+  "difficulty": 800,
+  "filename": "klaus-2.json"
+}, {
+  "name": "labyrinth-12x12-5",
+  "topTime": 7458,
+  "difficulty": 200,
+  "filename": "labyrinth-12x12-5.json"
+}, {
+  "name": "labyrinth-12x12-4",
+  "topTime": 8511,
+  "difficulty": 200,
+  "filename": "labyrinth-12x12-4.json"
+}, {
+  "name": "labyrinth-12x12-3",
+  "topTime": 16891,
+  "difficulty": 200,
+  "filename": "labyrinth-12x12-3.json"
+}, {
+  "name": "labyrinth-12x12-6",
+  "topTime": 6287,
+  "difficulty": 200,
+  "filename": "labyrinth-12x12-6.json"
+}, {
+  "name": "labyrinth-50x50-circles",
+  "topTime": 12123,
+  "difficulty": 600,
+  "filename": "labyrinth-50x50-circles.json"
+}, {
+  "name": "long-ways-to-go",
+  "topTime": 18177,
+  "heroSpeed": 300,
+  "difficulty": 400,
+  "filename": "long-ways-to-go.json"
+}, {
+  "name": "lotta-1",
+  "topTime": 23981,
+  "difficulty": 1000,
+  "filename": "lotta-1.json"
+}, {
+  "name": "lotta-2",
+  "topTime": 16486,
+  "difficulty": 100,
+  "filename": "lotta-2.json"
+}, {
+  "name": "lotta-3",
+  "topTime": 36270,
+  "difficulty": 400,
+  "filename": "lotta-3.json"
+}, {
+  "name": "lotta-4",
+  "topTime": 11588,
+  "difficulty": 400,
+  "startX": 1,
+  "startY": 1,
+  "filename": "lotta-4.json"
+}, {
+  "name": "lotta-5",
+  "topTime": 34583,
+  "startDirection": "down",
+  "difficulty": 400,
+  "startX": 13,
+  "startY": 15,
+  "filename": "lotta-5.json"
+}, {
+  "name": "rain",
+  "topTime": 11454,
+  "difficulty": 1000,
+  "filename": "rain.json"
+}, {
+  "filename": "slow-and-accurate.json"
+}, {
+  "name": "small-labyrinth",
+  "topTime": 38431,
+  "difficulty": 200,
+  "filename": "small-labyrinth.json"
+}, {
+  "name": "tiles-29x197-1",
+  "topTime": 66925,
+  "difficulty": 600,
+  "filename": "tiles-29x197-1.json"
+}, {
+  "name": "tiles-29x197-2",
+  "topTime": 45772,
+  "difficulty": 1000,
+  "filename": "tiles-29x197-2.json"
+}, {
+  "name": "snake-feb",
+  "topTime": 24333,
+  "difficulty": 600,
+  "startX": 1,
+  "startY": 1,
+  "filename": "snake-feb.json"
+}, {
+  "name": "tiles-shifted-29x197-1",
+  "topTime": 102461,
+  "difficulty": 800,
+  "filename": "tiles-shifted-29x197-1.json"
+}, {
+  "name": "tiles-shifted-29x197-2",
+  "topTime": 82133,
+  "difficulty": 600,
+  "filename": "tiles-shifted-29x197-2.json"
+}];
