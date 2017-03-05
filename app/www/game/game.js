@@ -26,6 +26,7 @@ let Game = function() {
     labyrinth.onGoalHit(endGameWin);
     labyrinth.onHealthHit(hero.heal);
     labyrinth.onDeadwallHit(hero.burn);
+    helper.onAbort(hero.kill);
     hero.create();
     helper.create();
   }
@@ -51,18 +52,9 @@ let Game = function() {
     endGame(true);
   }
 
-  let giveUpClicked = function() {
-    return game.input.activePointer.isDown &&
-      game.input.x > game.width - 100 &&
-      game.input.y < 100;
-  }
-
   this.update = function() {
     game.physics.arcade.collide(hero.getSprite(), labyrinth.getLayer());
     hero.update();
     helper.update();
-    if (giveUpClicked()) {
-      hero.kill();
-    }
   }
 }

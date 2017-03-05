@@ -28,7 +28,7 @@ const Level = function(config, index) {
   }
   this.start = function() {
     if (debugMode) {
-      console.info('starting: ' + config.name);
+      console.info('starting: ' + config.filename);
     }
     startTime = new Date();
     endTime = false;
@@ -48,7 +48,7 @@ const Level = function(config, index) {
     config.startingPosition = config.startingPosition || {};
     return {
       x: 16 * (config.startX || 2) + 8,
-      y: 16 * (config.startY || 2) + 8
+      y: 16 * (config.startY || 4) + 8
     }
   }
   this.getStartAngle = function() {
