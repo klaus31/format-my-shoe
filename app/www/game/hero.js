@@ -10,14 +10,20 @@ let Hero = function() {
   let lastPosition = false;
   let isMoving = false;
   let angleUpdateDeg = 10;
+  let died;
+  let fire;
+  let burns;
 
   const STARTING_POSITION = levelCtrl.getCurrentLevel().getStartingPosition();
 
   this.preload = function() {
     game.load.spritesheet('hero', 'game/hero.png', 16, 16);
+    game.load.spritesheet('fire', 'game/fire.png', 16, 16);
     onDead = null;
     life = new Life();
     drive = new Drive(ME);
+    died = false;
+    burns = false;
   }
 
   this.getMaximalSpeed = function() {
@@ -36,10 +42,25 @@ let Hero = function() {
     game.camera.follow(hero);
     hero.body.collideWorldBounds = true;
     hero.angle = levelCtrl.getCurrentLevel().getStartAngle();
+
+    fire = game.add.sprite(hero.x, hero.y, 'fire');
+    fire.alpha = 0;
+    fire.anchor.setTo(0.5, 0.5);
   }
 
   this.getSprite = function() {
     return hero;
+  }
+
+  this.burn = function() {
+    died = burns = true;
+    hero.body.velocity.x = 0;
+    hero.body.velocity.y = 0;
+    fire.angle = hero.angle;
+    fire.x = hero.x;
+    fire.y = hero.y;
+    fire.alpha = 1;
+    window.setTimeout(ME.kill, 2500);
   }
 
   this.heal = function() {
@@ -75,6 +96,11 @@ let Hero = function() {
   }
 
   this.update = function() {
+    if(died) {
+      if(burns) {
+        fire.frame = (fire.frame + 1) % 4;
+      }
+    } else {
     updateLife();
     updateDrive();
     // rotate hero
@@ -94,5 +120,6 @@ let Hero = function() {
       x: Math.round(hero.position.x - 0),
       y: Math.round(hero.position.y - 0)
     };
+  }
   }
 }
