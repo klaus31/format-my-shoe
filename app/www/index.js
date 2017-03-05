@@ -14,7 +14,6 @@ if (localStorage.getItem('version') - 0 < 1702281724) {
 }
 localStorage.setItem('version', 1703022023);
 
-
 const levelCtrl = new LevelCtrl();
 const game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'parent');
 
