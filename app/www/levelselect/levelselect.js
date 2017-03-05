@@ -14,7 +14,7 @@ let Resultscreen = function() {
     fill: '#6F00E3',
     fontSize: '20pt',
     boundsAlignH: 'center',
-    boundsAlignV: 'middle',
+    boundsAlignV: 'bottom',
     font: 'Baloo'
   };
   let fontStyleLevelCircle = {
@@ -66,7 +66,7 @@ let Resultscreen = function() {
       text.stroke = "#79F990";
       text.strokeThickness = 13;
       text.setShadow(3, 3, "#333", 2, true, true);
-      text.setTextBounds(0, 0, game.width, game.height * 0.8);
+      text.setTextBounds(0, 0, game.width, game.height / 8 * 3);
       text.alpha = 1;
       window.setTimeout(function() {
         headline = text;
