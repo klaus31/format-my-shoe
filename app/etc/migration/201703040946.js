@@ -1,9 +1,9 @@
-#!//usr/local/bin/node
+#!/usr/bin/node
 
 var fs = require('fs');
 
 var withEachLevel = function(func) {
-  var basedir = __dirname + '/../www/game/levels';
+  var basedir = __dirname + '/../../www/game/levels';
   fs.readdir(basedir, (err, files) => {
     files.forEach(file => {
       if(file.match('\.json$')) {

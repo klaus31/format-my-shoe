@@ -9,7 +9,7 @@ let Labyrinth = function(levelInfo) {
   let layer;
   let sounds = {};
   this.preload = function() {
-    game.load.tilemap('map', 'game/levels/' + levelCtrl.getCurrentLevel().getName() + '.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.tilemap('map', 'game/levels/' + levelCtrl.getCurrentLevel().getFilename(), null, Phaser.Tilemap.TILED_JSON);
     game.load.image('wall', 'game/levels/wall.png');
     game.load.image('health', 'game/levels/health.png');
     game.load.image('goal', 'game/levels/goal.png');

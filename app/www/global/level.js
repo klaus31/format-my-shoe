@@ -20,6 +20,9 @@ const Level = function(config, index) {
   this.getName = function() {
     return config.name;
   }
+  this.getFilename = function() {
+    return config.filename;
+  }
   this.getHeroSpeed = function() {
     return config.heroSpeed || 200;
   }
@@ -44,8 +47,8 @@ const Level = function(config, index) {
   this.getStartingPosition = function() {
     config.startingPosition = config.startingPosition || {};
     return {
-      x: 16 * (config.startingPosition.x || 2) + 8,
-      y: 16 * (config.startingPosition.y || 2) + 8
+      x: 16 * (config.startX || 2) + 8,
+      y: 16 * (config.startY || 2) + 8
     }
   }
   this.getStartAngle = function() {
