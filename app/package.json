@@ -15,7 +15,7 @@
     "beautify-css": "find www/. -name '*css' | xargs ./node_modules/js-beautify/js/bin/css-beautify.js -r -s 2 -f",
     "beautify-html": "find www/. -name '*html' | xargs ./node_modules/js-beautify/js/bin/html-beautify.js -r -s 2 -f",
     "beautify": "npm run beautify-js && npm run beautify-css && npm run beautify-html",
-    "generate-level-config": "npm run etc/generate-level-config.js"
+    "generate-level-config": "node etc/generate-level-config.js"
   },
   "author": "klaus und klaus",
   "license": "All rights reservice",

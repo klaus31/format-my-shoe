@@ -1,5 +1,3 @@
-#!/usr/bin/node
-
 var fs = require('fs');
 
 var withEachLevel = function(func, andAfterAll) {
@@ -33,7 +31,10 @@ var collectData = function(file, level) {
 var outputData = function() {
   var LEVEL_CONFIG_FILE =  __dirname + '/../www/global/level-config.js';
   // TODO order it!!
-  fs.writeFile(LEVEL_CONFIG_FILE, 'const LEVEL_CONFIG = ' + JSON.stringify(levelConfigs)) + ';';
+  var output = '// AUTO-GENERATED FILE!!!\n';
+  output += '// DO USE npm run generate-level-config\n';
+  output += 'const LEVEL_CONFIG = ' + JSON.stringify(levelConfigs) + ';';
+  fs.writeFile(LEVEL_CONFIG_FILE, output);
 }
 
 var levelConfigs = [];
