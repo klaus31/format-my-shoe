@@ -14,10 +14,6 @@ if (localStorage.getItem('version') - 0 < 1703061906) {
 }
 localStorage.setItem('version', 1703061906);
 
-localStorage.clear();
-if (debugMode) localStorage.setItem('debug', 'true');
-
-
 const levelCtrl = new LevelCtrl();
 const game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'parent');
 

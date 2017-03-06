@@ -22,6 +22,14 @@ var withEachLevel = function(func, andAfterAll) {
   });
 }
 
+var sortByDifficulty = function(levelA, levelB) {
+  if (levelA.difficulty == levelB.difficulty) {
+    return levelA.name < levelB.name;
+  } else {
+    return levelA.difficulty < levelB.difficulty ? -1 : 1;
+  }
+}
+
 var collectData = function(file, level) {
   var props = level.properties;
   props.filename = file;
@@ -30,7 +38,7 @@ var collectData = function(file, level) {
 
 var outputData = function() {
   var LEVEL_CONFIG_FILE =  __dirname + '/../www/global/level-config.js';
-  // TODO order it!!
+  levelConfigs = levelConfigs.sort(sortByDifficulty);
   var output = '// AUTO-GENERATED FILE!!!\n';
   output += '// DO USE npm run generate-level-config\n';
   output += 'const LEVEL_CONFIG = ' + JSON.stringify(levelConfigs) + ';';
