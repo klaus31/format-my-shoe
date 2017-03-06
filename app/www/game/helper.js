@@ -41,9 +41,14 @@ let Helper = function(level, hero) {
   }
 
   let calcStatisticsMessage = function() {
-    let stopsGood = level.getStopsGood();
+    let stopsOptimal = level.getStopsOptimal();
     let stopsMade = hero.getStopsMade();
-    return (stopsGood - stopsMade) + ' / ' + stopsGood;
+    let stopsGood = level.getStopsGood();
+    if (stopsMade <= stopsOptimal || stopsGood == stopsOptimal) {
+      return (stopsOptimal - stopsMade) + ' / ' + stopsOptimal;
+    } else {
+      return (stopsGood - stopsMade) + ' / ' + stopsGood;
+    }
   }
 
   let createStatistics = function() {
