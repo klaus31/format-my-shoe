@@ -15,7 +15,7 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "difficulty":"0",
+     "difficulty":"22",
      "name":"intro-health",
      "startDirection":"up",
      "startX":"25",

@@ -15,7 +15,7 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "difficulty":"200",
+     "difficulty":"80",
      "name":"labyrinth-12x12-4",
      "startX":"2",
      "startY":"4",

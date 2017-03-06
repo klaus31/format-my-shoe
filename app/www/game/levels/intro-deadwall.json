@@ -15,7 +15,7 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "difficulty":"0",
+     "difficulty":"10",
      "name":"intro-deadwall",
      "startDirection":"right",
      "startX":"2",

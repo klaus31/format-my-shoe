@@ -15,7 +15,7 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "difficulty":"0",
+     "difficulty":"20",
      "name":"intro-direction-change",
      "startDirection":"up",
      "startX":"25",

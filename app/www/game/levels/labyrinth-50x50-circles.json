@@ -15,7 +15,7 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "difficulty":"600",
+     "difficulty":"400",
      "name":"labyrinth-50x50-circles",
      "startX":"2",
      "startY":"4",

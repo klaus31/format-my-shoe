@@ -15,7 +15,7 @@
  "orientation":"orthogonal",
  "properties":
     {
-     "difficulty":"0",
+     "difficulty":"20",
      "name":"intro-health-heart",
      "startX":"2",
      "startY":"4",
