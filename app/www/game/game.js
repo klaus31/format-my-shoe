@@ -11,7 +11,7 @@ let Game = function() {
     const level = levelCtrl.getCurrentLevel();
     hero = new Hero();
     labyrinth = new Labyrinth(level);
-    helper = new Helper(level);
+    helper = new Helper(level, hero);
     labyrinth.preload();
     hero.preload();
     helper.preload();
@@ -37,7 +37,7 @@ let Game = function() {
       levelCtrl.setCurrentLevelWon(won);
       levelCtrl.getCurrentLevel().end();
       if (won) {
-        levelCtrl.getCurrentLevel().persist();
+        levelCtrl.getCurrentLevel().persist(hero.getStopsMade());
       }
       game.state.start('Resultscreen');
       endedGame = true;

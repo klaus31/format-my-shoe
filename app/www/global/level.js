@@ -11,6 +11,12 @@ const Level = function(config, index) {
   this.getIndex = function() {
     return index;
   }
+  this.getStopsOptimal = function() {
+    return config.stopsOptimal;
+  }
+  this.getStopsGood = function() {
+    return config.stopsGood;
+  }
   this.getNumber = function() {
     return index + 1;
   }
@@ -39,7 +45,7 @@ const Level = function(config, index) {
     isStarted = false;
   }
   this.getScoreAllTimeBest = function() {
-    return score.calculatePoints(data.msBest, data.topTime || 20000);
+    return score.calculatePoints(ME, data.stopsMadeBest);
   }
   this.getDifficulty = function() {
     return config.difficulty || NORMAL;
@@ -84,7 +90,7 @@ const Level = function(config, index) {
   this.isWonAtAnyTime = function() {
     return wonAtAnyTime;
   }
-  this.persist = function() {
+  this.persist = function(stopsMade) {
     data = data || {};
     data.wonAtAnyTime = wonAtAnyTime;
     if (wonAtAnyTime) {
@@ -92,10 +98,13 @@ const Level = function(config, index) {
       if (!data.msBest || data.msBest > msNeededCurrent) {
         data.msBest = msNeededCurrent;
       }
+      if (!data.stopsMadeBest || data.stopsMadeBest > stopsMade) {
+        data.stopsMadeBest = stopsMade;
+      }
     }
     localStorage.setItem('level-' + config.name, JSON.stringify(data));
     if (debugMode) {
-      console.info('topTime: ' + score.msNeeded(startTime, endTime))
+      console.info('stopsMade: ' + stopsMade)
     }
   }
 };

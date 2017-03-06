@@ -8,11 +8,15 @@ if (localStorage.getItem('version') == null) {
 if (localStorage.getItem('version') == '201702201824') {
   localStorage.clear();
 }
-if (localStorage.getItem('version') - 0 < 1702281724) {
+if (localStorage.getItem('version') - 0 < 1703061906) {
   localStorage.clear();
   if (debugMode) localStorage.setItem('debug', 'true');
 }
-localStorage.setItem('version', 1703022023);
+localStorage.setItem('version', 1703061906);
+
+localStorage.clear();
+if (debugMode) localStorage.setItem('debug', 'true');
+
 
 const levelCtrl = new LevelCtrl();
 const game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'parent');

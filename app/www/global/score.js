@@ -1,12 +1,15 @@
 const Score = function() {
   const ME = this;
+
   this.msNeeded = function(startTime, endTime) {
     return endTime.getTime() - startTime.getTime();
   }
-  this.calculatePoints = function(msNeeded, levelTopTime) {
-    if (msNeeded <= levelTopTime * 1.05) {
+
+  this.calculatePoints = function(level, stopsMadeTop) {
+    if (!stopsMadeTop) return 1;
+    if (stopsMadeTop <= level.getStopsOptimal()) {
       return 3;
-    } else if (msNeeded <= levelTopTime * 1.3) {
+    } else if (stopsMadeTop <= level.getStopsGood()) {
       return 2;
     } else {
       return 1;

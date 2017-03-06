@@ -15,6 +15,8 @@ let Hero = function() {
   let timeout;
   let burns;
   let lifeExpectationEmpty;
+  let stopsMade = 0;
+  let stopCounted = null;
 
   const STARTING_POSITION = levelCtrl.getCurrentLevel().getStartingPosition();
 
@@ -28,6 +30,10 @@ let Hero = function() {
     died = false;
     burns = false;
     lifeExpectationEmpty = false;
+  }
+
+  this.getStopsMade = function() {
+    return stopsMade;
   }
 
   this.getMaximalSpeed = function() {
@@ -129,6 +135,13 @@ let Hero = function() {
       if (ME.isMoving()) {
         let pos = (hero.position.x - 8) % 16 || (hero.position.y - 8) % 16;
         hero.angle = pos * 90 / 16;
+      }
+      // set stop count
+      if (!isMoving && drive.firstMoveMade() && stopCounted === false) {
+        stopsMade++;
+        stopCounted = true;
+      } else if (isMoving && drive.firstMoveMade()) {
+        stopCounted = false;
       }
       // correct position and set info, if sprite is moving manualy
       if (lastPosition) {

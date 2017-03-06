@@ -1,6 +1,17 @@
-let Helper = function(level) {
+let Helper = function(level, hero) {
 
+  if (!level) throw 'need level';
+  if (!hero) throw 'need hero';
+  let statistics;
   let onAbort = function() {};
+  const fontCtrl = new FontCtrl();
+  const FONT_STYLE = {
+    fill: '#FFF',
+    fontSize: '12pt',
+    boundsAlignH: 'center',
+    boundsAlignV: 'middle',
+    font: 'Baloo'
+  };
 
   this.preload = function() {
     game.load.image('back', 'game/back.png', 16, 16);
@@ -29,9 +40,41 @@ let Helper = function(level) {
     back.events.onInputDown.add(onAbort);
   }
 
+  let calcStatisticsMessage = function() {
+    let stopsGood = level.getStopsGood();
+    let stopsMade = hero.getStopsMade();
+    return (stopsGood - stopsMade) + ' / ' + stopsGood;
+  }
+
+  let createStatistics = function() {
+    fontCtrl.addText(0, 0, calcStatisticsMessage(), FONT_STYLE, function(text) {
+      text.fixedToCamera = true;
+      text.setTextBounds(0, 0, game.width, 32);
+      text.alpha = 1;
+      statistics = text;
+    });
+  }
+
   this.create = function() {
     createMenuBar();
     createBackToLevelSelect();
+    createStatistics();
   }
-  this.update = function() {}
+
+  let calcStatisticsColor = function() {
+    let stopsOptimal = level.getStopsOptimal();
+    let stopsGood = level.getStopsGood();
+    let stopsMade = hero.getStopsMade();
+    if (stopsMade <= stopsOptimal) {
+      return '#FFF';
+    } else if (stopsMade <= stopsGood) {
+      return '#FF0';
+    } else {
+      return '#F55';
+    }
+  }
+  this.update = function() {
+    statistics.text = calcStatisticsMessage();
+    statistics.style.fill = calcStatisticsColor();
+  }
 }
