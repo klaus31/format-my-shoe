@@ -67,14 +67,17 @@ let Hero = function() {
   }
 
   this.burn = function() {
-    died = burns = true;
-    hero.body.velocity.x = 0;
-    hero.body.velocity.y = 0;
-    fire.angle = hero.angle;
-    fire.x = hero.x;
-    fire.y = hero.y;
-    fire.alpha = 1;
-    window.setTimeout(ME.kill, 2500);
+    if(!burns) {
+      died = true;
+      burns = true;
+      hero.body.velocity.x = 0;
+      hero.body.velocity.y = 0;
+      fire.angle = hero.angle;
+      fire.x = hero.x;
+      fire.y = hero.y;
+      fire.alpha = 1;
+      window.setTimeout(ME.kill, 2500);
+    }
   }
 
   this.heal = function() {
@@ -132,7 +135,7 @@ let Hero = function() {
       updateLife();
       updateDrive();
       // rotate hero
-      if (ME.isMoving()) {
+      if (isMoving) {
         let pos = (hero.position.x - 8) % 16 || (hero.position.y - 8) % 16;
         hero.angle = pos * 90 / 16;
       }
