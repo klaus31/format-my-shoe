@@ -15,7 +15,11 @@ const LevelCtrl = function() {
     i++;
   }
   currentLevel = levels[i];
+  let timeout = false;
 
+  this.reset = function() {
+    timeout = false;
+  }
   this.getCurrentLevel = function() {
     return currentLevel;
   }
@@ -40,5 +44,11 @@ const LevelCtrl = function() {
   }
   this.isCurrentLevelLastLevel = function() {
     return currentLevel.getIndex() == ME.getLevelCount() - 1;
+  }
+  this.isTimeout = function() {
+    return timeout;
+  }
+  this.setGotTimeout = function() {
+    timeout = true;
   }
 };

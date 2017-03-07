@@ -56,7 +56,11 @@ let Resultscreen = function() {
         message = WON_MESSAGES[Math.floor(Math.random() * WON_MESSAGES.length)] + '!';
       }
     } else if (currentLevel.isPlayed()) {
-      message = FAILED_MESSAGES[Math.floor(Math.random() * FAILED_MESSAGES.length)] + '!';
+      if(levelCtrl.isTimeout()) {
+        message = 'TIMEOUT!';
+      } else {
+        message = FAILED_MESSAGES[Math.floor(Math.random() * FAILED_MESSAGES.length)] + '!';
+      }
     } else {
       message = 'WELCOME!';
     }
@@ -72,6 +76,7 @@ let Resultscreen = function() {
         headline = text;
       }, 3000);
     });
+    levelCtrl.reset();
   }
 
   let addLevels = function() {
