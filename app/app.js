@@ -1,9 +1,9 @@
 var express = require('express');
 var app = express();
-var port = 8080;
+var port = 8081;
 
 app.use(express.static(__dirname + '/www/.'));
-app.use(express.static(__dirname + '/node_modules/.'));
+//app.use(express.static(__dirname + '/node_modules/.'));
 
 
 app.listen(port, function() {
