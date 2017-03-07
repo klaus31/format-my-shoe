@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
-import static x.Main.Direction.*;
+import static x.HeroPng.Direction.*;
 
-public class Main {
+public class HeroPng {
     private static int currentStepsInOneDirection = 1;
     private static int stepMade = 0;
 
@@ -57,7 +57,7 @@ public class Main {
                 while (x < imageWidth) {
                     Color color;
                     if(xy[x][y] == MAIN_DIED) {
-                        color = getValueNeighbor(colorMain, -32);
+                        color = new Color(190,246,246);
                     }else if(xy[x][y] == ARROW) {
                         color = colorArrow;
                     }else if(xy[x][y] == ARROW_DIED) {
@@ -73,7 +73,7 @@ public class Main {
             }
             y = 0;
             x = 0;
-            colorMain = getHueNeighbor(colorMain, -0.505F);
+            colorMain = getHueNeighbor(colorMain, -0.506F);
             colorArrow = getHueNeighbor(colorArrow, -0.5F);
             offset++;
 

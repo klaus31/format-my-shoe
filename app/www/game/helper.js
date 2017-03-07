@@ -45,9 +45,9 @@ let Helper = function(level, hero) {
     let stopsMade = hero.getStopsMade();
     let stopsGood = level.getStopsGood();
     if (stopsMade <= stopsOptimal || stopsGood == stopsOptimal) {
-      return (stopsOptimal - stopsMade) + ' / ' + stopsOptimal;
+      return stopsMade + ' / ' + stopsOptimal;
     } else {
-      return (stopsGood - stopsMade) + ' / ' + stopsGood;
+      return stopsMade + ' / ' + stopsGood;
     }
   }
 

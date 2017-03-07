@@ -27,7 +27,6 @@ let Labyrinth = function(levelInfo) {
     background.height = map.height * 16;
     background.width = map.width * 16;
     map.setCollisionBetween(1, 12);
-    console.log(map);
     game.physics.enable(layer);
     map.addTilesetImage('wall');
     map.addTilesetImage('health');

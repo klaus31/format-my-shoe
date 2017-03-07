@@ -12,7 +12,6 @@ let Hero = function() {
   let angleUpdateDeg = 10;
   let died;
   let fire;
-  let timeout;
   let burns;
   let lifeExpectationEmpty;
   let stopsMade = 0;
@@ -23,7 +22,6 @@ let Hero = function() {
   this.preload = function() {
     game.load.spritesheet('hero', 'game/hero.png', 16, 16);
     game.load.spritesheet('fire', 'game/fire.png', 16, 16);
-    game.load.spritesheet('timeout', 'game/timeout.png', 16, 16);
     onDead = null;
     life = new Life();
     drive = new Drive(ME);
@@ -56,10 +54,6 @@ let Hero = function() {
     fire = game.add.sprite(hero.x, hero.y, 'fire');
     fire.alpha = 0;
     fire.anchor.setTo(0.5, 0.5);
-
-    timeout = game.add.sprite(hero.x, hero.y, 'timeout');
-    timeout.alpha = 0;
-    timeout.anchor.setTo(0.5, 0.5);
   }
 
   this.getSprite = function() {
@@ -67,14 +61,17 @@ let Hero = function() {
   }
 
   this.burn = function() {
-    died = burns = true;
-    hero.body.velocity.x = 0;
-    hero.body.velocity.y = 0;
-    fire.angle = hero.angle;
-    fire.x = hero.x;
-    fire.y = hero.y;
-    fire.alpha = 1;
-    window.setTimeout(ME.kill, 2500);
+    if(!burns) {
+      died = true;
+      burns = true;
+      hero.body.velocity.x = 0;
+      hero.body.velocity.y = 0;
+      fire.angle = hero.angle;
+      fire.x = hero.x;
+      fire.y = hero.y;
+      fire.alpha = 1;
+      window.setTimeout(ME.kill, 2500);
+    }
   }
 
   this.heal = function() {
@@ -101,14 +98,8 @@ let Hero = function() {
     life.update();
     if (life.isDead()) {
       died = true;
-      lifeExpectationEmpty = true;
-      hero.body.velocity.x = 0;
-      hero.body.velocity.y = 0;
-      hero.alpha = 0;
-      timeout.angle = hero.angle;
-      timeout.x = hero.x;
-      timeout.y = hero.y;
-      timeout.alpha = 1;
+      levelCtrl.setGotTimeout();
+      ME.kill();
     }
   }
   let updateDrive = function() {
@@ -121,18 +112,12 @@ let Hero = function() {
     if (died) {
       if (burns) {
         fire.frame = (fire.frame + 1) % 4;
-      } else if (lifeExpectationEmpty) {
-        hero.body.velocity.x = 0;
-        hero.body.velocity.y = 0;
-        if (++timeout.frame == 256) {
-          ME.kill();
-        }
       }
     } else {
       updateLife();
       updateDrive();
       // rotate hero
-      if (ME.isMoving()) {
+      if (isMoving) {
         let pos = (hero.position.x - 8) % 16 || (hero.position.y - 8) % 16;
         hero.angle = pos * 90 / 16;
       }
