@@ -7,9 +7,9 @@ import java.io.File;
 import java.io.IOException;
 
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
-import static x.Main.Direction.*;
+import static x.TimeoutPng.Direction.*;
 
-public class Main {
+public class TimeoutPng {
     private static int currentStepsInOneDirection = 1;
     private static int stepMade = 0;
         private static boolean modusStart = true;
@@ -55,9 +55,9 @@ public class Main {
                 while (x < imageWidth) {
                     Color color;
                     if (xy[x][y] == MAIN_DIED) {
-                        color = Color.BLACK;
+                        color = Color.RED.darker().darker();
                     } else {
-                        color = Color.WHITE;
+                        color = new Color(190,246,246);
                     }
                     if (color != null)
                         image.setRGB(16 * offset + x, y, color.getRGB());
