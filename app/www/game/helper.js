@@ -9,8 +9,7 @@ let Helper = function(level, hero) {
     fill: '#FFF',
     fontSize: '12pt',
     boundsAlignH: 'center',
-    boundsAlignV: 'middle',
-    font: 'Baloo'
+    boundsAlignV: 'middle'
   };
 
   this.preload = function() {

@@ -17,16 +17,14 @@ var WebFontConfig = {
 const FontCtrl = function() {
   this.addText = function(x, y, content, style, cb) {
     style = style || {};
-    style.font = style.font || 'Raleway';
+    console.info(9879879);
+    style.font = 'Droid Sans';
+    style.fontWeight = 'bold';
     let addTextInner = function() {
       let text = game.add.text(x, y, content, style);
       text.font = style.font;
       if (cb) cb(text);
     }
-    if (AddTextImpl.ready) {
-      addTextInner();
-    } else {
-      AddTextImpl.functions.push(addTextInner);
-    }
+    addTextInner();
   }
 }

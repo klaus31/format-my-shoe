@@ -12,6 +12,7 @@ let Game = function() {
     hero = new Hero();
     labyrinth = new Labyrinth(level);
     helper = new Helper(level, hero);
+    game.load.image('game-background', 'game/levels/wall.png');
     labyrinth.preload();
     hero.preload();
     helper.preload();
@@ -20,7 +21,9 @@ let Game = function() {
   }
 
   this.create = function() {
-    game.stage.backgroundColor = '#000';
+    let background = game.add.tileSprite(0, 0, game.width, game.height, 'game-background');
+    background.height = game.height;
+    background.width = game.width;
     labyrinth.create();
     hero.onDead(endGameFail);
     labyrinth.onGoalHit(endGameWin);

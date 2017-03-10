@@ -7,15 +7,13 @@ let Resultscreen = function() {
     fill: '#6F00E3',
     fontSize: '26pt',
     boundsAlignH: 'center',
-    boundsAlignV: 'middle',
-    font: 'Baloo'
+    boundsAlignV: 'middle'
   };
   const FONT_STYLE_START = {
     fill: '#6F00E3',
     fontSize: '20pt',
     boundsAlignH: 'center',
-    boundsAlignV: 'bottom',
-    font: 'Baloo'
+    boundsAlignV: 'bottom'
   };
   let fontStyleLevelCircle = {
     fontSize: '10pt'
