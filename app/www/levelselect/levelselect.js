@@ -125,7 +125,7 @@ let Resultscreen = function() {
         fontStyleLevelCircle.fontWeight = 'bold';
       } else {
         graphics.beginFill(0xF9797F);
-        fontStyleLevelCircle.fill = '#000';
+        fontStyleLevelCircle.fill = '#333';
         fontStyleLevelCircle.fontWeight = 'normal';
       }
       // draw circle
@@ -142,7 +142,7 @@ let Resultscreen = function() {
           }
           number = '0' + number;
         }
-        fontCtrl.addText(circle.x - 12, circle.y - 7, number, fontStyleLevelCircle);
+        fontCtrl.addText(circle.x - 10, circle.y - 6, number, fontStyleLevelCircle);
       }
 
       function addStarsToCircle() {
