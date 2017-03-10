@@ -12,7 +12,7 @@ let Hero = function() {
   let angleUpdateDeg = 10;
   let died;
   let fire;
-  let burns;
+  let hitDeadWall;
   let lifeExpectationEmpty;
   let stopsMade = 0;
   let stopCounted = null;
@@ -21,12 +21,11 @@ let Hero = function() {
 
   this.preload = function() {
     game.load.spritesheet('hero', 'game/hero.png', 16, 16);
-    game.load.spritesheet('fire', 'game/fire.png', 16, 16);
     onDead = null;
     life = new Life();
     drive = new Drive(ME);
     died = false;
-    burns = false;
+    hitDeadWall = false;
     lifeExpectationEmpty = false;
   }
 
@@ -50,10 +49,6 @@ let Hero = function() {
     game.camera.follow(hero);
     hero.body.collideWorldBounds = true;
     hero.angle = levelCtrl.getCurrentLevel().getStartAngle();
-
-    fire = game.add.sprite(hero.x, hero.y, 'fire');
-    fire.alpha = 0;
-    fire.anchor.setTo(0.5, 0.5);
   }
 
   this.getSprite = function() {
@@ -61,15 +56,11 @@ let Hero = function() {
   }
 
   this.burn = function() {
-    if(!burns) {
+    if(!hitDeadWall) {
       died = true;
-      burns = true;
+      hitDeadWall = true;
       hero.body.velocity.x = 0;
       hero.body.velocity.y = 0;
-      fire.angle = hero.angle;
-      fire.x = hero.x;
-      fire.y = hero.y;
-      fire.alpha = 1;
       window.setTimeout(ME.kill, 2500);
     }
   }
@@ -110,8 +101,9 @@ let Hero = function() {
 
   this.update = function() {
     if (died) {
-      if (burns) {
-        fire.frame = (fire.frame + 1) % 4;
+      if (hitDeadWall && hero.alpha) {
+        hero.alpha -= 0.01;
+        if(hero.alpha < 0.02) hero.alpha = 0;
       }
     } else {
       updateLife();
