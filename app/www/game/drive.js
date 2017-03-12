@@ -74,20 +74,23 @@ let Drive = function(hero) {
       } else if (wasDown && game.input.activePointer.isUp) {
         swipe.upX = game.input.x - 0;
         swipe.upY = game.input.y - 0;
-        firstMoveMade = true;
         let horizontalSwipe = Math.abs(swipe.downX - swipe.upX) > Math.abs(swipe.downY - swipe.upY);
         if (horizontalSwipe && swipe.upX < swipe.downX - swipe.minDistance) {
           x = speed * -1;
           y = 0;
+          firstMoveMade = true;
         } else if (horizontalSwipe && swipe.upX > swipe.downX + swipe.minDistance) {
           x = speed;
           y = 0;
+          firstMoveMade = true;
         } else if (swipe.upY < swipe.downY - swipe.minDistance) {
           x = 0;
           y = speed * -1;
+          firstMoveMade = true;
         } else if (swipe.upY > swipe.downY + swipe.minDistance) {
           x = 0;
           y = speed;
+          firstMoveMade = true;
         }
         wasDown = false;
       }
