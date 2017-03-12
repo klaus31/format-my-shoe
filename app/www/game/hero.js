@@ -27,6 +27,7 @@ let Hero = function() {
     died = false;
     hitDeadWall = false;
     lifeExpectationEmpty = false;
+    ME.changeDirectionTo = drive.changeDirectionTo;
   }
 
   this.getStopsMade = function() {
@@ -56,7 +57,7 @@ let Hero = function() {
   }
 
   this.burn = function() {
-    if(!hitDeadWall) {
+    if (!hitDeadWall) {
       died = true;
       hitDeadWall = true;
       hero.body.velocity.x = 0;
@@ -76,6 +77,7 @@ let Hero = function() {
     levelCtrl.getCurrentLevel().end();
     if (onDead) onDead();
   }
+
   this.isMoving = function() {
     return isMoving;
   }
@@ -99,19 +101,32 @@ let Hero = function() {
     hero.body.velocity.y = drive.getY();
   }
 
+  this.isCompletelyOnTile = function(tile) {
+    let isXMatch = Math.abs(Math.round(hero.world.x) - 8 - tile.worldX) < 4;
+    let isYMatch = Math.abs(Math.round(hero.world.y) - 8 - tile.worldY) < 4;
+    return isXMatch && isYMatch;
+  }
+
   this.update = function() {
+    if(isMoving) {
+      if(drive.isMovingHorizontal()) {
+        hero.position.y = Math.round((hero.world.y - hero.body.halfHeight) / hero.body.height) * hero.body.height + hero.body.halfHeight;
+      } else {
+        hero.position.x = Math.round((hero.world.x - hero.body.halfWidth) / hero.body.width) * hero.body.width + hero.body.halfWidth;
+      }
+    }
     if (died) {
       if (hitDeadWall && hero.alpha) {
         hero.alpha -= 0.01;
-        if(hero.alpha < 0.02) hero.alpha = 0;
+        if (hero.alpha < 0.02) hero.alpha = 0;
       }
     } else {
       updateLife();
       updateDrive();
       // rotate hero
       if (isMoving) {
-        let pos = (hero.position.x - 8) % 16 || (hero.position.y - 8) % 16;
-        hero.angle = pos * 90 / 16;
+        let pos = (hero.position.x - hero.body.halfWidth) % hero.body.width || (hero.position.y - hero.body.halfHeight) % hero.body.height;
+        hero.angle = pos * 90 / hero.body.width;
       }
       // set stop count
       if (!isMoving && drive.firstMoveMade() && stopCounted === false) {

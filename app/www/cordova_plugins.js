@@ -1,18 +1,16 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
-module.exports = [
+  module.exports = [{
+    "file": "plugins/cordova-plugin-device/www/device.js",
+    "id": "cordova-plugin-device.device",
+    "pluginId": "cordova-plugin-device",
+    "clobbers": [
+      "device"
+    ]
+  }];
+  module.exports.metadata =
+    // TOP OF METADATA
     {
-        "file": "plugins/cordova-plugin-device/www/device.js",
-        "id": "cordova-plugin-device.device",
-        "pluginId": "cordova-plugin-device",
-        "clobbers": [
-            "device"
-        ]
+      "cordova-plugin-device": "1.1.4"
     }
-];
-module.exports.metadata = 
-// TOP OF METADATA
-{
-    "cordova-plugin-device": "1.1.4"
-}
-// BOTTOM OF METADATA
+    // BOTTOM OF METADATA
 });

@@ -8,7 +8,8 @@ let Drive = function(hero) {
   let speed = hero.getMaximalSpeed();
   let swipe = {
     minDistance: 20
-  }
+  };
+  let newDirection = false;
 
   this.stop = function() {
     x = 0;
@@ -18,18 +19,47 @@ let Drive = function(hero) {
   this.firstMoveMade = function() {
     return firstMoveMade;
   }
+
   this.getX = function() {
     return x;
   }
+
   this.getY = function() {
     return y;
   }
+
   this.getDirection = function() {
     if (x > 0) return 'right';
     if (x < 0) return 'left';
     if (y > 0) return 'down';
     if (y < 0) return 'up';
     else return null;
+  }
+
+  this.isMovingHorizontal = function() {
+    return !!x;
+  }
+
+  this.isMovingVertical = function() {
+    return !!y;
+  }
+
+  this.changeDirectionTo = function(sprite, tile, direction) {
+    if(hero.isCompletelyOnTile(tile)) {
+      if (direction == 'left') {
+        x = speed * -1;
+        y = 0;
+      } else if (direction == 'right') {
+        x = speed;
+        y = 0;
+      } else if (direction == 'up') {
+        x = 0;
+        y = speed * -1;
+      } else if (direction == 'down') {
+        x = 0;
+        y = speed;
+      }
+    }
   }
 
 
@@ -41,8 +71,7 @@ let Drive = function(hero) {
           swipe.downY = game.input.y - 0;
         }
         wasDown = true;
-      }
-      if (wasDown && game.input.activePointer.isUp) {
+      } else if (wasDown && game.input.activePointer.isUp) {
         swipe.upX = game.input.x - 0;
         swipe.upY = game.input.y - 0;
         firstMoveMade = true;

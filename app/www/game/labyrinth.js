@@ -4,6 +4,10 @@ let Labyrinth = function(levelInfo) {
   const ID_HEALTH = 2;
   const ID_GOAL = 3;
   const ID_DEADWALL = 4;
+  const ID_DIRECTION_UP = 5;
+  const ID_DIRECTION_RIGHT = 6;
+  const ID_DIRECTION_DOWN = 7;
+  const ID_DIRECTION_LEFT = 8;
 
   let map;
   let layer;
@@ -13,6 +17,10 @@ let Labyrinth = function(levelInfo) {
     game.load.image('health', 'game/levels/health.png');
     game.load.image('goal', 'game/levels/goal.png');
     game.load.image('deadwall', 'game/levels/deadwall.png');
+    game.load.image('direction-up', 'game/levels/direction-up.png');
+    game.load.image('direction-right', 'game/levels/direction-right.png');
+    game.load.image('direction-down', 'game/levels/direction-down.png');
+    game.load.image('direction-left', 'game/levels/direction-left.png');
     game.load.image('background', 'game/bg.png');
   }
 
@@ -29,10 +37,29 @@ let Labyrinth = function(levelInfo) {
     map.addTilesetImage('health');
     map.addTilesetImage('goal');
     map.addTilesetImage('deadwall');
+    map.addTilesetImage('direction-up');
+    map.addTilesetImage('direction-right');
+    map.addTilesetImage('direction-down');
+    map.addTilesetImage('direction-left');
   }
 
   this.onGoalHit = function(func) {
     map.setTileIndexCallback(ID_GOAL, func);
+  }
+
+  this.onDirectionChangeHit = function(func) {
+    map.setTileIndexCallback(ID_DIRECTION_UP, function(sprite, tile) {
+      func(sprite, tile, 'up');
+    });
+    map.setTileIndexCallback(ID_DIRECTION_RIGHT, function(sprite, tile) {
+      func(sprite, tile, 'right');
+    });
+    map.setTileIndexCallback(ID_DIRECTION_DOWN, function(sprite, tile) {
+      func(sprite, tile, 'down');
+    });
+    map.setTileIndexCallback(ID_DIRECTION_LEFT, function(sprite, tile) {
+      func(sprite, tile, 'left');
+    });
   }
 
   this.onDeadwallHit = function(cb) {

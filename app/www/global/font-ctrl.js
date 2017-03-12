@@ -17,7 +17,6 @@ var WebFontConfig = {
 const FontCtrl = function() {
   this.addText = function(x, y, content, style, cb) {
     style = style || {};
-    console.info(9879879);
     style.font = 'Droid Sans';
     style.fontWeight = 'bold';
     let addTextInner = function() {

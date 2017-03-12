@@ -29,6 +29,7 @@ let Game = function() {
     labyrinth.onGoalHit(endGameWin);
     labyrinth.onHealthHit(hero.heal);
     labyrinth.onDeadwallHit(hero.burn);
+    labyrinth.onDirectionChangeHit(hero.changeDirectionTo);
     helper.onAbort(hero.kill);
     hero.create();
     helper.create();

@@ -54,7 +54,7 @@ let Resultscreen = function() {
         message = WON_MESSAGES[Math.floor(Math.random() * WON_MESSAGES.length)] + '!';
       }
     } else if (currentLevel.isPlayed()) {
-      if(levelCtrl.isTimeout()) {
+      if (levelCtrl.isTimeout()) {
         message = 'TIMEOUT!';
       } else {
         message = FAILED_MESSAGES[Math.floor(Math.random() * FAILED_MESSAGES.length)] + '!';
