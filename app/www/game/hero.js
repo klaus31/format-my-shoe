@@ -34,10 +34,6 @@ let Hero = function() {
     return stopsMade;
   }
 
-  this.getMaximalSpeed = function() {
-    return levelCtrl.getCurrentLevel().getHeroSpeed();
-  }
-
   this.onDead = function(func) {
     onDead = func;
   }

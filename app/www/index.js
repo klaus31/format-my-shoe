@@ -17,13 +17,24 @@ localStorage.setItem('version', 1703061906);
 const levelCtrl = new LevelCtrl();
 const game = new Phaser.Game("100%", "100%", Phaser.CANVAS, 'parent');
 
-let setGlobalScalingRules = function() {}
+let setGlobalScalingRules = function() {
+  game.scale.onOrientationChange.addOnce(function() {
+    // TODO does not work in safari ios (and other ...?!
+  // Alternative: game.scale.setGameSize(screen.width, screen.height);
+    game.scale.setExactFit();
+    game.scale.refresh();
+  });
+}
+
+
+
 const resultscreen = new Resultscreen();
 game.state.add('Startscreen', new Startscreen());
 game.state.add('Credits', new Credits());
 game.state.add('Game', new Game());
 game.state.add('Resultscreen', resultscreen);
 game.state.start('Startscreen');
+
 if (debugMode) {
   console.info('Debug-Mode activated:');
   console.info('* will unlock all levels because of debug mode');

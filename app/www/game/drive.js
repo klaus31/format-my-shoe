@@ -5,7 +5,7 @@ let Drive = function(hero) {
   let y;
   let firstMoveMade = false;
   let wasDown = false;
-  let speed = hero.getMaximalSpeed();
+  const speed = 200;
   let swipe = {
     minDistance: 20
   };

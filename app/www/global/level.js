@@ -29,9 +29,6 @@ const Level = function(config, index) {
   this.getFilename = function() {
     return config.filename;
   }
-  this.getHeroSpeed = function() {
-    return config.heroSpeed || 200;
-  }
   this.start = function() {
     if (debugMode) {
       console.info('starting: ' + config.filename);
