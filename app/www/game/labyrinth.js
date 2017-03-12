@@ -43,6 +43,10 @@ let Labyrinth = function(levelInfo) {
     map.addTilesetImage('direction-left');
   }
 
+  this.getHeight = function() {
+    return map.height * map.tileHeight;
+  }
+
   this.onGoalHit = function(func) {
     map.setTileIndexCallback(ID_GOAL, func);
   }

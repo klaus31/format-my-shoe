@@ -22,8 +22,6 @@ let Game = function() {
 
   this.create = function() {
     let background = game.add.tileSprite(0, 0, game.width, game.height, 'game-background');
-    background.height = game.height;
-    background.width = game.width;
     labyrinth.create();
     hero.onDead(endGameFail);
     labyrinth.onGoalHit(endGameWin);
@@ -33,6 +31,8 @@ let Game = function() {
     helper.onAbort(hero.kill);
     hero.create();
     helper.create();
+    background.height = Math.max(labyrinth.getHeight(), game.height);
+    background.width = game.width;
   }
 
   let endGame = function(won) {
