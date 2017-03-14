@@ -5,7 +5,7 @@ var withEachLevel = function(func, andAfterAll) {
   fs.readdir(basedir, (err, files) => {
     var filesRemain = files.length;
     files.forEach(file => {
-      if(file.match('\.json$')) {
+      if(file.match('.*\.json$') && !file.match('template')) {
         var levelfile = basedir + '/' + file;
         fs.readFile(levelfile, 'utf8', function (err, data) {
           if (err) throw err;
