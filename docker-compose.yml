@@ -1,0 +1,8 @@
+version: '2'
+services:
+  hurry-upzzle:
+    container_name: hurry-upzzle
+    build:
+      context: .
+    ports:
+      - "80:8081"
