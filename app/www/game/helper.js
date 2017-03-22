@@ -6,14 +6,19 @@ let Helper = function(level, hero) {
   let onAbort = function() {};
   const fontCtrl = new FontCtrl();
   const FONT_STYLE = {
-    fill: '#FFF',
+    fill: hex(Style.colors.complement.b),
     fontSize: '12pt',
+    boundsAlignH: 'center',
+    boundsAlignV: 'middle'
+  };
+  const FONT_STYLE_BACK = {
+    fill: FONT_STYLE.fill,
+    fontSize: '18pt',
     boundsAlignH: 'center',
     boundsAlignV: 'middle'
   };
 
   this.preload = function() {
-    game.load.image('back', 'game/back.png', 16, 16);
   }
 
   this.onAbort = function(func) {
@@ -24,19 +29,24 @@ let Helper = function(level, hero) {
     let menu = game.add.sprite(0, 0);
     menu.fixedToCamera = true;
     const graphics = game.add.graphics(0, 0);
-    graphics.beginFill(0x2F003F);
+    graphics.beginFill(Style.colors.primary.d);
     graphics.drawRect(0, 0, game.width, 30);
-    graphics.beginFill(0x000000);
+    graphics.beginFill(Style.colors.primary.f);
     graphics.drawRect(0, 30, game.width, 2);
     graphics.endFill();
     menu.addChild(graphics);
   }
 
   let createBackToLevelSelect = function() {
-    var back = game.add.sprite(10, 0, 'back');
+    var back = game.add.sprite(0,0);
     back.fixedToCamera = true;
     back.inputEnabled = true;
     back.events.onInputDown.add(onAbort);
+    fontCtrl.addText(0, 0, '<', FONT_STYLE_BACK, function(text) {
+      text.setTextBounds(0, 0, 32, 32);
+      text.alpha = 1;
+      back.addChild(text);
+    });
   }
 
   let calcStatisticsMessage = function() {
@@ -70,11 +80,11 @@ let Helper = function(level, hero) {
     let stopsGood = level.getStopsGood();
     let stopsMade = hero.getStopsMade();
     if (stopsMade <= stopsOptimal) {
-      return '#FFF';
+      return hex(Style.colors.complement.b);
     } else if (stopsMade <= stopsGood) {
-      return '#FF0';
+      return hex(Style.colors.complement.c);
     } else {
-      return '#F55';
+      return hex(Style.colors.complement.d);
     }
   }
   this.update = function() {

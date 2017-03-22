@@ -4,13 +4,13 @@ let Resultscreen = function() {
   let worldHeight;
   let headline;
   const FONT_STYLE = {
-    fill: '#6F00E3',
+    fill: hex(Style.colors.primary.c),
     fontSize: '26pt',
     boundsAlignH: 'center',
     boundsAlignV: 'middle'
   };
   const FONT_STYLE_START = {
-    fill: '#6F00E3',
+    fill: hex(Style.colors.primary.c),
     fontSize: '20pt',
     boundsAlignH: 'center',
     boundsAlignV: 'bottom'
@@ -35,7 +35,7 @@ let Resultscreen = function() {
 
   this.preload = function() {
     position.start = game.world.height / 2;
-    game.stage.backgroundColor = '#5B1075';
+    game.stage.backgroundColor = Style.colors.primary.e;
     game.load.image('star-filled', 'levelselect/star-filled.png', 126, 40);
     game.load.image('star-outline', 'levelselect/star-outline.png', 126, 40);
     setGlobalScalingRules();
@@ -60,14 +60,14 @@ let Resultscreen = function() {
         message = FAILED_MESSAGES[Math.floor(Math.random() * FAILED_MESSAGES.length)] + '!';
       }
     } else {
-      message = 'WELCOME!';
+      message = 'HURRY UPZZLE!';
     }
     addLevels();
     fontCtrl.addText(0, 0, message, FONT_STYLE, function(text) {
       text.fixedToCamera = true;
-      text.stroke = "#79F990";
+      text.stroke = hex(Style.colors.complement.b);
       text.strokeThickness = 13;
-      text.setShadow(3, 3, "#333", 2, true, true);
+      text.setShadow(3, 3, hex(Style.colors.secondary1.b), 2, true, true);
       text.setTextBounds(0, 0, game.width, game.height / 8 * 3);
       text.alpha = 1;
       window.setTimeout(function() {
@@ -98,34 +98,21 @@ let Resultscreen = function() {
       }
       const graphics = game.add.graphics(circle.x, circle.y);
       const level = levelCtrl.getLevel(i);
-      graphics.lineStyle(1, 0x000000, level.isWonAtAnyTime() ? 1 : 0.5);
+      graphics.lineStyle(1, level.isWonAtAnyTime() ? Style.colors.complement.c : Style.colors.primary.e, 1);
 
-      let highlightLevel = recommandAsNextToPlay(level, currentLevel);
-      // mark circle with second circle behind
-      if (highlightLevel) {
-        graphics.beginFill(level.isWonAtAnyTime() ? 0xF9E379 : 0x73FFA4);
-        graphics.drawCircle(1, 1, circle.width + 3);
-        swipe.forceSpriteY = circle.y;
-        graphics.endFill();
-      }
+      let highlightLevel = recommandAsNextToPlay(level);
+      if(highlightLevel) swipe.forceSpriteY = circle.y;
       // colors for circle decision
-      if (highlightLevel) {
-        if (level.isWonAtAnyTime()) {
-          graphics.beginFill(0x3DF962);
-          fontStyleLevelCircle.fill = '#000';
-          fontStyleLevelCircle.fontWeight = 'bold';
-        } else {
-          graphics.beginFill(0xF9E379);
-          fontStyleLevelCircle.fill = '#000';
-          fontStyleLevelCircle.fontWeight = 'normal';
-        }
-      } else if (level.isWonAtAnyTime()) {
-        graphics.beginFill(0x1C802F);
-        fontStyleLevelCircle.fill = '#FFF';
+      if (highlightLevel || level.isWonAtAnyTime()) {
+        graphics.beginFill(Style.colors.secondary1.b);
+      } else {
+        graphics.beginFill(Style.colors.primary.d);
+      }
+      if (level.isWonAtAnyTime()) {
+        fontStyleLevelCircle.fill = hex(Style.colors.complement.b);
         fontStyleLevelCircle.fontWeight = 'bold';
       } else {
-        graphics.beginFill(0xF9797F);
-        fontStyleLevelCircle.fill = '#333';
+        fontStyleLevelCircle.fill = hex(Style.colors.primary.e);
         fontStyleLevelCircle.fontWeight = 'normal';
       }
       // draw circle
@@ -160,7 +147,6 @@ let Resultscreen = function() {
         sprite.inputEnabled = true;
         sprite.events.onInputDown.add(startLevel(i), this);
       } else {
-        sprite.alpha = 0.3;
         if (debugMode) {
           sprite.inputEnabled = true;
           sprite.events.onInputDown.add(startLevel(i), this);
@@ -180,9 +166,9 @@ let Resultscreen = function() {
     }
   }
 
-  let recommandAsNextToPlay = function(level, currentLevel) {
-    return level.getIndex() == currentLevel.getIndex() && !currentLevel.isWon() ||
-      level.getIndex() == currentLevel.getIndex() + 1 && currentLevel.isWon();
+  let recommandAsNextToPlay = function(level) {
+    let idx = level.getIndex();
+    return !level.isWonAtAnyTime() && (!idx || levelCtrl.getLevel(idx-1).isWonAtAnyTime());
   }
 
   this.update = function() {

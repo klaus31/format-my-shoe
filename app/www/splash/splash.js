@@ -1,7 +1,7 @@
 let Startscreen = function() {
 
   this.preload = function() {
-    game.stage.backgroundColor = '#000';
+    game.stage.backgroundColor = Style.colors.primary.d;
     game.load.image('splash', 'splash/splash.png');
     setGlobalScalingRules();
   }
@@ -15,7 +15,7 @@ let Startscreen = function() {
     game.camera.onFadeComplete.addOnce(function() {
       game.state.start('Resultscreen');
     });
-    game.camera.fade(0x5B1075);
+    game.camera.fade(Style.colors.primary.e);
   }
 
   this.update = function() {}
