@@ -9,7 +9,6 @@ let Hero = function() {
   let drive;
   let lastPosition = false;
   let isMoving = false;
-  let angleUpdateDeg = 10;
   let died;
   let fire;
   let hitDeadWall;
@@ -45,7 +44,6 @@ let Hero = function() {
     game.physics.enable(hero, Phaser.Physics.ARCADE);
     game.camera.follow(hero);
     hero.body.collideWorldBounds = true;
-    hero.angle = levelCtrl.getCurrentLevel().getStartAngle();
   }
 
   this.getSprite = function() {
@@ -119,11 +117,6 @@ let Hero = function() {
     } else {
       updateLife();
       updateDrive();
-      // rotate hero
-      if (isMoving) {
-        let pos = (hero.position.x - hero.body.halfWidth) % hero.body.width || (hero.position.y - hero.body.halfHeight) % hero.body.height;
-        hero.angle = pos * 90 / hero.body.width;
-      }
       // set stop count
       if (!isMoving && drive.firstMoveMade() && stopCounted === false) {
         stopsMade++;
